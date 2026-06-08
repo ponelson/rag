@@ -64,6 +64,8 @@ h1.title .d{color:var(--accent);font-weight:400}
 .subtitle{font-weight:400;font-size:clamp(21px,3.2vw,28px);letter-spacing:-.02em;color:var(--ink-soft);max-width:600px;margin:16px auto 0;line-height:1.32}
 .lede{max-width:660px;margin:32px auto 0;color:var(--ink-soft);font-size:18px;letter-spacing:-.01em}
 .lede strong{color:var(--ink);font-weight:600}
+.rag-def{max-width:560px;margin:20px auto 0;color:var(--ink-soft);font-size:16px;letter-spacing:-.01em;line-height:1.5}
+.rag-def .tag{font-family:'IBM Plex Mono',monospace;display:block;font-size:12px;letter-spacing:.04em;color:var(--accent);margin-bottom:7px;font-weight:500}
 
 /* ---------- toc ---------- */
 .toc{margin:54px auto 0}
@@ -261,8 +263,8 @@ footer a{color:var(--accent);text-decoration:none}
 
 <header class="top wrap reveal" id="top">
   <div class="eyebrow">A field guide to the wheel under retrieval</div>
-  <h1 class="title"><span class="d">D</span>RAG</h1>
-  <div class="subtitle">RAG is the easy three letters. The D is the drag.</div>
+  <h1 class="title"><span class="d">D+</span>RAG</h1>
+  <p class="rag-def"><span class="tag">Data + Retrieval Augmented Generation</span>An AI model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of your own data the moment a question is asked and hands them to the AI as context, so the answer is grounded in your current facts rather than the model's stale memory.</p>
   <p class="lede">RAG's <strong>R</strong> quietly assumes a clean, current, retrievable, governed corpus already exists. It doesn't. Making data worth retrieving — ingesting, refining, embedding, governing, keeping it fresh — is the heavy, perpetual part the acronym skips. Prepending the <strong>D</strong> is just honest. And once you add it, the line bends into a wheel.</p>
 </header>
 
