@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRAG — the wheel under retrieval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F5F0;
+  --paper-2:#FCFBF8;
+  --ink:#1B1916;
+  --ink-soft:#56514A;
+  --ink-faint:#8C867C;
+  --line:#E4DFD5;
+  --line-strong:#D2CBBD;
+  /* ownership colors */
+  --molten:#A8480F;      /* Qumulo-owned: the data / the drag */
+  --molten-soft:#F3E2D5;
+  --molten-line:#E6C9B2;
+  --slate:#39506B;        /* fed to partners: the intelligence */
+  --slate-soft:#E3E9F0;
+  --slate-line:#C9D5E2;
+  --shadow:0 1px 2px rgba(27,25,22,.05),0 8px 28px rgba(27,25,22,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  background-image:radial-gradient(circle at 18% 8%, rgba(168,72,15,.04), transparent 38%),radial-gradient(circle at 82% 92%, rgba(57,80,107,.045), transparent 42%);
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+/* ---------- header ---------- */
+header.top{padding:88px 0 28px;text-align:center}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--molten);font-weight:500}
+h1.title{font-family:'Fraunces',serif;font-weight:340;font-size:clamp(58px,12vw,128px);line-height:.92;letter-spacing:-.02em;margin:18px 0 6px}
+h1.title .d{color:var(--molten);font-style:italic;font-weight:380}
+.subtitle{font-family:'Fraunces',serif;font-size:clamp(20px,3.2vw,27px);font-weight:300;font-style:italic;color:var(--ink-soft);max-width:620px;margin:14px auto 0;line-height:1.4}
+.lede{max-width:660px;margin:34px auto 0;color:var(--ink-soft);font-size:18px}
+.lede strong{color:var(--ink);font-weight:600}
+
+/* ---------- wheel ---------- */
+.wheelzone{display:flex;flex-direction:column;align-items:center;padding:30px 0 12px}
+#wheel{width:min(560px,92vw);height:auto;overflow:visible}
+.seg{cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;transform-origin:center;transform-box:fill-box}
+.seg:hover{opacity:.92}
+.seg path{transition:fill .25s,stroke .25s}
+.seg-label{font-family:'Fraunces',serif;pointer-events:none;font-weight:430}
+.seg-sub{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none}
+.center-core{font-family:'Fraunces',serif}
+.wheel-legend{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-top:22px;font-size:13.5px;color:var(--ink-soft)}
+.wheel-legend span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.dot.m{background:var(--molten)}
+.dot.s{background:var(--slate)}
+.wheel-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:18px}
+
+/* ---------- thesis band ---------- */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:64px 0;background:var(--paper-2)}
+.band .wrap{padding-top:46px;padding-bottom:46px}
+.band p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,3.4vw,30px);line-height:1.42;letter-spacing:-.01em}
+.band p .hi{color:var(--molten);font-style:italic}
+.band .sig{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-top:22px}
+
+/* ---------- terms ---------- */
+.terms{margin:0 0 30px}
+.section-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.terms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:18px}
+.term{background:var(--paper-2);padding:20px 22px}
+.term h4{font-family:'Fraunces',serif;font-size:19px;font-weight:450;margin-bottom:6px}
+.term p{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+
+/* ---------- letter sections ---------- */
+.letter{padding:70px 0 10px;scroll-margin-top:24px;border-top:1px solid var(--line)}
+.letter-head{display:flex;align-items:flex-start;gap:26px;margin-bottom:8px}
+.glyph{font-family:'Fraunces',serif;font-size:clamp(72px,13vw,128px);line-height:.8;font-weight:330}
+.glyph.own{color:var(--molten)}
+.glyph.fed{color:var(--slate)}
+.letter-head .meta{padding-top:8px}
+.letter-head h2{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,42px);font-weight:380;letter-spacing:-.01em;line-height:1.05}
+.owntag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-top:12px}
+.owntag.own{background:var(--molten-soft);color:var(--molten);border:1px solid var(--molten-line)}
+.owntag.fed{background:var(--slate-soft);color:var(--slate);border:1px solid var(--slate-line)}
+.letter-intro{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(19px,3vw,24px);color:var(--ink-soft);line-height:1.45;max-width:760px;margin:18px 0 30px}
+
+/* layer cards */
+.layers{display:grid;gap:14px}
+.layer{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.layer:hover{box-shadow:var(--shadow);border-color:var(--line-strong)}
+.layer-top{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none}
+.layer-code{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.06em;padding:6px 11px;border-radius:8px;flex-shrink:0;min-width:46px;text-align:center}
+.layer.own .layer-code{background:var(--molten-soft);color:var(--molten)}
+.layer.fed .layer-code{background:var(--slate-soft);color:var(--slate)}
+.layer-title{font-family:'Fraunces',serif;font-size:21px;font-weight:450;flex:1}
+.layer-title .em{color:var(--ink-faint);font-style:italic;font-weight:400;font-size:16px;display:block;font-family:'Hanken Grotesk',sans-serif}
+.chev{color:var(--ink-faint);transition:transform .3s;flex-shrink:0}
+.layer.open .chev{transform:rotate(180deg)}
+.layer-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.3,.7,.3,1)}
+.layer-body-inner{padding:0 24px 24px 86px}
+.layer-body-inner .what{color:var(--ink-soft);font-size:15.5px;margin-bottom:18px;line-height:1.6}
+.who-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 11px;border-radius:7px;background:var(--paper);border:1px solid var(--line-strong);color:var(--ink-soft);transition:.2s}
+.chip.lead{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.multi{border-color:var(--molten-line);color:var(--molten);position:relative}
+.chip.multi::after{content:"◆";font-size:8px;margin-left:5px;vertical-align:middle}
+.note{margin-top:16px;padding:13px 16px;background:var(--molten-soft);border-radius:10px;font-size:13.5px;color:#7a3a14;line-height:1.55;border:1px solid var(--molten-line)}
+.note b{color:var(--molten)}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 4px}
+.fork-card{border-radius:13px;padding:18px;border:1px solid var(--line-strong)}
+.fork-card .ftag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;font-weight:500}
+.fork-card h5{font-family:'Fraunces',serif;font-size:18px;font-weight:480;margin-bottom:8px;line-height:1.2}
+.fork-card h5 em{font-style:italic}
+.fork-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.fork-card.captive{background:var(--paper);border-style:dashed}
+.fork-card.captive .ftag{color:#9a7b1f}
+.fork-card.captive h5{color:#7a5e12}
+.fork-card.open{background:linear-gradient(180deg,var(--molten-soft),var(--paper-2) 70%);border-color:var(--molten-line)}
+.fork-card.open .ftag{color:var(--molten)}
+.fork-card.open h5{color:var(--molten)}
+.fork-quote{font-style:italic;font-family:'Fraunces',serif;font-size:14.5px;color:var(--ink-soft);margin-bottom:8px}
+@media(max-width:720px){.fork{grid-template-columns:1fr}}
+
+/* ---------- act / wheel close ---------- */
+.act{background:var(--ink);color:var(--paper);border-radius:24px;padding:48px 44px;margin:64px 0;position:relative;overflow:hidden}
+.act::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(168,72,15,.22),transparent 55%);pointer-events:none}
+.act .section-eyebrow{color:var(--molten);position:relative}
+.act h2{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,42px);font-weight:380;margin:8px 0 16px;position:relative}
+.act p{color:#D9D4CB;max-width:680px;position:relative;font-size:17px}
+.act .cycle{font-family:'IBM Plex Mono',monospace;font-size:clamp(13px,2.4vw,17px);letter-spacing:.04em;margin-top:26px;color:var(--paper);position:relative;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.act .cycle .tk{padding:5px 10px;border:1px solid rgba(247,245,240,.25);border-radius:7px}
+.act .cycle .tk.own{background:rgba(168,72,15,.35);border-color:rgba(168,72,15,.6)}
+.act .cycle .ar{color:var(--molten);font-weight:600}
+
+/* ---------- planes ---------- */
+.planes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 30px}
+.plane{border:1px dashed var(--line-strong);border-radius:16px;padding:26px 26px;background:var(--paper-2)}
+.plane h3{font-family:'Fraunces',serif;font-size:23px;font-weight:450;margin-bottom:8px}
+.plane .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.plane p{color:var(--ink-soft);font-size:15px;margin-top:10px}
+
+/* ---------- matrix ---------- */
+.matrix-wrap{margin:30px 0 0}
+.matrix-controls{display:flex;align-items:center;gap:14px;margin:18px 0 16px;flex-wrap:wrap}
+.toggle{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--line-strong);border-radius:100px;background:var(--paper-2);cursor:pointer;color:var(--ink-soft);transition:.2s}
+.toggle.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.matrix{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
+.matrix th,.matrix td{padding:0;text-align:center}
+.matrix thead th{font-family:'Fraunces',serif;font-size:19px;font-weight:450;padding:10px 0 14px;position:sticky;top:0}
+.matrix thead th.own{color:var(--molten)}
+.matrix thead th.fed{color:var(--slate)}
+.matrix thead th .sm{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:400;margin-top:2px}
+.matrix tbody tr{transition:.2s}
+.matrix tbody tr:hover{background:var(--paper-2)}
+.matrix tbody tr.dim{opacity:.22}
+.matrix .co{text-align:left;font-family:'Hanken Grotesk';font-weight:600;padding:13px 14px 13px 4px;border-top:1px solid var(--line);white-space:nowrap}
+.matrix .co .span{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:400;color:var(--ink-faint);letter-spacing:.04em;margin-top:1px}
+.matrix td.cell{border-top:1px solid var(--line);height:48px}
+.cell .mk{display:inline-block;width:13px;height:13px;border-radius:50%;transition:transform .2s}
+.cell.on-own .mk{background:var(--molten)}
+.cell.on-fed .mk{background:var(--slate)}
+.cell.on-own.land .mk{background:var(--molten);box-shadow:0 0 0 4px var(--molten-soft)}
+tr:hover .cell.on-own .mk,tr:hover .cell.on-fed .mk{transform:scale(1.25)}
+.matrix-key{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:16px}
+.matrix-key span{display:inline-flex;align-items:center;gap:7px}
+
+/* ---------- synthesis ---------- */
+.synth{margin:72px 0 30px;border-top:2px solid var(--ink);padding-top:40px}
+.synth h2{font-family:'Fraunces',serif;font-size:clamp(26px,4.5vw,38px);font-weight:380;line-height:1.12;letter-spacing:-.01em;max-width:820px}
+.synth h2 .own{color:var(--molten);font-style:italic}
+.synth h2 .fed{color:var(--slate);font-style:italic}
+.synth-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.synth-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--paper-2)}
+.synth-card.own{border-color:var(--molten-line);background:linear-gradient(180deg,var(--molten-soft),var(--paper-2) 60%)}
+.synth-card h3{font-family:'Fraunces',serif;font-size:21px;font-weight:480;margin-bottom:10px}
+.synth-card.own h3{color:var(--molten)}
+.synth-card.fed h3{color:var(--slate)}
+.synth-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+.synth-card ul{list-style:none;margin-top:12px;font-size:14px}
+.synth-card li{padding:6px 0;border-top:1px dotted var(--line-strong);color:var(--ink-soft)}
+.synth-card li b{color:var(--ink)}
+.honesty{margin-top:24px;font-size:13.5px;color:var(--ink-faint);border-left:2px solid var(--line-strong);padding:4px 0 4px 16px;line-height:1.55}
+.honesty b{color:var(--ink-soft)}
+
+footer{text-align:center;padding:56px 0 64px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border-top:1px solid var(--line);margin-top:60px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .planes,.synth-cols{grid-template-columns:1fr}
+  .layer-body-inner{padding-left:24px}
+  .letter-head{gap:16px}
+  .matrix{font-size:12px}
+  .matrix .co{font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<header class="top wrap reveal">
+  <div class="eyebrow">A field guide to the wheel under retrieval</div>
+  <h1 class="title"><span class="d">D</span>RAG</h1>
+  <div class="subtitle">RAG is the easy three letters. The D is the drag.</div>
+  <p class="lede">RAG's <strong>R</strong> quietly assumes a clean, current, retrievable, governed corpus already exists. It doesn't. Making data worth retrieving — ingesting, refining, embedding, governing, keeping it fresh — is the heavy, perpetual part the acronym skips. Prepending the <strong>D</strong> is just honest. And once you add it, the line bends into a wheel.</p>
+</header>
+
+<section class="wheelzone reveal">
+  <svg id="wheel" viewBox="-300 -300 600 600" role="img" aria-label="The DRAG wheel"></svg>
+  <div class="wheel-legend">
+    <span><i class="dot m"></i> Qumulo owns it — the data</span>
+    <span><i class="dot s"></i> Qumulo feeds it — the intelligence</span>
+  </div>
+  <div class="wheel-hint">Tap a segment to open its layer</div>
+</section>
+
+<div class="band reveal">
+  <div class="wrap">
+    <p>Every RAG platform retrieves what it's given. <span class="hi">None of them make the data worth retrieving.</span> That whole Data stack is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
+    <div class="sig">The missing layer · the Refinery · the drag</div>
+  </div>
+</div>
+
+<section class="wrap terms reveal">
+  <div class="section-eyebrow">Plain-English terms</div>
+  <div class="terms-grid">
+    <div class="term"><h4>RAG</h4><p>A model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of <em>your</em> data at question time and hands them to the model as context. Retrieval is the lookup; generation is the model writing from what was retrieved.</p></div>
+    <div class="term"><h4>Substrate</h4><p>The foundation a thing draws from. A RAG substrate is the body of data — plus the structure that makes it findable — that the retrieval step reaches into.</p></div>
+    <div class="term"><h4>Embeddings</h4><p>Numerical fingerprints of meaning: a passage or file turned into a list of numbers, so things that mean similar things sit near each other. Expensive derived assets — in the Refinery they persist in open format, so they travel with the data.</p></div>
+    <div class="term"><h4>Index</h4><p>A fast-lookup structure built over the embeddings — "find the passages that mean roughly this" — instead of scanning everything. The <em>disposable accelerator</em>, not the asset: engine-specific and rebuildable. Like the index at the back of a book: it holds no chapters, it points you to a page.</p></div>
+    <div class="term"><h4>Enrichment</h4><p>Adding derived understanding over time — entities, summaries, classifications, embeddings, provenance, eligibility. Enriching continuously means every analysis pass writes more understanding back, so the asset grows richer instead of staying a dumb blob.</p></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============ D ============ -->
+<section class="letter reveal" id="sec-D">
+  <div class="letter-head">
+    <div class="glyph own">D</div>
+    <div class="meta">
+      <h2>Data</h2>
+      <div class="owntag own">Qumulo owns it · the substrate, and the part that's actually heavy</div>
+    </div>
+  </div>
+  <p class="letter-intro">Where the bytes live, how they're laid out, how they stay fresh, how they're refined into something retrievable, and who's allowed to touch them. This is the Refinery — and it's five things, not one.</p>
+  <div class="layers" data-letter="D">
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">D1</span><span class="layer-title">Storage <span class="em">the shelves — where the bytes physically live</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Where the actual bytes sit and stay put. Every other layer ultimately reads from and writes to here; it's the foundation the rest sit on top of. On top of an S3/file interface you lay open formats so anything can read it.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip lead">Qumulo Core / Cloud Native</span><span class="chip lead">Azure Native Qumulo</span><span class="chip">VAST Data</span><span class="chip">Dell PowerScale</span><span class="chip">NetApp</span><span class="chip">Pure Storage</span><span class="chip">Weka</span><span class="chip">AWS S3</span><span class="chip">MinIO</span><span class="chip">Azure Blob</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">D2</span><span class="layer-title">Open formats <span class="em">how the bytes are laid out — so any engine reads them</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The on-disk layout that lets any engine read the same bytes without conversion or lock-in. Parquet for the columnar bytes; Apache Iceberg for table structure — schema, snapshots, time-travel. Formats are durable; the engines above them are volatile.</p>
+        <div class="who-label">Who plays here · open standards, not vendors</div>
+        <div class="chips"><span class="chip lead">Apache Parquet</span><span class="chip lead">Apache Iceberg</span><span class="chip multi">Delta Lake / Databricks</span><span class="chip">Apache Hudi</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">D3</span><span class="layer-title">Replication &amp; freshness <span class="em">keeping copies current and global</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Keeps copies fresh and globally consistent so retrieval never reads stale bytes. This is the <em>storage-layer</em> sense — Qumulo's Cloud Data Fabric — and it is distinct from event streaming. Same word "streaming," different layer: the event bus routes discrete messages; replication keeps copies fresh.</p>
+        <div class="who-label">Who plays here · storage replication</div>
+        <div class="chips"><span class="chip lead">Qumulo Cloud Data Fabric</span></div>
+        <div class="who-label" style="margin-top:16px">Adjacent: the event bus (data arriving)</div>
+        <div class="chips"><span class="chip">Apache Kafka / Confluent</span><span class="chip">Apache Flink</span><span class="chip">Apache Pulsar</span><span class="chip">Redpanda</span><span class="chip">Amazon Kinesis</span><span class="chip">Spark Structured Streaming</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">D4</span><span class="layer-title">The refining pipeline <span class="em">raw files → retrievable asset</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The work that turns a dumb blob into an asset: detect file types, chunk, embed, extract entities and provenance, classify — and persist all of it back onto the files in open format, so the enrichment travels with the data. Every pass writes more understanding back. This is the Refinery's reason for being.</p>
+        <div class="who-label">Who plays here · enrichment tooling today</div>
+        <div class="chips"><span class="chip">Unstructured.io</span><span class="chip multi">LlamaIndex (ingest)</span><span class="chip multi">Cohere (embed)</span><span class="chip multi">Voyage AI</span><span class="chip multi">NVIDIA NeMo Retriever</span><span class="chip">Azure Document Intelligence</span><span class="chip">AWS Textract</span></div>
+        <div class="note"><b>Honest flag.</b> The differentiated move is pulling this <i>into the storage layer</i> so it runs natively over data in place. Treat storage-native categorization / enrichment as the Refinery <i>thesis</i> — verify what ships before it carries a customer claim.</div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">D5</span><span class="layer-title">Catalog &amp; file-layer governance <span class="em">what exists, and who may touch it</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The master index of what data exists, where it lives, and the shape of each table — so every engine discovers and reads the same data without copying. Plus governance at two levels: table-level (the catalog) and identity-level access control. On an open substrate, identity-level RBAC is the storage layer's job — Qumulo's file-layer governance.</p>
+        <div class="who-label">Who plays here · catalog</div>
+        <div class="chips"><span class="chip">Apache Polaris</span><span class="chip multi">Unity Catalog / Databricks</span><span class="chip">Project Nessie</span><span class="chip multi">AWS Glue</span><span class="chip multi">Snowflake Open Catalog</span></div>
+        <div class="who-label" style="margin-top:16px">Identity-level RBAC</div>
+        <div class="chips"><span class="chip lead">Qumulo file-layer governance</span><span class="chip">Cloud provider IAM</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ R ============ -->
+<section class="letter reveal" id="sec-R">
+  <div class="letter-head">
+    <div class="glyph own">R</div>
+    <div class="meta">
+      <h2>Retrieval</h2>
+      <div class="owntag own">Qumulo owns it · the index and the lookup</div>
+    </div>
+  </div>
+  <p class="letter-intro">The vector and semantic index plus keyword/metadata search, exposed through whatever interface a caller speaks. Either it lives where the data lives — or a dedicated vector database gets bolted alongside, and you carry a second system.</p>
+  <div class="layers" data-letter="R">
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">R1</span><span class="layer-title">Semantic / vector index <span class="em">find by meaning</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Converts content into vectors and retrieves the closest by similarity — pulls up material relevant to a question even when none of the words line up. The library searched before answering. Built over the embeddings; the index itself is the rebuildable accelerator, not the asset.</p>
+        <div class="who-label">Who plays here · 2026 leaders</div>
+        <div class="chips"><span class="chip">Pinecone</span><span class="chip multi">Weaviate</span><span class="chip multi">Qdrant</span><span class="chip multi">Milvus / Zilliz</span><span class="chip">pgvector</span><span class="chip">Chroma</span><span class="chip multi">LanceDB</span><span class="chip multi">Azure AI Search</span><span class="chip">Vespa</span></div>
+        <div class="note">Above ~1B vectors, <b>Vespa</b> and <b>Milvus</b> are the production options. <b>LanceDB</b> is the natural fit on an open substrate — vectors-as-files, designed to live directly on object storage.</div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">R2</span><span class="layer-title">Lexical &amp; metadata search <span class="em">find by exact terms and filters</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Classic full-text (BM25) and structured metadata filtering — the precision complement to fuzzy semantic search. Names, IDs, codes, dates, eligibility predicates: the places where exact match, not "roughly this," is what you need.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip">Elasticsearch</span><span class="chip">OpenSearch</span><span class="chip">Apache Solr</span><span class="chip multi">Azure AI Search</span><span class="chip multi">Vespa</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">R3</span><span class="layer-title">Hybrid retrieval <span class="em">fuse meaning + precision</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Combines vector and keyword results (e.g. reciprocal rank fusion) so you get both semantic recall and lexical precision in one pass. In practice this is the single biggest lever on retrieval quality — which is why every serious engine now ships it.</p>
+        <div class="who-label">Who plays here · ships hybrid by default</div>
+        <div class="chips"><span class="chip multi">Weaviate</span><span class="chip multi">Qdrant</span><span class="chip multi">Vespa</span><span class="chip multi">Azure AI Search</span><span class="chip">Elasticsearch</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">R4</span><span class="layer-title">Query interfaces <span class="em">how any caller hits retrieval</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Exposes retrieval through whatever the caller speaks — a vector API, SQL, REST, and increasingly MCP — so any agent or app can reach it without a bespoke integration. The interface is where storage-native retrieval earns its keep: same data, many front doors, no copy.</p>
+        <div class="who-label">Who plays here · protocols &amp; surfaces</div>
+        <div class="chips"><span class="chip multi">MCP (Anthropic)</span><span class="chip">Vector API</span><span class="chip">SQL</span><span class="chip">REST</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer own"><div class="layer-top"><span class="layer-code">R5</span><span class="layer-title">The retrieval fork <span class="em">bolt-on · captive · open</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The architectural choice that decides your copies, freshness, lock-in, and operational drag. Remember the index is a <em>disposable accelerator, not the asset</em> — so the real question isn't "who runs the index," it's <em>who holds the durable derived understanding.</em> Three stances answer it differently.</p>
+
+        <div class="who-label">Stance 1 · Bolt-on — a separate system alongside</div>
+        <p class="what">A dedicated vector DB sits alongside; you sync data into it and run a second system, and the embeddings live in the vendor's proprietary store. Changing engines means re-deriving, not just re-pointing.</p>
+        <div class="chips" style="margin-bottom:22px"><span class="chip">Pinecone</span><span class="chip multi">Milvus</span><span class="chip multi">Qdrant</span><span class="chip multi">Weaviate</span></div>
+
+        <div class="who-label">Stances 2 &amp; 3 · two ways to be storage-native — and they are not the same claim</div>
+        <div class="fork">
+          <div class="fork-card captive">
+            <div class="ftag">⚠ Captive R · the copy's implicit claim</div>
+            <h5>We <em>are</em> the vector store</h5>
+            <div class="fork-quote">"No separate database — search and reason in place."</div>
+            <p>The maximal all-in-one promise: Qumulo replaces the vector DB <i>and</i> the query engine and reasons over the data itself. Cleanest story to tell — and the most roadmap-heavy to back. This is what the marketing implies; it's also the overclaim to watch.</p>
+          </div>
+          <div class="fork-card open">
+            <div class="ftag">◆ Open R · the durable, defensible position</div>
+            <h5>We hold the asset; we feed the engine</h5>
+            <p>You own <b>D</b> <i>and</i> the durable, open form of the derived understanding — embeddings, entities, provenance in open Parquet/Iceberg, in the customer's custody. You <em>feed</em> the volatile parts of retrieval — the serving index, the query engine — rather than replacing them. Swap engines by re-pointing a new index at data you still hold; never re-derive.</p>
+          </div>
+        </div>
+        <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the intelligence (volatile, fed). The embeddings are <i>data</i>; the index and engine are <i>intelligence</i>. Captive R quietly re-files the index and engine as <i>yours</i>, which is exactly where the claim gets ahead of the product. <b>Lead with Open R; let Captive R be a roadmap aspiration, not a present promise.</b></div>
+        <div class="who-label" style="margin-top:18px">Storage-native today</div>
+        <div class="chips"><span class="chip lead">Qumulo (Open R)</span><span class="chip multi">LanceDB</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ A ============ -->
+<section class="letter reveal" id="sec-A">
+  <div class="letter-head">
+    <div class="glyph fed">A</div>
+    <div class="meta">
+      <h2>Augmentation</h2>
+      <div class="owntag fed">Qumulo feeds it · orchestration — embed, retrieve, assemble, loop</div>
+    </div>
+  </div>
+  <p class="letter-intro">The conductor. It embeds the query, calls retrieval, assembles context, sharpens the candidates, and runs the multi-step loop — deciding which step happens next and keeping a multi-step job on track. You can run it yourself, take a lab's SDK, or buy the whole loop managed.</p>
+  <div class="layers" data-letter="A">
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A1</span><span class="layer-title">Orchestration frameworks <span class="em">run the loop yourself</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The framework code you host and control — it embeds the query, hits retrieval, assembles context, plans steps, calls tools, and chains agents together to finish a task. The conductor of the whole multi-step job.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip lead">LangGraph</span><span class="chip">CrewAI</span><span class="chip multi">LlamaIndex</span><span class="chip multi">Semantic Kernel</span><span class="chip">Mastra (TS-native)</span><span class="chip">Haystack</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A2</span><span class="layer-title">Lab SDKs <span class="em">the model-makers' own agent kits</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Agent toolkits shipped by the model labs themselves, tuned to their own models — plan, call tools, chain steps. The path of least resistance if you've already chosen the model.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">OpenAI Agents SDK</span><span class="chip multi">Anthropic Claude Agent SDK</span><span class="chip multi">Google ADK</span><span class="chip multi">AutoGen / MS Agent Framework</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A3</span><span class="layer-title">Rerankers &amp; embedders <span class="em">sharpen what retrieval returns</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Embedders turn text into the vectors that feed D's pipeline and R's index. Rerankers re-score the top candidates retrieval returned, so the best passages rise before they ever reach the model. The quality multiplier sitting between R and G.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">Cohere (Rerank + Embed)</span><span class="chip multi">NVIDIA NeMo Retriever</span><span class="chip multi">Voyage AI</span><span class="chip multi">OpenAI embeddings</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A4</span><span class="layer-title">Context assembly <span class="em">pack the window</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Selects, orders, compresses, and formats the retrieved chunks into the prompt — dedup, token-budgeting, citation scaffolding. The unglamorous step that decides whether the model gets the right context or a noisy dump. Usually handled inside the frameworks above.</p>
+        <div class="who-label">Who plays here · inside the frameworks</div>
+        <div class="chips"><span class="chip multi">LlamaIndex</span><span class="chip multi">LangGraph</span><span class="chip">framework-native</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A5</span><span class="layer-title">Managed agent platforms <span class="em">buy the whole loop</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Cloud-bundled orchestration so you don't assemble it yourself — retrieval, embedding, orchestration, and model access wired together behind one platform. The "I want results, not Lego" option.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">AWS Bedrock AgentCore</span><span class="chip multi">Azure AI Foundry</span><span class="chip multi">Snowflake Cortex</span><span class="chip multi">Databricks Mosaic AI</span><span class="chip">Palantir AIP</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ G ============ -->
+<section class="letter reveal" id="sec-G">
+  <div class="letter-head">
+    <div class="glyph fed">G</div>
+    <div class="meta">
+      <h2>Generation</h2>
+      <div class="owntag fed">Qumulo feeds it · the model, on someone's compute</div>
+    </div>
+  </div>
+  <p class="letter-intro">The model that actually writes the answer from assembled context — closed or open-weight — turned into a fast endpoint by a serving runtime, running on silicon, somewhere. This is the G everyone fixates on; it consumes the whole stack beneath it.</p>
+  <div class="layers" data-letter="G">
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">G1</span><span class="layer-title">Frontier models <span class="em">the answer-writer</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The closed, state-of-the-art model that generates the answer from the context it's handed. Strongest reasoning, fastest-moving, accessed through an API.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">Anthropic Claude</span><span class="chip multi">OpenAI GPT</span><span class="chip multi">Google Gemini</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">G2</span><span class="layer-title">Open-weight models <span class="em">run-it-yourself answer-writers</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Models you can host on your own (or rented) compute — trading a bit of frontier capability for control, privacy, and cost at scale. The reason a sovereign or on-prem buyer can keep generation inside their own walls.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip">Meta Llama</span><span class="chip">Mistral</span><span class="chip">Alibaba Qwen</span><span class="chip">DeepSeek</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">G3</span><span class="layer-title">Serving runtime <span class="em">weights → fast endpoint</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The software that loads model weights and serves tokens efficiently — batching, KV-cache, paged attention. The difference between a model that exists and a model that answers at production speed and cost.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">NVIDIA NIM</span><span class="chip">vLLM</span><span class="chip">Hugging Face TGI</span><span class="chip">SGLang</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">G4</span><span class="layer-title">Compute / silicon <span class="em">the hardware that does the math</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The accelerators that run training and inference, and the servers they sit in. NVIDIA reads files directly off the substrate for training and inference — which is exactly where D and G touch.</p>
+        <div class="who-label">Who plays here · accelerators</div>
+        <div class="chips"><span class="chip multi">NVIDIA</span><span class="chip">AMD Instinct</span><span class="chip multi">AWS Trainium / Inferentia</span><span class="chip multi">Google TPU</span></div>
+        <div class="who-label" style="margin-top:16px">Servers</div>
+        <div class="chips"><span class="chip">Cisco UCS</span><span class="chip">Dell</span><span class="chip">Supermicro</span></div>
+      </div></div>
+    </div>
+
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">G5</span><span class="layer-title">Where it runs <span class="em">the venue</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Where the compute physically sits and how you rent it — a hyperscaler endpoint, a GPU neocloud, or on-prem under your own roof (Cisco UCS with Qumulo beneath it). The venue choice is where data gravity and sovereignty get decided.</p>
+        <div class="who-label">Who plays here</div>
+        <div class="chips"><span class="chip multi">AWS Bedrock</span><span class="chip multi">Azure OpenAI</span><span class="chip multi">Google Vertex</span><span class="chip">CoreWeave</span><span class="chip">Lambda</span><span class="chip">Nebius</span><span class="chip">Crusoe</span><span class="chip">Cisco UCS (on-prem)</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT ============ -->
+<section class="act reveal" id="sec-Act">
+  <div class="section-eyebrow">??? — the move that turns the line into a wheel</div>
+  <h2>Act</h2>
+  <p>The model doesn't just answer — it calls tools, triggers workflows, and writes results back. And that write-back lands as new Data at <b style="color:var(--molten)">D</b>, gets re-refined and re-indexed, and the loop runs again. Not D→R→A→G and done. It turns continuously — which is the whole "no staleness, no manual re-indexing" line made literal.</p>
+  <div class="cycle">
+    <span class="tk own">D</span><span class="ar">→</span><span class="tk own">R</span><span class="ar">→</span><span class="tk">A</span><span class="ar">→</span><span class="tk">G</span><span class="ar">→</span><span class="tk own">Act</span><span class="ar">→</span><span class="tk">new data</span><span class="ar">↺</span><span class="tk own">D</span>
+  </div>
+</section>
+
+<!-- ============ PLANES ============ -->
+<section class="reveal">
+  <div class="section-eyebrow">Not stages — planes that wrap the whole wheel</div>
+  <div class="planes" style="margin-top:18px">
+    <div class="plane"><div class="tag">The bearing</div><h3>Memory</h3><p>The state carried across turns of the loop — conversation, scratchpad, long-term store. It doesn't sit at one letter; it's what lets the wheel keep its place as it turns.</p></div>
+    <div class="plane"><div class="tag">The brake</div><h3>Governance</h3><p>Guardrails, audit, and eval over everything — every letter, every turn. Identity-level access lives down in D5; this is the policy and oversight layer that rides on top of all of it.</p></div>
+  </div>
+</section>
+
+<!-- ============ MATRIX ============ -->
+<section class="matrix-wrap reveal">
+  <div class="section-eyebrow">Who plays where · the diamond ◆ marks multi-layer players</div>
+  <div class="matrix-controls">
+    <span style="font-family:'Fraunces',serif;font-size:24px;font-weight:400">Footprints across the wheel</span>
+    <button class="toggle" id="multiToggle">Show only multi-layer players</button>
+  </div>
+  <table class="matrix" id="matrix">
+    <thead><tr>
+      <th></th>
+      <th class="own">D<span class="sm">Data</span></th>
+      <th class="own">R<span class="sm">Retrieval</span></th>
+      <th class="fed">A<span class="sm">Augment</span></th>
+      <th class="fed">G<span class="sm">Generate</span></th>
+      <th class="own">Act<span class="sm">Land</span></th>
+    </tr></thead>
+    <tbody id="matrixBody"></tbody>
+  </table>
+  <div class="matrix-key">
+    <span><i class="dot m"></i> plays in a Qumulo-owned layer (D / R / Act)</span>
+    <span><i class="dot s"></i> plays in a Qumulo-fed layer (A / G)</span>
+  </div>
+</section>
+
+<!-- ============ SYNTHESIS ============ -->
+<section class="synth reveal">
+  <div class="section-eyebrow">The synthesis worth keeping</div>
+  <h2>Qumulo owns every part of DRAG that is <span class="own">data</span> — and feeds every part that is <span class="fed">intelligence</span>.</h2>
+  <div class="synth-cols">
+    <div class="synth-card own">
+      <h3>Owns — the data</h3>
+      <p>The heavy, recurring, unglamorous front of the wheel that everyone else treats as solved.</p>
+      <ul>
+        <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the Refinery.</li>
+        <li><b>R — Retrieval (Open R).</b> Own the durable embeddings, entities &amp; provenance in open format; feed the volatile index and engine.</li>
+        <li><b>Act's landing.</b> Write-back is just new data arriving at D.</li>
+      </ul>
+    </div>
+    <div class="synth-card fed">
+      <h3>Feeds — the intelligence</h3>
+      <p>Left to partners, reached through clean interfaces, never owned.</p>
+      <ul>
+        <li><b>A — Augmentation.</b> Orchestrators, SDKs, rerankers, managed platforms.</li>
+        <li><b>G — Generation.</b> Models, runtimes, silicon, the venues they run on.</li>
+        <li><b>The model itself.</b> Consumes the stack; gets its own home above it.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="honesty"><b>Keep the discipline:</b> "owns the data" is the right strategic claim, but the maximal <i>Captive R</i> promise — "we are the vector store, search and reason in place" — is the part most ahead of shipping product. The <i>Open R</i> framing (own the durable derived assets in open format; feed the volatile index and engine) is defensible today; D4 enrichment is closer to thesis than ship. Distinguish what retrieves over data in place <i>today</i> from what the roadmap promises before any of this becomes a customer commitment.</p>
+</section>
+
+</div>
+
+<footer>The drag is the part Qumulo is built to carry · D → R → A → G → Act ↺</footer>
+
+<script>
+/* ---------- build the wheel ---------- */
+const segments = [
+  {key:'D',  label:'D',   name:'Data',        owner:'own', span:[0,0.27]},
+  {key:'R',  label:'R',   name:'Retrieval',   owner:'own', span:[0.27,0.46]},
+  {key:'A',  label:'A',   name:'Augment',     owner:'fed', span:[0.46,0.65]},
+  {key:'G',  label:'G',   name:'Generate',    owner:'fed', span:[0.65,0.84]},
+  {key:'Act',label:'Act', name:'land → D',    owner:'own', span:[0.84,1.0]}
+];
+const OWN='#A8480F', FED='#39506B', OWN_S='#F3E2D5', FED_S='#E3E9F0';
+const rOut=250, rIn=148, gap=0.006;
+const svg=document.getElementById('wheel');
+const SVGNS='http://www.w3.org/2000/svg';
+function pol(r,a){return [r*Math.cos(a), r*Math.sin(a)];}
+function annular(t0,t1,ri,ro){
+  // angles: start at top (-90deg), go clockwise
+  const a0=(-0.25+t0)*2*Math.PI, a1=(-0.25+t1)*2*Math.PI;
+  const [x0o,y0o]=pol(ro,a0),[x1o,y1o]=pol(ro,a1);
+  const [x0i,y0i]=pol(ri,a0),[x1i,y1i]=pol(ri,a1);
+  const large=(t1-t0)>0.5?1:0;
+  return `M ${x0o} ${y0o} A ${ro} ${ro} 0 ${large} 1 ${x1o} ${y1o} L ${x1i} ${y1i} A ${ri} ${ri} 0 ${large} 0 ${x0i} ${y0i} Z`;
+}
+segments.forEach((s,i)=>{
+  const g=document.createElementNS(SVGNS,'g');
+  g.setAttribute('class','seg');
+  g.dataset.key=s.key;
+  const t0=s.span[0]+gap, t1=s.span[1]-gap;
+  const p=document.createElementNS(SVGNS,'path');
+  p.setAttribute('d',annular(t0,t1,rIn,rOut));
+  p.setAttribute('fill',s.owner==='own'?OWN_S:FED_S);
+  p.setAttribute('stroke',s.owner==='own'?OWN:FED);
+  p.setAttribute('stroke-width','1.5');
+  g.appendChild(p);
+  // label position
+  const tm=(t0+t1)/2, am=(-0.25+tm)*2*Math.PI;
+  const rm=(rIn+rOut)/2;
+  const [lx,ly]=pol(rm,am);
+  const big=document.createElementNS(SVGNS,'text');
+  big.setAttribute('x',lx);big.setAttribute('y',ly-2);
+  big.setAttribute('text-anchor','middle');big.setAttribute('dominant-baseline','middle');
+  big.setAttribute('class','seg-label');
+  big.setAttribute('font-size',s.key==='Act'?34:46);
+  big.setAttribute('fill',s.owner==='own'?OWN:FED);
+  big.textContent=s.label;
+  g.appendChild(big);
+  const sub=document.createElementNS(SVGNS,'text');
+  sub.setAttribute('x',lx);sub.setAttribute('y',ly+26);
+  sub.setAttribute('text-anchor','middle');sub.setAttribute('class','seg-sub');
+  sub.setAttribute('fill',s.owner==='own'?OWN:FED);
+  sub.textContent=s.name;
+  g.appendChild(sub);
+  svg.appendChild(g);
+  g.addEventListener('click',()=>{
+    const id = s.key==='Act' ? 'sec-Act' : 'sec-'+s.key;
+    const el=document.getElementById(id);
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    // auto-open first layer of that letter
+    const first=el.querySelector('.layer');
+    if(first && !first.classList.contains('open')) toggleLayer(first);
+  });
+  g.addEventListener('mouseenter',()=>setCore(s));
+  g.addEventListener('mouseleave',()=>setCore(null));
+});
+// rotation arrow (the cycle)
+const arc=document.createElementNS(SVGNS,'path');
+const ra=rOut+26;
+arc.setAttribute('d',`M ${ra*Math.cos(-0.5*Math.PI+0.18)} ${ra*Math.sin(-0.5*Math.PI+0.18)} A ${ra} ${ra} 0 1 1 ${ra*Math.cos(-0.5*Math.PI-0.18)} ${ra*Math.sin(-0.5*Math.PI-0.18)}`);
+arc.setAttribute('fill','none');arc.setAttribute('stroke','#C9C2B4');arc.setAttribute('stroke-width','1.2');arc.setAttribute('stroke-dasharray','3 5');
+svg.appendChild(arc);
+const arrow=document.createElementNS(SVGNS,'text');
+arrow.setAttribute('x',0);arrow.setAttribute('y',-(ra)-2);arrow.setAttribute('text-anchor','middle');
+arrow.setAttribute('fill','#A8480F');arrow.setAttribute('font-size','18');arrow.setAttribute('font-family','IBM Plex Mono');
+arrow.textContent='↻';
+svg.appendChild(arrow);
+// center core text
+const core=document.createElementNS(SVGNS,'text');
+core.setAttribute('x',0);core.setAttribute('y',-6);core.setAttribute('text-anchor','middle');core.setAttribute('class','center-core');
+core.setAttribute('font-size','58');core.setAttribute('fill','#1B1916');core.textContent='DRAG';
+svg.appendChild(core);
+const coreSub=document.createElementNS(SVGNS,'text');
+coreSub.setAttribute('x',0);coreSub.setAttribute('y',30);coreSub.setAttribute('text-anchor','middle');
+coreSub.setAttribute('font-size','12');coreSub.setAttribute('letter-spacing','3');coreSub.setAttribute('fill','#8C867C');coreSub.setAttribute('font-family','IBM Plex Mono');
+coreSub.textContent='THE WHEEL';
+svg.appendChild(coreSub);
+function setCore(s){
+  if(!s){core.textContent='DRAG';core.setAttribute('font-size','58');core.setAttribute('fill','#1B1916');coreSub.textContent='THE WHEEL';return;}
+  core.textContent=s.name;core.setAttribute('font-size', s.name.length>7?26:34);
+  core.setAttribute('fill', s.owner==='own'?OWN:FED);
+  coreSub.textContent = s.owner==='own'?'QUMULO OWNS':'QUMULO FEEDS';
+}
+
+/* ---------- accordion ---------- */
+function toggleLayer(layer){
+  const body=layer.querySelector('.layer-body');
+  const open=layer.classList.toggle('open');
+  body.style.maxHeight = open ? body.scrollHeight+40+'px' : 0;
+}
+document.querySelectorAll('.layer-top').forEach(t=>{
+  t.addEventListener('click',()=>toggleLayer(t.parentElement));
+});
+
+/* ---------- company matrix ---------- */
+// D,R,A,G,Act  → 1 = plays.  'land' marks Act landing for Qumulo.
+const companies=[
+  {n:'Qumulo',       f:[1,1,0,0,1], note:'storage · retrieval · landing'},
+  {n:'Microsoft / Azure', f:[1,1,1,1,0], note:'Blob · AI Search · Foundry · Azure OpenAI'},
+  {n:'AWS',          f:[1,1,1,1,1], note:'S3/Glue · AI Search-adj · AgentCore · Bedrock'},
+  {n:'Google',       f:[1,1,1,1,0], note:'GCS · Vertex search · ADK · Gemini/TPU'},
+  {n:'Databricks',   f:[1,1,1,1,0], note:'Delta · Unity · Mosaic · serving'},
+  {n:'Snowflake',    f:[1,1,1,0,0], note:'Open Catalog · external tables · Cortex'},
+  {n:'NVIDIA',       f:[0,0,1,1,0], note:'NeMo Retriever · silicon · NIM'},
+  {n:'Anthropic',    f:[0,1,1,1,0], note:'MCP · Claude Agent SDK · Claude'},
+  {n:'OpenAI',       f:[0,1,1,1,0], note:'embeddings · Agents SDK · GPT'},
+  {n:'Cohere',       f:[0,0,1,1,0], note:'rerank/embed · models'},
+  {n:'LanceDB',      f:[1,1,0,0,0], note:'vectors-as-files on object store'},
+  {n:'Weaviate',     f:[0,1,1,0,0], note:'hybrid index · built-in vectorizers'},
+  {n:'Qdrant',       f:[0,1,0,0,0], note:'vector + hybrid'},
+  {n:'Milvus / Zilliz', f:[0,1,0,0,0], note:'billion-scale vector'},
+  {n:'Pinecone',     f:[0,1,0,0,0], note:'managed vector DB'},
+  {n:'LlamaIndex',   f:[1,0,1,0,0], note:'ingest · orchestration'},
+  {n:'Elastic',      f:[0,1,0,0,0], note:'lexical + hybrid'},
+  {n:'Palantir',     f:[0,0,1,0,0], note:'AIP managed loop'}
+];
+const OWNED=[1,1,0,0,1]; // which columns are Qumulo-owned domains
+const body=document.getElementById('matrixBody');
+companies.forEach(c=>{
+  const tr=document.createElement('tr');
+  const count=c.f.reduce((a,b)=>a+b,0);
+  tr.dataset.multi = count>1?'1':'0';
+  let cells=`<td class="co">${c.n}<span class="span">${c.note}</span></td>`;
+  c.f.forEach((v,i)=>{
+    let cls='cell';
+    if(v){ cls += OWNED[i] ? ' on-own' : ' on-fed'; if(i===4) cls+=' land'; }
+    cells+=`<td class="${cls}">${v?'<span class="mk"></span>':''}</td>`;
+  });
+  tr.innerHTML=cells;
+  body.appendChild(tr);
+});
+const mt=document.getElementById('multiToggle');
+mt.addEventListener('click',()=>{
+  const on=mt.classList.toggle('active');
+  mt.textContent = on ? 'Show all players' : 'Show only multi-layer players';
+  document.querySelectorAll('#matrixBody tr').forEach(tr=>{
+    tr.classList.toggle('dim', on && tr.dataset.multi==='0');
+  });
+});
+
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
