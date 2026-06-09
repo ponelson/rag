@@ -96,6 +96,13 @@ h1.title .d{color:var(--accent);font-weight:400}
 .dot.m{background:var(--accent)}
 .dot.s{background:var(--blue)}
 .wheel-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:18px}
+.chipkey{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:14px;font-size:13px;color:var(--ink-soft);letter-spacing:-.005em}
+.chipkey .ck-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.chipkey span{display:inline-flex;align-items:center;gap:7px}
+.ck{width:11px;height:11px;border-radius:3px;display:inline-block;border:1.5px solid}
+.ck.oss{background:#eef8f1;border-color:#1c7a4a}
+.ck.weight{background:#fbf5e3;border-color:#8a6a00}
+.ck.priv{background:#f1eafb;border-color:#7344c4}
 
 /* ---------- band ---------- */
 .band{background:var(--bg-soft);margin:80px 0;padding:72px 0}
@@ -144,10 +151,10 @@ h1.title .d{color:var(--accent);font-weight:400}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 11px;border-radius:8px;background:#fff;border:1px solid var(--line-strong);color:var(--ink-soft);transition:.2s}
 .layer:hover .chip{background:var(--bg-soft)}
-.chip.lead{background:var(--ink);color:#fff;border-color:var(--ink)}
-.layer:hover .chip.lead{background:var(--ink)}
-.chip.multi{border-color:var(--accent-line);color:var(--accent)}
-.chip.multi::after{content:"◆";font-size:8px;margin-left:5px;vertical-align:middle}
+.chip.lead{font-weight:700}
+.chip.oss{color:#1c7a4a;border-color:#bfe2cd}
+.chip.weight{color:#8a6a00;border-color:#e8d79a}
+.chip.priv{color:#7344c4;border-color:#dac9f2}
 .note{margin-top:16px;padding:15px 18px;background:var(--accent-soft);border-radius:12px;font-size:13.5px;color:var(--accent-deep);line-height:1.55;letter-spacing:-.005em}
 .note b{color:var(--accent)}
 
@@ -353,6 +360,12 @@ footer a{color:var(--accent);text-decoration:none}
     <span><i class="dot m"></i> Qumulo owns it — the data</span>
     <span><i class="dot s"></i> Qumulo feeds it — the intelligence</span>
   </div>
+  <div class="chipkey">
+    <span class="ck-label">Company chips by license</span>
+    <span><i class="ck oss"></i> open source</span>
+    <span><i class="ck weight"></i> open weight</span>
+    <span><i class="ck priv"></i> private / commercial</span>
+  </div>
   <div class="wheel-hint">Tap a segment to open its layer</div>
 </section>
 
@@ -401,7 +414,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Where the actual bytes sit and stay put. Every other layer ultimately reads from and writes to here; it's the foundation the rest sit on top of. On top of an S3/file interface you lay open formats so anything can read it.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip lead">Qumulo Core / Cloud Native</span><span class="chip lead">Azure Native Qumulo</span><span class="chip">VAST Data</span><span class="chip">Dell PowerScale</span><span class="chip">NetApp</span><span class="chip">Pure Storage</span><span class="chip">Weka</span><span class="chip">AWS S3</span><span class="chip">MinIO</span><span class="chip">Azure Blob</span></div>
+        <div class="chips"><span class="chip lead priv">Qumulo Core / Cloud Native</span><span class="chip lead priv">Azure Native Qumulo</span><span class="chip priv">VAST Data</span><span class="chip priv">Dell PowerScale</span><span class="chip priv">NetApp</span><span class="chip priv">Pure Storage</span><span class="chip priv">Weka</span><span class="chip priv">AWS S3</span><span class="chip oss">MinIO</span><span class="chip priv">Azure Blob</span></div>
       </div></div>
     </div>
 
@@ -409,7 +422,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The on-disk layout that lets any engine read the same bytes without conversion or lock-in. Parquet for the columnar bytes; Apache Iceberg for table structure — schema, snapshots, time-travel. Formats are durable; the engines above them are volatile.</p>
         <div class="who-label">Who plays here · open standards, not vendors</div>
-        <div class="chips"><span class="chip lead">Apache Parquet</span><span class="chip lead">Apache Iceberg</span><span class="chip multi">Delta Lake / Databricks</span><span class="chip">Apache Hudi</span></div>
+        <div class="chips"><span class="chip lead oss">Apache Parquet</span><span class="chip lead oss">Apache Iceberg</span><span class="chip multi oss">Delta Lake / Databricks</span><span class="chip oss">Apache Hudi</span></div>
       </div></div>
     </div>
 
@@ -417,9 +430,9 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Keeps copies fresh and globally consistent so retrieval never reads stale bytes. This is the <em>storage-layer</em> sense — Qumulo's Cloud Data Fabric — and it is distinct from event streaming. Same word "streaming," different layer: the event bus routes discrete messages; replication keeps copies fresh.</p>
         <div class="who-label">Who plays here · storage replication</div>
-        <div class="chips"><span class="chip lead">Qumulo Cloud Data Fabric</span></div>
+        <div class="chips"><span class="chip lead priv">Qumulo Cloud Data Fabric</span></div>
         <div class="who-label" style="margin-top:16px">Adjacent: the event bus (data arriving)</div>
-        <div class="chips"><span class="chip">Apache Kafka / Confluent</span><span class="chip">Apache Flink</span><span class="chip">Apache Pulsar</span><span class="chip">Redpanda</span><span class="chip">Amazon Kinesis</span><span class="chip">Spark Structured Streaming</span></div>
+        <div class="chips"><span class="chip oss">Apache Kafka / Confluent</span><span class="chip oss">Apache Flink</span><span class="chip oss">Apache Pulsar</span><span class="chip">Redpanda</span><span class="chip priv">Amazon Kinesis</span><span class="chip oss">Spark Structured Streaming</span></div>
       </div></div>
     </div>
 
@@ -427,7 +440,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The work that turns a dumb blob into an asset: detect file types, chunk, embed, extract entities and provenance, classify — and persist all of it back onto the files in open format, so the enrichment travels with the data. Every pass writes more understanding back — increasingly via native multimodal encoders that index a document's visual layout (charts, tables, blueprints) directly, rather than flattening it to messy OCR text. This is the whole reason the data layer exists.</p>
         <div class="who-label">Who plays here · enrichment tooling today</div>
-        <div class="chips"><span class="chip">Unstructured.io</span><span class="chip multi">LlamaIndex (ingest)</span><span class="chip multi">Cohere (embed)</span><span class="chip multi">Voyage AI / MongoDB</span><span class="chip multi">NVIDIA NeMo Retriever</span><span class="chip">Azure Document Intelligence</span><span class="chip">AWS Textract</span></div>
+        <div class="chips"><span class="chip oss">Unstructured.io</span><span class="chip multi oss">LlamaIndex (ingest)</span><span class="chip multi priv">Cohere (embed)</span><span class="chip multi priv">Voyage AI / MongoDB</span><span class="chip multi priv">NVIDIA NeMo Retriever</span><span class="chip priv">Azure Document Intelligence</span><span class="chip priv">AWS Textract</span></div>
         <div class="note"><b>Honest flag.</b> The differentiated move is pulling this <i>into the storage layer</i> so it runs natively over data in place. Treat storage-native categorization / enrichment as thesis-stage — verify what ships before it carries a customer claim.</div>
       </div></div>
     </div>
@@ -436,9 +449,9 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The master index of what data exists, where it lives, and the shape of each table — so every engine discovers and reads the same data without copying. Plus governance at two levels: table-level (the catalog) and identity-level access control. On an open substrate, identity-level RBAC is the storage layer's job — Qumulo's file-layer governance.</p>
         <div class="who-label">Who plays here · catalog</div>
-        <div class="chips"><span class="chip">Apache Polaris</span><span class="chip multi">Unity Catalog / Databricks</span><span class="chip">Project Nessie</span><span class="chip multi">AWS Glue</span><span class="chip multi">Snowflake Open Catalog</span></div>
+        <div class="chips"><span class="chip oss">Apache Polaris</span><span class="chip multi oss">Unity Catalog / Databricks</span><span class="chip oss">Project Nessie</span><span class="chip multi priv">AWS Glue</span><span class="chip multi priv">Snowflake Open Catalog</span></div>
         <div class="who-label" style="margin-top:16px">Identity-level RBAC</div>
-        <div class="chips"><span class="chip lead">Qumulo file-layer governance</span><span class="chip">Cloud provider IAM</span></div>
+        <div class="chips"><span class="chip lead priv">Qumulo file-layer governance</span><span class="chip priv">Cloud provider IAM</span></div>
         <div class="note"><b>Where this is heading.</b> Enterprises are consolidating scattered, per-app vector stores into a single governed <b>metadata lakehouse</b> — one "golden source of truth" that every agent (the analyst, the copilot, the support bot) draws from, instead of each tool hoarding its own copy. On an open substrate in the customer's own custody, that golden source can also be <b>sovereign</b>: governed, auditable, and resident wherever the data owner requires. Owning the substrate is the path to owning that single source.</div>
       </div></div>
     </div>
@@ -461,7 +474,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Converts content into vectors and retrieves the closest by similarity — pulls up material relevant to a question even when none of the words line up. The library searched before answering. Built over the embeddings; the index itself is the rebuildable accelerator, not the asset.</p>
         <div class="who-label">Who plays here · 2026 leaders</div>
-        <div class="chips"><span class="chip">Pinecone</span><span class="chip multi">Weaviate</span><span class="chip multi">Qdrant</span><span class="chip multi">Milvus / Zilliz</span><span class="chip">pgvector</span><span class="chip">Chroma</span><span class="chip multi">LanceDB</span><span class="chip multi">Azure AI Search</span><span class="chip">Vespa</span></div>
+        <div class="chips"><span class="chip priv">Pinecone</span><span class="chip multi oss">Weaviate</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Milvus / Zilliz</span><span class="chip oss">pgvector</span><span class="chip oss">Chroma</span><span class="chip multi oss">LanceDB</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Vespa</span></div>
         <div class="note">Above ~1B vectors, <b>Vespa</b> and <b>Milvus</b> are the production options. <b>LanceDB</b> is the natural fit on an open substrate — vectors-as-files, designed to live directly on object storage.</div>
       </div></div>
     </div>
@@ -470,7 +483,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Classic full-text (BM25) and structured metadata filtering — the precision complement to fuzzy semantic search. Names, IDs, codes, dates, eligibility predicates: the places where exact match, not "roughly this," is what you need.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip">Elasticsearch</span><span class="chip">OpenSearch</span><span class="chip">Apache Solr</span><span class="chip multi">Azure AI Search</span><span class="chip multi">Vespa</span></div>
+        <div class="chips"><span class="chip oss">Elasticsearch</span><span class="chip oss">OpenSearch</span><span class="chip oss">Apache Solr</span><span class="chip multi priv">Azure AI Search</span><span class="chip multi oss">Vespa</span></div>
       </div></div>
     </div>
 
@@ -478,7 +491,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Combines vector and keyword results (e.g. reciprocal rank fusion) so you get both semantic recall and lexical precision in one pass. In practice this is the single biggest lever on retrieval quality — which is why every serious engine now ships it.</p>
         <div class="who-label">Who plays here · ships hybrid by default</div>
-        <div class="chips"><span class="chip multi">Weaviate</span><span class="chip multi">Qdrant</span><span class="chip multi">Vespa</span><span class="chip multi">Azure AI Search</span><span class="chip">Elasticsearch</span></div>
+        <div class="chips"><span class="chip multi oss">Weaviate</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Vespa</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Elasticsearch</span></div>
       </div></div>
     </div>
 
@@ -486,7 +499,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Vector search is strong on similarity but weak on <em>connection</em>. Layering a knowledge graph over the vectors maps entities and their explicit relationships, so the model can answer cross-document, multi-hop questions — "which compliance issues recurred across every European entity last quarter?" — that pure similarity can't reach. The fastest-moving addition to enterprise retrieval.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">Microsoft GraphRAG</span><span class="chip">Neo4j</span><span class="chip multi">AWS Neptune</span><span class="chip">TigerGraph</span></div>
+        <div class="chips"><span class="chip multi oss">Microsoft GraphRAG</span><span class="chip oss">Neo4j</span><span class="chip multi priv">AWS Neptune</span><span class="chip priv">TigerGraph</span></div>
       </div></div>
     </div>
 
@@ -494,7 +507,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Exposes retrieval through whatever the caller speaks — a vector API, SQL, REST, and increasingly MCP — so any agent or app can reach it without a bespoke integration. The interface is where storage-native retrieval earns its keep: same data, many front doors, no copy.</p>
         <div class="who-label">Who plays here · protocols &amp; surfaces</div>
-        <div class="chips"><span class="chip multi">MCP (Anthropic)</span><span class="chip">Vector API</span><span class="chip">SQL</span><span class="chip">REST</span></div>
+        <div class="chips"><span class="chip multi oss">MCP (Anthropic)</span><span class="chip">Vector API</span><span class="chip">SQL</span><span class="chip">REST</span></div>
       </div></div>
     </div>
 
@@ -504,7 +517,7 @@ footer a{color:var(--accent);text-decoration:none}
 
         <div class="who-label">Stance 1 · Bolt-on — a separate system alongside</div>
         <p class="what">A dedicated vector DB sits alongside; you sync data into it and run a second system, and the embeddings live in the vendor's proprietary store. Changing engines means re-deriving, not just re-pointing.</p>
-        <div class="chips" style="margin-bottom:22px"><span class="chip">Pinecone</span><span class="chip multi">Milvus</span><span class="chip multi">Qdrant</span><span class="chip multi">Weaviate</span></div>
+        <div class="chips" style="margin-bottom:22px"><span class="chip priv">Pinecone</span><span class="chip multi oss">Milvus</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Weaviate</span></div>
 
         <div class="who-label">Stances 2 &amp; 3 · two ways to be storage-native — and they are not the same claim</div>
         <div class="fork">
@@ -522,7 +535,7 @@ footer a{color:var(--accent);text-decoration:none}
         </div>
         <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the intelligence (volatile, fed). The embeddings are <i>data</i>; the index and engine are <i>intelligence</i>. Captive R quietly re-files the index and engine as <i>yours</i>, which is exactly where the claim gets ahead of the product. <b>Lead with Open R; let Captive R be a roadmap aspiration, not a present promise.</b></div>
         <div class="who-label" style="margin-top:18px">Storage-native today</div>
-        <div class="chips"><span class="chip lead">Qumulo (Open R)</span><span class="chip multi">LanceDB</span></div>
+        <div class="chips"><span class="chip lead priv">Qumulo (Open R)</span><span class="chip multi oss">LanceDB</span></div>
       </div></div>
     </div>
   </div>
@@ -544,7 +557,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The framework code you host and control — it embeds the query, hits retrieval, assembles context, plans steps, calls tools, and chains agents together to finish a task. The conductor of the whole multi-step job.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip lead">LangGraph</span><span class="chip">CrewAI</span><span class="chip multi">LlamaIndex</span><span class="chip multi">Semantic Kernel</span><span class="chip">Mastra (TS-native)</span><span class="chip">Haystack</span></div>
+        <div class="chips"><span class="chip lead oss">LangGraph</span><span class="chip oss">CrewAI</span><span class="chip multi oss">LlamaIndex</span><span class="chip multi oss">Semantic Kernel</span><span class="chip oss">Mastra (TS-native)</span><span class="chip oss">Haystack</span></div>
       </div></div>
     </div>
 
@@ -552,7 +565,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Agent toolkits shipped by the model labs themselves, tuned to their own models — plan, call tools, chain steps. The path of least resistance if you've already chosen the model.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">OpenAI Agents SDK</span><span class="chip multi">Anthropic Claude Agent SDK</span><span class="chip multi">Google ADK</span><span class="chip multi">AutoGen / MS Agent Framework</span></div>
+        <div class="chips"><span class="chip multi oss">OpenAI Agents SDK</span><span class="chip multi oss">Anthropic Claude Agent SDK</span><span class="chip multi oss">Google ADK</span><span class="chip multi oss">AutoGen / MS Agent Framework</span></div>
       </div></div>
     </div>
 
@@ -560,7 +573,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Embedders turn text into the vectors that feed D's pipeline and R's index. Rerankers re-score the top candidates retrieval returned, so the best passages rise before they ever reach the model. The quality multiplier sitting between R and G.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">Cohere (Rerank + Embed)</span><span class="chip multi">NVIDIA NeMo Retriever</span><span class="chip multi">Voyage AI / MongoDB</span><span class="chip multi">OpenAI embeddings</span></div>
+        <div class="chips"><span class="chip multi priv">Cohere (Rerank + Embed)</span><span class="chip multi priv">NVIDIA NeMo Retriever</span><span class="chip multi priv">Voyage AI / MongoDB</span><span class="chip multi priv">OpenAI embeddings</span></div>
       </div></div>
     </div>
 
@@ -568,7 +581,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Selects, orders, compresses, and formats the retrieved chunks into the prompt — dedup, token-budgeting, citation scaffolding. The unglamorous step that decides whether the model gets the right context or a noisy dump. Usually handled inside the frameworks above.</p>
         <div class="who-label">Who plays here · inside the frameworks</div>
-        <div class="chips"><span class="chip multi">LlamaIndex</span><span class="chip multi">LangGraph</span><span class="chip">framework-native</span></div>
+        <div class="chips"><span class="chip multi oss">LlamaIndex</span><span class="chip multi oss">LangGraph</span><span class="chip">framework-native</span></div>
       </div></div>
     </div>
 
@@ -576,7 +589,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Cloud-bundled orchestration so you don't assemble it yourself — retrieval, embedding, orchestration, and model access wired together behind one platform. The "I want results, not Lego" option.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">AWS Bedrock AgentCore</span><span class="chip multi">Azure AI Foundry</span><span class="chip multi">Snowflake Cortex</span><span class="chip multi">Databricks Mosaic AI</span><span class="chip">Palantir AIP</span></div>
+        <div class="chips"><span class="chip multi priv">AWS Bedrock AgentCore</span><span class="chip multi priv">Azure AI Foundry</span><span class="chip multi priv">Snowflake Cortex</span><span class="chip multi priv">Databricks Mosaic AI</span><span class="chip priv">Palantir AIP</span></div>
       </div></div>
     </div>
   </div>
@@ -598,7 +611,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The closed, state-of-the-art model that generates the answer from the context it's handed. Strongest reasoning, fastest-moving, accessed through an API.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">Anthropic Claude</span><span class="chip multi">OpenAI GPT</span><span class="chip multi">Google Gemini</span></div>
+        <div class="chips"><span class="chip multi priv">Anthropic Claude</span><span class="chip multi priv">OpenAI GPT</span><span class="chip multi priv">Google Gemini</span></div>
       </div></div>
     </div>
 
@@ -606,7 +619,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Models you can host on your own (or rented) compute — trading a bit of frontier capability for control, privacy, and cost at scale. The reason a sovereign or on-prem buyer can keep generation inside their own walls.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip">Meta Llama</span><span class="chip">Mistral</span><span class="chip">Alibaba Qwen</span><span class="chip">DeepSeek</span></div>
+        <div class="chips"><span class="chip weight">Meta Llama</span><span class="chip weight">Mistral</span><span class="chip weight">Alibaba Qwen</span><span class="chip weight">DeepSeek</span></div>
       </div></div>
     </div>
 
@@ -614,7 +627,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The software that loads model weights and serves tokens efficiently — batching, KV-cache, paged attention. The difference between a model that exists and a model that answers at production speed and cost.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">NVIDIA NIM</span><span class="chip">vLLM</span><span class="chip">Hugging Face TGI</span><span class="chip">SGLang</span></div>
+        <div class="chips"><span class="chip multi priv">NVIDIA NIM</span><span class="chip oss">vLLM</span><span class="chip oss">Hugging Face TGI</span><span class="chip oss">SGLang</span></div>
       </div></div>
     </div>
 
@@ -622,9 +635,9 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The accelerators that run training and inference, and the servers they sit in. NVIDIA reads files directly off the substrate for training and inference — which is exactly where D and G touch.</p>
         <div class="who-label">Who plays here · accelerators</div>
-        <div class="chips"><span class="chip multi">NVIDIA</span><span class="chip">AMD Instinct</span><span class="chip multi">AWS Trainium / Inferentia</span><span class="chip multi">Google TPU</span></div>
+        <div class="chips"><span class="chip multi priv">NVIDIA</span><span class="chip priv">AMD Instinct</span><span class="chip multi priv">AWS Trainium / Inferentia</span><span class="chip multi priv">Google TPU</span></div>
         <div class="who-label" style="margin-top:16px">Servers</div>
-        <div class="chips"><span class="chip">Cisco UCS</span><span class="chip">Dell</span><span class="chip">Supermicro</span></div>
+        <div class="chips"><span class="chip priv">Cisco UCS</span><span class="chip priv">Dell</span><span class="chip priv">Supermicro</span></div>
       </div></div>
     </div>
 
@@ -632,7 +645,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Where the compute physically sits and how you rent it — a hyperscaler endpoint, a GPU neocloud, or on-prem under your own roof (Cisco UCS with Qumulo beneath it). The venue choice is where data gravity and sovereignty get decided.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi">AWS Bedrock</span><span class="chip multi">Azure OpenAI</span><span class="chip multi">Google Vertex</span><span class="chip">CoreWeave</span><span class="chip">Lambda</span><span class="chip">Nebius</span><span class="chip">Crusoe</span><span class="chip">Cisco UCS (on-prem)</span></div>
+        <div class="chips"><span class="chip multi priv">AWS Bedrock</span><span class="chip multi priv">Azure OpenAI</span><span class="chip multi priv">Google Vertex</span><span class="chip priv">CoreWeave</span><span class="chip priv">Lambda</span><span class="chip priv">Nebius</span><span class="chip priv">Crusoe</span><span class="chip priv">Cisco UCS (on-prem)</span></div>
       </div></div>
     </div>
   </div>
@@ -659,7 +672,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 <!-- ============ MATRIX ============ -->
 <section class="matrix-wrap reveal" id="matrix-sec">
-  <div class="section-eyebrow">Who plays where · the diamond ◆ marks multi-layer players</div>
+  <div class="section-eyebrow">Who plays where · each dot marks a layer the company touches</div>
   <div class="matrix-controls">
     <span class="h">Who Does What in DRAGOn?</span>
     <button class="toggle" id="multiToggle">Show only multi-layer players</button>
@@ -686,25 +699,25 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="section-eyebrow">Open source &amp; ownership · of the players named above</div>
 
   <div class="oss-block"><div class="oss-h">Open source · formats &amp; catalogs</div>
-    <div class="chips"><span class="chip">Apache Parquet</span><span class="chip">Apache Iceberg</span><span class="chip">Apache Hudi</span><span class="chip">Delta Lake</span><span class="chip">Unity Catalog (OSS)</span><span class="chip">Apache Polaris</span><span class="chip">Project Nessie</span></div></div>
+    <div class="chips"><span class="chip oss">Apache Parquet</span><span class="chip oss">Apache Iceberg</span><span class="chip oss">Apache Hudi</span><span class="chip oss">Delta Lake</span><span class="chip oss">Unity Catalog (OSS)</span><span class="chip oss">Apache Polaris</span><span class="chip oss">Project Nessie</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open source · streaming / event bus</div>
-    <div class="chips"><span class="chip">Apache Kafka</span><span class="chip">Apache Flink</span><span class="chip">Apache Pulsar</span><span class="chip">Apache Spark</span></div></div>
+    <div class="chips"><span class="chip oss">Apache Kafka</span><span class="chip oss">Apache Flink</span><span class="chip oss">Apache Pulsar</span><span class="chip oss">Apache Spark</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open source · retrieval engines</div>
-    <div class="chips"><span class="chip">Milvus</span><span class="chip">Weaviate</span><span class="chip">Qdrant</span><span class="chip">Chroma</span><span class="chip">pgvector</span><span class="chip">LanceDB</span><span class="chip">Vespa</span><span class="chip">OpenSearch</span><span class="chip">Apache Solr</span><span class="chip">Elasticsearch (AGPL, since 2024)</span><span class="chip">Neo4j (community)</span></div></div>
+    <div class="chips"><span class="chip oss">Milvus</span><span class="chip oss">Weaviate</span><span class="chip oss">Qdrant</span><span class="chip oss">Chroma</span><span class="chip oss">pgvector</span><span class="chip oss">LanceDB</span><span class="chip oss">Vespa</span><span class="chip oss">OpenSearch</span><span class="chip oss">Apache Solr</span><span class="chip oss">Elasticsearch (AGPL, since 2024)</span><span class="chip oss">Neo4j (community)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open source · orchestration, SDKs &amp; protocol</div>
-    <div class="chips"><span class="chip">LangGraph</span><span class="chip">CrewAI</span><span class="chip">LlamaIndex</span><span class="chip">Haystack</span><span class="chip">Semantic Kernel</span><span class="chip">AutoGen</span><span class="chip">Google ADK</span><span class="chip">OpenAI Agents SDK</span><span class="chip">Claude Agent SDK</span><span class="chip">Mastra</span><span class="chip">MCP (open spec)</span></div></div>
+    <div class="chips"><span class="chip oss">LangGraph</span><span class="chip oss">CrewAI</span><span class="chip oss">LlamaIndex</span><span class="chip oss">Haystack</span><span class="chip oss">Semantic Kernel</span><span class="chip oss">AutoGen</span><span class="chip oss">Google ADK</span><span class="chip oss">OpenAI Agents SDK</span><span class="chip oss">Claude Agent SDK</span><span class="chip oss">Mastra</span><span class="chip oss">MCP (open spec)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open source · serving &amp; object store</div>
-    <div class="chips"><span class="chip">vLLM</span><span class="chip">Hugging Face TGI</span><span class="chip">SGLang</span><span class="chip">MinIO (AGPL)</span><span class="chip">NVIDIA NeMo (framework)</span></div></div>
+    <div class="chips"><span class="chip oss">vLLM</span><span class="chip oss">Hugging Face TGI</span><span class="chip oss">SGLang</span><span class="chip oss">MinIO (AGPL)</span><span class="chip oss">NVIDIA NeMo (framework)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Source-available — free, but not OSI open source</div>
     <div class="chips"><span class="chip">Redpanda (BSL)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open weights — downloadable models, custom (non-OSI) licenses</div>
-    <div class="chips"><span class="chip">Meta Llama</span><span class="chip">Mistral</span><span class="chip">Alibaba Qwen</span><span class="chip">DeepSeek</span></div></div>
+    <div class="chips"><span class="chip weight">Meta Llama</span><span class="chip weight">Mistral</span><span class="chip weight">Alibaba Qwen</span><span class="chip weight">DeepSeek</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Parents &amp; notable acquisitions</div>
     <ul class="oss-parents">
