@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRAG — the wheel under retrieval</title>
+<title>DRAGON — the wheel under retrieval</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
   --accent-soft:#fbede4;
   --accent-line:#f1d6c4;
   --accent-deep:#8a3a0e;
-  --blue:#1f6feb;          /* fed · the intelligence */
+  --blue:#1f6feb;          /* fed · the engines */
   --blue-soft:#eaf1fd;
   --blue-line:#cfe1fb;
   --shadow:0 1px 2px rgba(0,0,0,.04),0 12px 36px rgba(0,0,0,.07);
@@ -250,10 +250,10 @@ footer a{color:var(--accent);text-decoration:none}
 
 <div class="masthead">
   <div class="bar">
-    <a class="brand" href="#top"><span>DRAG</span><span class="rot">↻</span></a>
+    <a class="brand" href="#top"><span>DRAGON</span><span class="rot">↻</span></a>
     <div class="mast-right">
       <nav class="mast-nav">
-        <a href="#sec-D">D</a><a href="#sec-R">R</a><a href="#sec-A">A</a><a href="#sec-G">G</a><a href="#sec-Act">Act</a><a href="#matrix-sec">Players</a>
+        <a href="#sec-D">D</a><a href="#sec-R">R</a><a href="#sec-A">A</a><a href="#sec-G">G</a><a href="#sec-Act">On</a><a href="#matrix-sec">Players</a>
       </nav>
       <a class="email-link" href="mailto:ponelson@gmail.com">ponelson@gmail.com</a>
       <a class="btn-li" href="https://www.linkedin.com/in/ponelson/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -263,9 +263,9 @@ footer a{color:var(--accent);text-decoration:none}
 
 <header class="top wrap reveal" id="top">
   <div class="eyebrow">A field guide to the wheel under retrieval</div>
-  <h1 class="title"><span class="d">D+</span>RAG</h1>
-  <p class="rag-def"><span class="tag">Data + Retrieval Augmented Generation</span>An AI model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of your own data the moment a question is asked and hands them to the AI as context, so the answer is grounded in your current facts rather than the model's stale memory.</p>
-  <p class="lede">RAG's <strong>R</strong> quietly assumes a clean, current, retrievable, governed corpus already exists. It doesn't. Making data worth retrieving — ingesting, refining, embedding, governing, keeping it fresh — is the heavy, perpetual part the acronym skips. Prepending the <strong>D</strong> is just honest. And once you add it, the line bends into a wheel.</p>
+  <h1 class="title"><span class="d">D+</span>RAG<span class="d">+On</span></h1>
+  <p class="rag-def"><span class="tag">Data + Retrieval Augmented Generation + On</span>An AI model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of your own data the moment a question is asked and hands them to the AI as context, so the answer is grounded in your current facts rather than the model's stale memory.</p>
+  <p class="lede">RAG's <strong>R</strong> quietly assumes a clean, current, retrievable, governed corpus already exists. It doesn't. Making data worth retrieving — ingesting, refining, embedding, governing, keeping it fresh — is the heavy, perpetual part the acronym skips. Prepending the <strong>D</strong> is just honest. Add it, keep the loop <strong>On</strong>, and the line bends into a wheel.</p>
 </header>
 
 <section class="wrap narrow toc reveal" id="contents">
@@ -273,21 +273,21 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="toc-list">
     <a class="toc-item" href="#terms"><span class="toc-glyph neu">—</span><span class="toc-label">Plain-English terms</span><span class="toc-desc">RAG, substrate, embeddings, index, enrichment</span></a>
     <a class="toc-item" href="#sec-D"><span class="toc-glyph own">D</span><span class="toc-label">Data</span><span class="toc-desc">Qumulo owns it · the Refinery, in five layers</span></a>
-    <a class="toc-item" href="#sec-R"><span class="toc-glyph own">R</span><span class="toc-label">Retrieval</span><span class="toc-desc">Qumulo owns it · index, lookup, the Open-R fork</span></a>
+    <a class="toc-item" href="#sec-R"><span class="toc-glyph own">R</span><span class="toc-label">Retrieval</span><span class="toc-desc">Owns the understanding, feeds the index · the Open-R fork</span></a>
     <a class="toc-item" href="#sec-A"><span class="toc-glyph fed">A</span><span class="toc-label">Augmentation</span><span class="toc-desc">Qumulo feeds it · orchestration</span></a>
     <a class="toc-item" href="#sec-G"><span class="toc-glyph fed">G</span><span class="toc-label">Generation</span><span class="toc-desc">Qumulo feeds it · model, runtime, silicon</span></a>
-    <a class="toc-item" href="#sec-Act"><span class="toc-glyph own">↻</span><span class="toc-label">Act</span><span class="toc-desc">The move that turns the line into a wheel</span></a>
+    <a class="toc-item" href="#sec-Act"><span class="toc-glyph own">↻</span><span class="toc-label">On</span><span class="toc-desc">The agentic close — the wheel stays on</span></a>
     <a class="toc-item" href="#planes"><span class="toc-glyph neu">⊙</span><span class="toc-label">Memory &amp; Governance</span><span class="toc-desc">The two planes that wrap the wheel</span></a>
     <a class="toc-item" href="#matrix-sec"><span class="toc-glyph neu">▦</span><span class="toc-label">Who plays where</span><span class="toc-desc">Company footprints across the wheel</span></a>
-    <a class="toc-item" href="#synth"><span class="toc-glyph neu">✦</span><span class="toc-label">The synthesis</span><span class="toc-desc">Owns the data, feeds the intelligence</span></a>
+    <a class="toc-item" href="#synth"><span class="toc-glyph neu">✦</span><span class="toc-label">The synthesis</span><span class="toc-desc">Owns the data, feeds the engines</span></a>
   </div>
 </section>
 
 <section class="wheelzone reveal">
-  <svg id="wheel" viewBox="-300 -300 600 600" role="img" aria-label="The DRAG wheel"></svg>
+  <svg id="wheel" viewBox="-300 -300 600 600" role="img" aria-label="The DRAGON wheel"></svg>
   <div class="wheel-legend">
     <span><i class="dot m"></i> Qumulo owns it — the data</span>
-    <span><i class="dot s"></i> Qumulo feeds it — the intelligence</span>
+    <span><i class="dot s"></i> Qumulo feeds it — the engines</span>
   </div>
   <div class="wheel-hint">Tap a segment to open its layer</div>
 </section>
@@ -303,7 +303,7 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="section-eyebrow">Plain-English terms</div>
   <div class="terms-grid">
     <div class="term"><h4>RAG</h4><p>A model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of <em>your</em> data at question time and hands them to the model as context. Retrieval is the lookup; generation is the model writing from what was retrieved.</p></div>
-    <div class="term"><h4>Substrate</h4><p>The foundation a thing draws from. A RAG substrate is the body of data — plus the structure that makes it findable — that the retrieval step reaches into.</p></div>
+    <div class="term"><h4>Substrate</h4><p>The durable foundation a thing draws from. A RAG substrate is the data plus the lasting, open form of the understanding derived from it — embeddings, entities, provenance — that retrieval reaches into. Not the index or the engine: those are disposable structures built over it.</p></div>
     <div class="term"><h4>Embeddings</h4><p>Numerical fingerprints of meaning: a passage or file turned into a list of numbers, so things that mean similar things sit near each other. Expensive derived assets — in the Refinery they persist in open format, so they travel with the data.</p></div>
     <div class="term"><h4>Index</h4><p>A fast-lookup structure built over the embeddings — "find the passages that mean roughly this" — instead of scanning everything. The <em>disposable accelerator</em>, not the asset: engine-specific and rebuildable. Like the index at the back of a book: it holds no chapters, it points you to a page.</p></div>
     <div class="term"><h4>Enrichment</h4><p>Adding derived understanding over time — entities, summaries, classifications, embeddings, provenance, eligibility. Enriching continuously means every analysis pass writes more understanding back, so the asset grows richer instead of staying a dumb blob.</p></div>
@@ -345,7 +345,7 @@ footer a{color:var(--accent);text-decoration:none}
         <p class="what">Keeps copies fresh and globally consistent so retrieval never reads stale bytes. This is the <em>storage-layer</em> sense — Qumulo's Cloud Data Fabric — and it is distinct from event streaming. Same word "streaming," different layer: the event bus routes discrete messages; replication keeps copies fresh.</p>
         <div class="who-label">Who plays here · storage replication</div>
         <div class="chips"><span class="chip lead">Qumulo Cloud Data Fabric</span></div>
-        <div class="who-label" style="margin-top:16px">Adjacent: the event bus (data arriving)</div>
+        <div class="who-label" style="margin-top:16px">Adjacent: event streaming — bus and processing (data arriving)</div>
         <div class="chips"><span class="chip">Apache Kafka / Confluent</span><span class="chip">Apache Flink</span><span class="chip">Apache Pulsar</span><span class="chip">Redpanda</span><span class="chip">Amazon Kinesis</span><span class="chip">Spark Structured Streaming</span></div>
       </div></div>
     </div>
@@ -377,7 +377,7 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="glyph own">R</div>
     <div class="meta">
       <h2>Retrieval</h2>
-      <div class="owntag own">Qumulo owns it · the index and the lookup</div>
+      <div class="owntag own">Qumulo owns the understanding · feeds the index and the lookup</div>
     </div>
   </div>
   <p class="letter-intro">The vector and semantic index plus keyword/metadata search, exposed through whatever interface a caller speaks. Either it lives where the data lives — or a dedicated vector database gets bolted alongside, and you carry a second system.</p>
@@ -438,7 +438,7 @@ footer a{color:var(--accent);text-decoration:none}
             <p>You own <b>D</b> <i>and</i> the durable, open form of the derived understanding — embeddings, entities, provenance in open Parquet/Iceberg, in the customer's custody. You <em>feed</em> the volatile parts of retrieval — the serving index, the query engine — rather than replacing them. Swap engines by re-pointing a new index at data you still hold; never re-derive.</p>
           </div>
         </div>
-        <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the intelligence (volatile, fed). The embeddings are <i>data</i>; the index and engine are <i>intelligence</i>. Captive R quietly re-files the index and engine as <i>yours</i>, which is exactly where the claim gets ahead of the product. <b>Lead with Open R; let Captive R be a roadmap aspiration, not a present promise.</b></div>
+        <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the engines (volatile, fed). The embeddings are the <i>asset</i>; the index and engine are the volatile <i>machinery</i> you feed. Captive R quietly re-files the index and engine as <i>yours</i>, which is exactly where the claim gets ahead of the product. <b>Lead with Open R; let Captive R be a roadmap aspiration, not a present promise.</b></div>
         <div class="who-label" style="margin-top:18px">Storage-native today</div>
         <div class="chips"><span class="chip lead">Qumulo (Open R)</span><span class="chip multi">LanceDB</span></div>
       </div></div>
@@ -558,11 +558,11 @@ footer a{color:var(--accent);text-decoration:none}
 
 <!-- ============ ACT ============ -->
 <section class="act reveal" id="sec-Act">
-  <div class="section-eyebrow">??? — the move that turns the line into a wheel</div>
-  <h2>Act</h2>
-  <p>The model doesn't just answer — it calls tools, triggers workflows, and writes results back. And that write-back lands as new Data at <b style="color:var(--accent)">D</b>, gets re-refined and re-indexed, and the loop runs again. Not D→R→A→G and done. It turns continuously — which is the whole "no staleness, no manual re-indexing" line made literal.</p>
+  <div class="section-eyebrow">On · the move that turns the line into a wheel</div>
+  <h2>On</h2>
+  <p>The agentic close. The model doesn't just answer — it <b style="color:#fff">acts</b>: calls tools, triggers workflows, writes results back. That write-back lands as new Data at <b style="color:var(--accent)">D</b>, gets re-refined and re-indexed, and the loop runs again. Not D→R→A→G and done — it stays <b style="color:#fff">on</b>, turning continuously. That's the whole "no staleness, no manual re-indexing" line made literal: the wheel stays on.</p>
   <div class="cycle">
-    <span class="tk own">D</span><span class="ar">→</span><span class="tk own">R</span><span class="ar">→</span><span class="tk">A</span><span class="ar">→</span><span class="tk">G</span><span class="ar">→</span><span class="tk own">Act</span><span class="ar">→</span><span class="tk">new data</span><span class="ar">↺</span><span class="tk own">D</span>
+    <span class="tk own">D</span><span class="ar">→</span><span class="tk own">R</span><span class="ar">→</span><span class="tk">A</span><span class="ar">→</span><span class="tk">G</span><span class="ar">→</span><span class="tk own">On</span><span class="ar">→</span><span class="tk">new data</span><span class="ar">↺</span><span class="tk own">D</span>
   </div>
 </section>
 
@@ -589,12 +589,12 @@ footer a{color:var(--accent);text-decoration:none}
       <th class="own">R<span class="sm">Retrieval</span></th>
       <th class="fed">A<span class="sm">Augment</span></th>
       <th class="fed">G<span class="sm">Generate</span></th>
-      <th class="own">Act<span class="sm">Land</span></th>
+      <th class="own">On<span class="sm">Land</span></th>
     </tr></thead>
     <tbody id="matrixBody"></tbody>
   </table>
   <div class="matrix-key">
-    <span><i class="dot m"></i> plays in a Qumulo-owned layer (D / R / Act)</span>
+    <span><i class="dot m"></i> plays in a Qumulo-owned layer (D / R / On)</span>
     <span><i class="dot s"></i> plays in a Qumulo-fed layer (A / G)</span>
   </div>
 </section>
@@ -602,7 +602,7 @@ footer a{color:var(--accent);text-decoration:none}
 <!-- ============ SYNTHESIS ============ -->
 <section class="synth reveal" id="synth">
   <div class="section-eyebrow">The synthesis worth keeping</div>
-  <h2>Qumulo owns every part of DRAG that is <span class="own">data</span> — and feeds every part that is <span class="fed">intelligence</span>.</h2>
+  <h2>Qumulo owns every part of DRAGON that is <span class="own">data</span> — and feeds every part that is an <span class="fed">engine</span>.</h2>
   <div class="synth-cols">
     <div class="synth-card own">
       <h3>Owns — the data</h3>
@@ -610,11 +610,11 @@ footer a{color:var(--accent);text-decoration:none}
       <ul>
         <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the Refinery.</li>
         <li><b>R — Retrieval (Open R).</b> Own the durable embeddings, entities &amp; provenance in open format; feed the volatile index and engine.</li>
-        <li><b>Act's landing.</b> Write-back is just new data arriving at D.</li>
+        <li><b>On — the landing.</b> The acting is done by the agent and model (fed); its write-back lands as new data at D (owned), and the loop stays on.</li>
       </ul>
     </div>
     <div class="synth-card fed">
-      <h3>Feeds — the intelligence</h3>
+      <h3>Feeds — the engines</h3>
       <p>Left to partners, reached through clean interfaces, never owned.</p>
       <ul>
         <li><b>A — Augmentation.</b> Orchestrators, SDKs, rerankers, managed platforms.</li>
@@ -629,7 +629,7 @@ footer a{color:var(--accent);text-decoration:none}
 </div>
 
 <footer>
-  The drag is the part Qumulo is built to carry · D → R → A → G → Act ↺ · <a href="#top">back to top ↑</a>
+  The drag is the part Qumulo is built to carry · D → R → A → G → On ↻ · <a href="#top">back to top ↑</a>
 </footer>
 
 <script>
@@ -639,7 +639,7 @@ const segments = [
   {key:'R',  label:'R',   name:'Retrieval',   owner:'own', span:[0.27,0.46]},
   {key:'A',  label:'A',   name:'Augment',     owner:'fed', span:[0.46,0.65]},
   {key:'G',  label:'G',   name:'Generate',    owner:'fed', span:[0.65,0.84]},
-  {key:'Act',label:'Act', name:'land → D',    owner:'own', span:[0.84,1.0]}
+  {key:'Act',label:'On', name:'stays on',    owner:'own', span:[0.84,1.0]}
 ];
 const OWN='#c2510e', FED='#1f6feb', OWN_S='#fbeae0', FED_S='#eaf1fd';
 const rOut=250, rIn=148, gap=0.006;
@@ -704,7 +704,7 @@ arrow.textContent='↻';
 svg.appendChild(arrow);
 const core=document.createElementNS(SVGNS,'text');
 core.setAttribute('x',0);core.setAttribute('y',-4);core.setAttribute('text-anchor','middle');core.setAttribute('class','center-core');
-core.setAttribute('font-size','56');core.setAttribute('fill','#1d1d1f');core.textContent='DRAG';
+core.setAttribute('font-size','46');core.setAttribute('fill','#1d1d1f');core.textContent='DRAGON';
 svg.appendChild(core);
 const coreSub=document.createElementNS(SVGNS,'text');
 coreSub.setAttribute('x',0);coreSub.setAttribute('y',30);coreSub.setAttribute('text-anchor','middle');
@@ -712,7 +712,7 @@ coreSub.setAttribute('font-size','11.5');coreSub.setAttribute('letter-spacing','
 coreSub.textContent='THE WHEEL';
 svg.appendChild(coreSub);
 function setCore(s){
-  if(!s){core.textContent='DRAG';core.setAttribute('font-size','56');core.setAttribute('fill','#1d1d1f');coreSub.textContent='THE WHEEL';return;}
+  if(!s){core.textContent='DRAGON';core.setAttribute('font-size','46');core.setAttribute('fill','#1d1d1f');coreSub.textContent='THE WHEEL';return;}
   core.textContent=s.name;core.setAttribute('font-size', s.name.length>7?26:34);
   core.setAttribute('fill', s.owner==='own'?OWN:FED);
   coreSub.textContent = s.owner==='own'?'QUMULO OWNS':'QUMULO FEEDS';
