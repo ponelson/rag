@@ -99,10 +99,10 @@ h1.title .d{color:var(--accent);font-weight:400}
 .chipkey{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:14px;font-size:13px;color:var(--ink-soft);letter-spacing:-.005em}
 .chipkey .ck-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
 .chipkey span{display:inline-flex;align-items:center;gap:7px}
-.ck{width:11px;height:11px;border-radius:3px;display:inline-block;border:1.5px solid}
-.ck.oss{background:#eef8f1;border-color:#1c7a4a}
-.ck.weight{background:#fbf5e3;border-color:#8a6a00}
-.ck.priv{background:#f1eafb;border-color:#7344c4}
+.ck{width:11px;height:11px;border-radius:50%;display:inline-block}
+.ck.oss{background:#1c7a4a}
+.ck.weight{background:#8a6a00}
+.ck.priv{background:#7344c4}
 
 /* ---------- band ---------- */
 .band{background:var(--bg-soft);margin:80px 0;padding:72px 0}
@@ -329,7 +329,7 @@ footer a{color:var(--accent);text-decoration:none}
 </section>
 
 <section class="wrap rag-intro reveal" id="rag-intro">
-  <div class="section-eyebrow">Intro to RAG</div>
+  <div class="section-eyebrow">Intro to RAG (Retrieval Augmented Generation)</div>
   <p class="rag-lead">RAG is an AI technique that improves the accuracy of generative models by pulling facts from an external knowledge base <em>before</em> generating a response. Think of it as an <span class="ob">open-book test</span> for AI — it sharply reduces errors and lets the model answer using up-to-date, specific data instead of whatever it happened to memorize in training.</p>
 
   <div class="rag-steps">
@@ -525,7 +525,7 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="ftag">⚠ Captive R · the copy's implicit claim</div>
             <h5>We <em>are</em> the vector store</h5>
             <div class="fork-quote">"No separate database — search and reason in place."</div>
-            <p>The maximal all-in-one promise: Qumulo replaces the vector DB <i>and</i> the query engine and reasons over the data itself. Cleanest story to tell — and the most roadmap-heavy to back. This is what the marketing implies; it's also the overclaim to watch.</p>
+            <p>The maximal all-in-one promise: Qumulo replaces the vector DB <i>and</i> the query engine and reasons over the data itself.</p>
           </div>
           <div class="fork-card open">
             <div class="ftag">◆ Open R · the durable, defensible position</div>
@@ -533,7 +533,7 @@ footer a{color:var(--accent);text-decoration:none}
             <p>You own <b>D</b> <i>and</i> the durable, open form of the derived understanding — embeddings, entities, provenance in open Parquet/Iceberg, in the customer's custody. You <em>feed</em> the volatile parts of retrieval — the serving index, the query engine — rather than replacing them. Swap engines by re-pointing a new index at data you still hold; never re-derive.</p>
           </div>
         </div>
-        <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the intelligence (volatile, fed). The embeddings are <i>data</i>; the index and engine are <i>intelligence</i>. Captive R quietly re-files the index and engine as <i>yours</i>, which is exactly where the claim gets ahead of the product. <b>Lead with Open R; let Captive R be a roadmap aspiration, not a present promise.</b></div>
+        <div class="note"><b>Why Open R is the thesis-consistent one.</b> It's the same line as the whole wheel — own the data (durable, open, owned), feed the intelligence (volatile, fed). The embeddings are <i>data</i>; the index and engine are <i>intelligence</i>.</div>
         <div class="who-label" style="margin-top:18px">Storage-native today</div>
         <div class="chips"><span class="chip lead priv">Qumulo (Open R)</span><span class="chip multi oss">LanceDB</span></div>
       </div></div>
