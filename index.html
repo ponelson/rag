@@ -96,13 +96,11 @@ h1.title .d{color:var(--accent);font-weight:400}
 .dot.m{background:var(--accent)}
 .dot.s{background:var(--blue)}
 .wheel-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:18px}
-.chipkey{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:14px;font-size:13px;color:var(--ink-soft);letter-spacing:-.005em}
-.chipkey .ck-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-.chipkey span{display:inline-flex;align-items:center;gap:7px}
-.ck{width:11px;height:11px;border-radius:50%;display:inline-block}
-.ck.oss{background:#1c7a4a}
-.ck.weight{background:#8a6a00}
-.ck.priv{background:#7344c4}
+.legend{margin:40px 0 0}
+.legend-box{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:center;max-width:680px;margin:0 auto;padding:16px 26px;background:var(--bg-soft);border-radius:16px;font-size:13.5px;color:var(--ink-soft);letter-spacing:-.005em}
+.legend-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+.legend-item{white-space:nowrap}
+.ck{vertical-align:middle;margin-right:8px}
 
 /* ---------- band ---------- */
 .band{background:var(--bg-soft);margin:80px 0;padding:72px 0}
@@ -239,6 +237,15 @@ tr:hover .cell.on-own .mk,tr:hover .cell.on-fed .mk{transform:scale(1.3)}
 .synth-card li b{color:var(--ink)}
 .honesty{margin-top:26px;font-size:13.5px;color:var(--ink-faint);border-left:2px solid var(--line-strong);padding:4px 0 4px 18px;line-height:1.55;letter-spacing:-.005em;max-width:840px}
 .honesty b{color:var(--ink-soft)}
+.dvfig{margin-top:18px}
+.dvfig svg{width:100%;height:auto;max-width:760px;display:block;margin:0 auto}
+.dvcap{max-width:800px;margin:18px auto 0;font-size:14.5px;color:var(--ink-soft);line-height:1.6;letter-spacing:-.005em}
+.dvcap b{color:var(--ink);font-weight:600}
+.dvkey{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--ink-soft);letter-spacing:-.005em}
+.dvkey span{display:inline-flex;align-items:center;gap:8px}
+.dvkey i{width:13px;height:13px;border-radius:3px;display:inline-block;flex:none}
+.dvkey i.dur{background:#fbede4;border:1.5px solid #c2510e}
+.dvkey i.vol{background:#eaf1fd;border:1.5px solid #1f6feb}
 
 footer{text-align:center;padding:60px 0;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--line);margin-top:64px}
 footer a{color:var(--accent);text-decoration:none}
@@ -360,13 +367,16 @@ footer a{color:var(--accent);text-decoration:none}
     <span><i class="dot m"></i> Qumulo owns it — the data</span>
     <span><i class="dot s"></i> Qumulo feeds it — the intelligence</span>
   </div>
-  <div class="chipkey">
-    <span class="ck-label">Company chips by license</span>
-    <span><i class="ck oss"></i> open source</span>
-    <span><i class="ck weight"></i> open weight</span>
-    <span><i class="ck priv"></i> private / commercial</span>
-  </div>
   <div class="wheel-hint">Tap a segment to open its layer</div>
+</section>
+
+<section class="wrap legend reveal" id="legend">
+  <div class="legend-box">
+    <span class="legend-title">Legend — company chips by license</span>
+    <span class="legend-item"><svg class="ck" width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><circle cx="6.5" cy="6.5" r="6.5" fill="#1c7a4a"/></svg>open source</span>
+    <span class="legend-item"><svg class="ck" width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><circle cx="6.5" cy="6.5" r="6.5" fill="#8a6a00"/></svg>open weight</span>
+    <span class="legend-item"><svg class="ck" width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><circle cx="6.5" cy="6.5" r="6.5" fill="#7344c4"/></svg>private / commercial</span>
+  </div>
 </section>
 
 <div class="band reveal">
@@ -655,7 +665,7 @@ footer a{color:var(--accent);text-decoration:none}
 <section class="act reveal" id="sec-Act">
   <div class="section-eyebrow">On · the move that turns the line into a wheel</div>
   <h2>On</h2>
-  <p>The agentic close. The model doesn't just answer — it <b style="color:#fff">acts</b>: calls tools, triggers workflows, writes results back. That write-back lands as new Data at <b style="color:var(--accent)">D</b>, gets re-refined and re-indexed, and the loop runs again. Not D→R→A→G and done — it stays <b style="color:#fff">on</b>, turning continuously. That's the whole "no staleness, no manual re-indexing" line made literal: the wheel stays on.</p>
+  <p>The agentic close. The model doesn't just answer — it <b style="color:#fff">acts</b>: calls tools, triggers workflows, writes results back. That write-back lands as new Data at <b style="color:var(--accent)">D</b>, gets re-refined and re-indexed, and the loop runs again. Not D→R→A→G and done — it stays <b style="color:#fff">on</b>, turning continuously. That's the whole "no staleness, no manual re-indexing" line made literal: the wheel stays on. On the durable/volatile axis it's the down-stroke: the act is volatile machinery, but its landing — the write-back — is durable.</p>
   <div class="cycle">
     <span class="tk own">D</span><span class="ar">→</span><span class="tk own">R</span><span class="ar">→</span><span class="tk">A</span><span class="ar">→</span><span class="tk">G</span><span class="ar">→</span><span class="tk own">On</span><span class="ar">→</span><span class="tk">new data</span><span class="ar">↺</span><span class="tk own">D</span>
   </div>
@@ -731,6 +741,48 @@ footer a{color:var(--accent);text-decoration:none}
     </ul></div>
 
   <p class="oss-foot">Everything not listed — Qumulo, VAST, NetApp, Pure, Weka, the hyperscaler services (S3, Blob, Glue, AI Search, Bedrock, Vertex), Pinecone, Palantir AIP, the frontier-model APIs (Claude, GPT, Gemini, Cohere) and the silicon — is proprietary or commercial. Note that open vs. proprietary cuts <i>across</i> the wheel; it does not track the owns / feeds line.</p>
+</section>
+
+<section class="reveal" id="boundary">
+  <div class="section-eyebrow">The durable / volatile boundary</div>
+  <p class="dvcap" style="margin-top:6px">One line runs through the whole stack — the cut between the <b>durable</b> assets you keep and the <b>volatile</b> machinery you rent. It falls one notch above the embeddings.</p>
+  <div class="dvfig">
+  <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The durable versus volatile boundary across D, R, A, G and On">
+    <defs>
+      <marker id="dvah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#a39c8e" stroke-width="1.6"/></marker>
+      <clipPath id="cD"><rect x="111" y="64" width="78" height="150" rx="9"/></clipPath>
+      <clipPath id="cR"><rect x="246" y="64" width="78" height="150" rx="9"/></clipPath>
+      <clipPath id="cA"><rect x="381" y="64" width="78" height="150" rx="9"/></clipPath>
+      <clipPath id="cG"><rect x="516" y="64" width="78" height="150" rx="9"/></clipPath>
+      <clipPath id="cN"><rect x="651" y="64" width="78" height="150" rx="9"/></clipPath>
+    </defs>
+    <path d="M690,58 C690,18 150,18 150,58" fill="none" stroke="#cdc6b8" stroke-width="1.4" stroke-dasharray="3 5" marker-end="url(#dvah)"/>
+    <text x="420" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#86868b">the loop · On writes new durable data back to D</text>
+    <g clip-path="url(#cD)"><rect x="111" y="64" width="78" height="150" fill="#fbede4"/></g>
+    <rect x="111" y="64" width="78" height="150" rx="9" fill="none" stroke="#c2510e" stroke-width="1.5"/>
+    <g clip-path="url(#cR)"><rect x="246" y="64" width="78" height="75" fill="#eaf1fd"/><rect x="246" y="139" width="78" height="75" fill="#fbede4"/></g>
+    <line x1="246" y1="139" x2="324" y2="139" stroke="#b9b2a5" stroke-width="1.2"/>
+    <rect x="246" y="64" width="78" height="150" rx="9" fill="none" stroke="#9aa1ab" stroke-width="1.5"/>
+    <g clip-path="url(#cA)"><rect x="381" y="64" width="78" height="150" fill="#eaf1fd"/></g>
+    <rect x="381" y="64" width="78" height="150" rx="9" fill="none" stroke="#1f6feb" stroke-width="1.5"/>
+    <g clip-path="url(#cG)"><rect x="516" y="64" width="78" height="150" fill="#eaf1fd"/></g>
+    <rect x="516" y="64" width="78" height="150" rx="9" fill="none" stroke="#1f6feb" stroke-width="1.5"/>
+    <g clip-path="url(#cN)"><rect x="651" y="64" width="78" height="75" fill="#eaf1fd"/><rect x="651" y="139" width="78" height="75" fill="#fbede4"/></g>
+    <line x1="651" y1="139" x2="729" y2="139" stroke="#b9b2a5" stroke-width="1.2"/>
+    <rect x="651" y="64" width="78" height="150" rx="9" fill="none" stroke="#9aa1ab" stroke-width="1.5"/>
+    <g font-family="Hanken Grotesk, sans-serif" font-weight="600" font-size="22" fill="#1d1d1f" text-anchor="middle">
+      <text x="150" y="244">D</text><text x="285" y="244">R</text><text x="420" y="244">A</text><text x="555" y="244">G</text><text x="690" y="244">On</text>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#86868b" text-anchor="middle">
+      <text x="150" y="262">durable</text><text x="285" y="262">split · up &#8593;</text><text x="420" y="262">volatile</text><text x="555" y="262">volatile</text><text x="690" y="262">split · down &#8595;</text>
+    </g>
+  </svg>
+  </div>
+  <div class="dvkey">
+    <span><i class="dur"></i> durable — owned, open, in the customer's custody</span>
+    <span><i class="vol"></i> volatile — fed, rebuildable machinery</span>
+  </div>
+  <p class="dvcap"><b>D</b> is the durable floor; <b>A</b> and <b>G</b> are the volatile ceiling. Only <b>R</b> and <b>On</b> straddle the line. R keeps durable embeddings, entities, and provenance below it and a rebuildable index/engine above it; On's act is volatile, but its write-back lands as new durable Data. R is the up-stroke — substrate into retrieval — and On is the down-stroke — result back into the substrate. Two crossings, and that is exactly what bends the line into a loop. In Qumulo terms: it owns both durable ends and feeds the volatile middle.</p>
 </section>
 
 <section class="synth reveal" id="synth">
