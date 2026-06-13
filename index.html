@@ -314,7 +314,7 @@ footer a{color:var(--accent);text-decoration:none}
 <header class="top wrap reveal" id="top">
   <div class="eyebrow">A field guide to the wheel under retrieval</div>
   <h1 class="title"><span class="d">D+</span>RAG<span class="d">+On</span></h1>
-  <p class="rag-def"><span class="tag">Data + Retrieval Augmented Generation + On</span></p>
+  <p class="rag-def"><span class="tag">Data + Retrieval-Augmented Generation + On</span></p>
   <div class="hero-dragon">🐉</div>
 </header>
 
@@ -336,7 +336,7 @@ footer a{color:var(--accent);text-decoration:none}
 </section>
 
 <section class="wrap rag-intro reveal" id="rag-intro">
-  <div class="section-eyebrow">Intro to RAG (Retrieval Augmented Generation)</div>
+  <div class="section-eyebrow">Intro to RAG (Retrieval-Augmented Generation)</div>
   <p class="rag-lead">RAG is an AI technique that improves the accuracy of generative models by pulling facts from an external knowledge base <em>before</em> generating a response. Think of it as an <span class="ob">open-book test</span> for AI — it sharply reduces errors and lets the model answer using up-to-date, specific data instead of whatever it happened to memorize in training.</p>
 
   <div class="rag-steps">
@@ -381,7 +381,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 <div class="band reveal">
   <div class="wrap">
-    <p>Every RAG platform retrieves what it's given. <span class="hi">None of them make the data worth retrieving.</span> That whole Data stack is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
+    <p>Most RAG platforms retrieve what they're given and assume the hard data work is already done. <span class="hi">Few own the durable data substrate.</span> Some bundle ingestion and enrichment, but that data layer is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
     <div class="sig">The missing layer · the data substrate · the drag</div>
   </div>
 </div>
@@ -398,7 +398,7 @@ footer a{color:var(--accent);text-decoration:none}
 <section class="wrap terms reveal" id="terms">
   <div class="section-eyebrow">Plain-English terms</div>
   <div class="terms-grid">
-    <div class="term"><h4>RAG</h4><p>A model only knows what it absorbed in training — frozen and generic. Retrieval fetches the relevant pieces of <em>your</em> data at question time and hands them to the model as context. Retrieval is the lookup; generation is the model writing from what was retrieved.</p></div>
+    <div class="term"><h4>RAG</h4><p>Absent tools or retrieval, a model's native knowledge is bounded by its training — frozen and generic. Retrieval fetches the relevant pieces of <em>your</em> data at question time and hands them to the model as context. Retrieval is the lookup; generation is the model writing from what was retrieved.</p></div>
     <div class="term"><h4>Substrate</h4><p>The foundation a thing draws from. A RAG substrate is the body of data — plus the structure that makes it findable — that the retrieval step reaches into.</p></div>
     <div class="term"><h4>Embeddings</h4><p>Numerical fingerprints of meaning: a passage or file turned into a list of numbers, so things that mean similar things sit near each other. Expensive derived assets — on an open substrate they persist in open format, so they travel with the data.</p></div>
     <div class="term"><h4>Index</h4><p>A fast-lookup structure built over the embeddings — "find the passages that mean roughly this" — instead of scanning everything. The <em>disposable accelerator</em>, not the asset: engine-specific and rebuildable. Like the index at the back of a book: it holds no chapters, it points you to a page.</p></div>
@@ -431,14 +431,14 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="layer own"><div class="layer-top"><span class="layer-code">D2</span><span class="layer-title">Open formats <span class="em">how the bytes are laid out — so any engine reads them</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The on-disk layout that lets any engine read the same bytes without conversion or lock-in. Parquet for the columnar bytes; Apache Iceberg for table structure — schema, snapshots, time-travel. Formats are durable; the engines above them are volatile.</p>
-        <div class="who-label">Who plays here · open standards, not vendors</div>
+        <div class="who-label">Who plays here · open file/table formats &amp; lakehouse projects</div>
         <div class="chips"><span class="chip lead oss">Apache Parquet</span><span class="chip lead oss">Apache Iceberg</span><span class="chip multi oss">Delta Lake / Databricks</span><span class="chip oss">Apache Hudi</span></div>
       </div></div>
     </div>
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">D3</span><span class="layer-title">Replication &amp; freshness <span class="em">keeping copies current and global</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">Keeps copies fresh and globally consistent so retrieval never reads stale bytes. This is the <em>storage-layer</em> sense — Qumulo's Cloud Data Fabric — and it is distinct from event streaming. Same word "streaming," different layer: the event bus routes discrete messages; replication keeps copies fresh.</p>
+        <p class="what">Keeps replicas fresh within a defined consistency and freshness model — reducing stale reads rather than guaranteeing none. This is the <em>storage-layer</em> sense — Qumulo's Cloud Data Fabric — and it is distinct from event streaming. Same word "streaming," different layer: the event bus routes discrete messages; replication keeps copies fresh. The line is blurring, though — engines like Flink increasingly write streams straight into open tables like Iceberg.</p>
         <div class="who-label">Who plays here · storage replication</div>
         <div class="chips"><span class="chip lead priv">Qumulo Cloud Data Fabric</span></div>
         <div class="who-label" style="margin-top:16px">Adjacent: the event bus (data arriving)</div>
@@ -485,7 +485,7 @@ footer a{color:var(--accent);text-decoration:none}
         <p class="what">Converts content into vectors and retrieves the closest by similarity — pulls up material relevant to a question even when none of the words line up. The library searched before answering. Built over the embeddings; the index itself is the rebuildable accelerator, not the asset.</p>
         <div class="who-label">Who plays here · 2026 leaders</div>
         <div class="chips"><span class="chip priv">Pinecone</span><span class="chip multi oss">Weaviate</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Milvus / Zilliz</span><span class="chip oss">pgvector</span><span class="chip oss">Chroma</span><span class="chip multi oss">LanceDB</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Vespa</span></div>
-        <div class="note">Above ~1B vectors, <b>Vespa</b> and <b>Milvus</b> are the production options. <b>LanceDB</b> is the natural fit on an open substrate — vectors-as-files, designed to live directly on object storage.</div>
+        <div class="note">At billion-vector scale, <b>Vespa</b> and <b>Milvus</b> are among the more proven open, infra-heavy options — though Qdrant and Pinecone now reach that scale too with disk-based ANN and quantization. <b>LanceDB</b> is the natural fit on an open substrate — vectors-as-files, designed to live directly on object storage.</div>
       </div></div>
     </div>
 
@@ -499,8 +499,8 @@ footer a{color:var(--accent);text-decoration:none}
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">R3</span><span class="layer-title">Hybrid retrieval <span class="em">fuse meaning + precision</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">Combines vector and keyword results (e.g. reciprocal rank fusion) so you get both semantic recall and lexical precision in one pass. In practice this is the single biggest lever on retrieval quality — which is why every serious engine now ships it.</p>
-        <div class="who-label">Who plays here · ships hybrid by default</div>
+        <p class="what">Combines vector and keyword results (e.g. reciprocal rank fusion) so you get both semantic recall and lexical precision in one pass. In practice this is the single biggest lever on retrieval quality — which is why most serious engines now support it.</p>
+        <div class="who-label">Who plays here · supports hybrid</div>
         <div class="chips"><span class="chip multi oss">Weaviate</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Vespa</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Elasticsearch</span></div>
       </div></div>
     </div>
@@ -517,7 +517,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Exposes retrieval through whatever the caller speaks — a vector API, SQL, REST, and increasingly MCP — so any agent or app can reach it without a bespoke integration. The interface is where storage-native retrieval earns its keep: same data, many front doors, no copy.</p>
         <div class="who-label">Who plays here · protocols &amp; surfaces</div>
-        <div class="chips"><span class="chip multi oss">MCP (Anthropic)</span><span class="chip">Vector API</span><span class="chip">SQL</span><span class="chip">REST</span></div>
+        <div class="chips"><span class="chip multi oss">MCP (open · Anthropic)</span><span class="chip">Vector API</span><span class="chip">SQL</span><span class="chip">REST</span></div>
       </div></div>
     </div>
 
@@ -571,11 +571,12 @@ footer a{color:var(--accent);text-decoration:none}
       </div></div>
     </div>
 
-    <div class="layer fed"><div class="layer-top"><span class="layer-code">A2</span><span class="layer-title">Lab SDKs <span class="em">the model-makers' own agent kits</span></span><span class="chev">▾</span></div>
+    <div class="layer fed"><div class="layer-top"><span class="layer-code">A2</span><span class="layer-title">Vendor &amp; platform agent SDKs <span class="em">the agent kits the labs and clouds ship</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">Agent toolkits shipped by the model labs themselves, tuned to their own models — plan, call tools, chain steps. The path of least resistance if you've already chosen the model.</p>
+        <p class="what">Agent toolkits shipped by the model labs and cloud platforms — plan, call tools, chain steps. Some are tied to one provider; others (OpenAI's, Google's ADK) are provider-agnostic and deploy-anywhere. The path of least resistance if you've already chosen the model.</p>
         <div class="who-label">Who plays here</div>
         <div class="chips"><span class="chip multi oss">OpenAI Agents SDK</span><span class="chip multi oss">Anthropic Claude Agent SDK</span><span class="chip multi oss">Google ADK</span><span class="chip multi oss">AutoGen / MS Agent Framework</span></div>
+        <div class="note">The green marks the <i>SDK code</i> as open source (mostly MIT); the model, runtime, and hosted service behind it stay commercial.</div>
       </div></div>
     </div>
 
@@ -599,7 +600,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Cloud-bundled orchestration so you don't assemble it yourself — retrieval, embedding, orchestration, and model access wired together behind one platform. The "I want results, not Lego" option.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi priv">AWS Bedrock AgentCore</span><span class="chip multi priv">Azure AI Foundry</span><span class="chip multi priv">Snowflake Cortex</span><span class="chip multi priv">Databricks Mosaic AI</span><span class="chip priv">Palantir AIP</span></div>
+        <div class="chips"><span class="chip multi priv">Amazon Bedrock AgentCore</span><span class="chip multi priv">Azure AI Foundry</span><span class="chip multi priv">Snowflake Cortex Agents</span><span class="chip multi priv">Databricks Mosaic AI</span><span class="chip priv">Palantir AIP</span></div>
       </div></div>
     </div>
   </div>
@@ -643,7 +644,7 @@ footer a{color:var(--accent);text-decoration:none}
 
     <div class="layer fed"><div class="layer-top"><span class="layer-code">G4</span><span class="layer-title">Compute / silicon <span class="em">the hardware that does the math</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">The accelerators that run training and inference, and the servers they sit in. NVIDIA reads files directly off the substrate for training and inference — which is exactly where D and G touch.</p>
+        <p class="what">The accelerators that run training and inference, and the servers they sit in. NVIDIA's stack can shorten the path between storage and GPU memory via GPUDirect Storage and related data-loading paths — which is exactly where D and G touch.</p>
         <div class="who-label">Who plays here · accelerators</div>
         <div class="chips"><span class="chip multi priv">NVIDIA</span><span class="chip priv">AMD Instinct</span><span class="chip multi priv">AWS Trainium / Inferentia</span><span class="chip multi priv">Google TPU</span></div>
         <div class="who-label" style="margin-top:16px">Servers</div>
@@ -935,7 +936,7 @@ const companies=[
   {n:'AWS',          f:[1,1,1,1,1], note:'S3/Glue · AI Search-adj · AgentCore · Bedrock'},
   {n:'Google',       f:[1,1,1,1,0], note:'GCS · Vertex search · ADK · Gemini/TPU'},
   {n:'Databricks',   f:[1,1,1,1,0], note:'Delta · Unity · Mosaic · serving'},
-  {n:'Snowflake',    f:[1,1,1,0,0], note:'Open Catalog · external tables · Cortex'},
+  {n:'Snowflake',    f:[1,1,1,0,0], note:'Open Catalog · external tables · Cortex Agents'},
   {n:'NVIDIA',       f:[0,0,1,1,0], note:'NeMo Retriever · silicon · NIM'},
   {n:'Anthropic',    f:[0,1,1,1,0], note:'MCP · Claude Agent SDK · Claude'},
   {n:'OpenAI',       f:[0,1,1,1,0], note:'embeddings · Agents SDK · GPT'},
