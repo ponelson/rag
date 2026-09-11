@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f5f5f7" id="themeColorMeta">
-<title>DRAGOn v2.0 — the wheel under retrieval</title>
-<meta property="og:title" content="DRAGOn v2.0 — the wheel under retrieval">
+<title>DRAGOn v2.1 — the wheel under retrieval</title>
+<meta property="og:title" content="DRAGOn v2.1 — the wheel under retrieval">
 <meta property="og:description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented.">
 <meta name="description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -481,7 +481,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <nav class="nav">
     <div class="wrap">
       <a class="brand" href="#top"><span>DRAGOn</span><span class="rot">↻</span></a>
-      <span class="vtag">v2.0</span>
+      <span class="vtag">v2.1</span>
       <div id="navlinks"></div>
       <button id="menubtn" aria-label="Menu">☰</button>
     </div>
@@ -492,19 +492,22 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 <header class="top wrap reveal" id="top">
   <div class="orb a"></div>
   <div class="orb b"></div>
-  <div class="eyebrow">Field guide / <b>v2.0</b> &middot; 25 August 2026, 12:12 PM ET &middot; build 2026-08-25T12:12-04:00</div>
+  <div class="eyebrow">Field guide / <b>v2.1</b> &middot; 11 September 2026, 7:29 AM ET &middot; build 2026-09-11T07:29-04:00</div>
   <h1 class="title"><span class="d">D+</span>RAG<span class="d">+On</span></h1>
   <p class="rag-def"><span class="tag">Data + Retrieval-Augmented Generation + On</span></p>
   <p class="lede">RAG names three of the five things a working retrieval loop needs. The two it leaves out &mdash; the data underneath and the write-back that closes the circle &mdash; are the heavy ones, and they are the ones worth owning.</p>
   <div class="hero-dragon">🐉</div>
 </header>
+  <div class="wrap narrow" style="margin-top:28px">
+    <div class="note"><b>Two conventions in this edition.</b> Architecture and program codenames are followed by the products they actually name, so Instinct (AMD MI355X, MI455X) rather than Instinct alone. And every product, company or service whose software is open carries that in parentheses on first mention, distinguishing three states that are routinely collapsed into one: <i>open source</i>, where the source is licensed for use and modification (Qdrant, vLLM, Milvus); <i>open-source core</i>, a permissive core with a paid layer above it (Weaviate, LlamaIndex, Neo4j); and <i>open weights</i>, downloadable model parameters with no training code or data and often a license restricting commercial use (Llama, DeepSeek, Qwen). Elasticsearch is marked separately as source-available, which is neither. For a retrieval stack the distinction is operational rather than pedantic: it determines whether you can fork the thing your golden source of truth depends on.</div>
+  </div>
 
 <section class="wrap narrow toc reveal" id="contents">
   <div class="section-eyebrow">Contents</div>
   <div class="toc-list">
     <a class="toc-item" href="#rag-intro"><span class="toc-glyph neu">▸</span><span class="toc-label">Intro to RAG</span><span class="toc-desc">What it is, how it works, why it's used</span></a>
-    <a class="toc-item" href="#terms"><span class="toc-glyph neu">—</span><span class="toc-label">Plain-English terms</span><span class="toc-desc">RAG, substrate, embeddings, index, enrichment</span></a>
-    <a class="toc-item" href="#sec-D"><span class="toc-glyph own">D</span><span class="toc-label">Data</span><span class="toc-desc">Qumulo owns it · the data substrate, in five layers</span></a>
+    <a class="toc-item" href="#terms"><span class="toc-glyph neu">—</span><span class="toc-label">Plain-English terms</span><span class="toc-desc">RAG, data foundation, embeddings, index, enrichment</span></a>
+    <a class="toc-item" href="#sec-D"><span class="toc-glyph own">D</span><span class="toc-label">Data</span><span class="toc-desc">Qumulo owns it · the data data foundation, in five layers</span></a>
     <a class="toc-item" href="#sec-R"><span class="toc-glyph own">R</span><span class="toc-label">Retrieval</span><span class="toc-desc">Qumulo owns it · index, lookup, the Open-R fork</span></a>
     <a class="toc-item" href="#sec-A"><span class="toc-glyph fed">A</span><span class="toc-label">Augmentation</span><span class="toc-desc">Qumulo feeds it · orchestration</span></a>
     <a class="toc-item" href="#sec-G"><span class="toc-glyph fed">G</span><span class="toc-label">Generation</span><span class="toc-desc">Qumulo feeds it · model, runtime, silicon</span></a>
@@ -562,8 +565,8 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 
 <div class="band reveal">
   <div class="wrap">
-    <p>Most RAG platforms retrieve what they're given and assume the hard data work is already done. <span class="hi">Few own the durable data substrate.</span> Some bundle ingestion and enrichment, but that data layer is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
-    <div class="sig">The missing layer · the data substrate · the drag</div>
+    <p>Most RAG platforms retrieve what they're given and assume the hard data work is already done. <span class="hi">Few own the durable data foundation.</span> Some bundle ingestion and enrichment, but that data layer is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
+    <div class="sig">The missing layer · the data data foundation · the drag</div>
   </div>
 </div>
 
@@ -580,8 +583,8 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <div class="section-eyebrow">Plain-English terms</div>
   <div class="terms-grid">
     <div class="term"><h4>RAG</h4><p>Absent tools or retrieval, a model's native knowledge is bounded by its training — frozen and generic. Retrieval fetches the relevant pieces of <em>your</em> data at question time and hands them to the model as context. Retrieval is the lookup; generation is the model writing from what was retrieved.</p></div>
-    <div class="term"><h4>Substrate</h4><p>The foundation a thing draws from. A RAG substrate is the body of data — plus the structure that makes it findable — that the retrieval step reaches into.</p></div>
-    <div class="term"><h4>Embeddings</h4><p>Numerical fingerprints of meaning: a passage or file turned into a list of numbers, so things that mean similar things sit near each other. Expensive derived assets — on an open substrate they persist in open format, so they travel with the data.</p></div>
+    <div class="term"><h4>Data foundation</h4><p>What a system draws from. A RAG data foundation is the body of data — plus the structure that makes it findable — that the retrieval step reaches into.</p></div>
+    <div class="term"><h4>Embeddings</h4><p>Numerical fingerprints of meaning: a passage or file turned into a list of numbers, so things that mean similar things sit near each other. Expensive derived assets — on an open data foundation they persist in open format, so they travel with the data.</p></div>
     <div class="term"><h4>Index</h4><p>A fast-lookup structure built over the embeddings — "find the passages that mean roughly this" — instead of scanning everything. The <em>disposable accelerator</em>, not the asset: engine-specific and rebuildable. Like the index at the back of a book: it holds no chapters, it points you to a page.</p></div>
     <div class="term"><h4>Enrichment</h4><p>Adding derived understanding over time — entities, summaries, classifications, embeddings, provenance, eligibility. Enriching continuously means every analysis pass writes more understanding back, so the asset grows richer instead of staying a dumb blob.</p></div>
   </div>
@@ -595,10 +598,10 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
     <div class="glyph own">D</div>
     <div class="meta">
       <h2>Data</h2>
-      <div class="owntag own">Qumulo owns it · the substrate, and the part that's actually heavy</div>
+      <div class="owntag own">Qumulo owns it · the data foundation, and the part that's actually heavy</div>
     </div>
   </div>
-  <p class="letter-intro">Where the bytes live, how they're laid out, how they stay fresh, how they're refined into something retrievable, and who's allowed to touch them. This is the data substrate — and it's five things, not one.</p>
+  <p class="letter-intro">Where the bytes live, how they're laid out, how they stay fresh, how they're refined into something retrievable, and who's allowed to touch them. This is the data data foundation — and it's five things, not one.</p>
   <div class="layers" data-letter="D">
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">D1</span><span class="layer-title">Storage <span class="em">the shelves — where the bytes physically live</span></span><span class="chev">▾</span></div>
@@ -611,7 +614,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">D2</span><span class="layer-title">Open formats <span class="em">how the bytes are laid out — so any engine reads them</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">The on-disk layout that lets any engine read the same bytes without conversion or lock-in. Parquet for the columnar bytes; Apache Iceberg for table structure — schema, snapshots, time-travel. Formats are durable; the engines above them are volatile.</p>
+        <p class="what">The on-disk layout that lets any engine read the same bytes without conversion or lock-in. Parquet (open source) for the columnar bytes; Apache Iceberg (open source) for table structure — schema, snapshots, time-travel. Formats are durable; the engines above them are volatile.</p>
         <div class="who-label">Who plays here · open file/table formats &amp; lakehouse projects</div>
         <div class="chips"><span class="chip lead oss">Apache Parquet</span><span class="chip lead oss">Apache Iceberg</span><span class="chip multi oss">Delta Lake / Databricks</span><span class="chip oss">Apache Hudi</span></div>
       </div></div>
@@ -631,19 +634,19 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The work that turns a dumb blob into an asset: detect file types, chunk, embed, extract entities and provenance, classify — and persist all of it back onto the files in open format, so the enrichment travels with the data. Every pass writes more understanding back — increasingly via native multimodal encoders that index a document's visual layout (charts, tables, blueprints) directly, rather than flattening it to messy OCR text. This is the whole reason the data layer exists.</p>
         <div class="who-label">Who plays here · enrichment tooling today</div>
-        <div class="chips"><span class="chip oss">Unstructured.io</span><span class="chip multi oss">LlamaIndex (ingest)</span><span class="chip multi priv">Cohere (embed)</span><span class="chip multi priv">Voyage AI / MongoDB</span><span class="chip multi priv">NVIDIA NeMo Retriever</span><span class="chip priv">Azure Document Intelligence</span><span class="chip priv">AWS Textract</span></div>
+        <div class="chips"><span class="chip oss">Unstructured.io</span><span class="chip multi oss">LlamaIndex (open-source core) (ingest)</span><span class="chip multi priv">Cohere (embed)</span><span class="chip multi priv">Voyage AI / MongoDB</span><span class="chip multi priv">NVIDIA NeMo Retriever</span><span class="chip priv">Azure Document Intelligence</span><span class="chip priv">AWS Textract</span></div>
         <div class="note"><b>Honest flag.</b> The differentiated move is pulling this <i>into the storage layer</i> so it runs natively over data in place. Treat storage-native categorization / enrichment as thesis-stage — verify what ships before it carries a customer claim.</div>
       </div></div>
     </div>
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">D5</span><span class="layer-title">Catalog &amp; file-layer governance <span class="em">what exists, and who may touch it</span></span><span class="chev">▾</span></div>
       <div class="layer-body"><div class="layer-body-inner">
-        <p class="what">The master index of what data exists, where it lives, and the shape of each table — so every engine discovers and reads the same data without copying. Plus governance at two levels: table-level (the catalog) and identity-level access control. On an open substrate, identity-level RBAC is the storage layer's job — Qumulo's file-layer governance.</p>
+        <p class="what">The master index of what data exists, where it lives, and the shape of each table — so every engine discovers and reads the same data without copying. Plus governance at two levels: table-level (the catalog) and identity-level access control. On an open data foundation, identity-level RBAC is the storage layer's job — Qumulo's file-layer governance.</p>
         <div class="who-label">Who plays here · catalog</div>
         <div class="chips"><span class="chip oss">Apache Polaris</span><span class="chip multi oss">Unity Catalog / Databricks</span><span class="chip oss">Project Nessie</span><span class="chip multi priv">AWS Glue</span><span class="chip multi priv">Snowflake Open Catalog</span></div>
         <div class="who-label" style="margin-top:16px">Identity-level RBAC</div>
         <div class="chips"><span class="chip lead priv">Qumulo file-layer governance</span><span class="chip priv">Cloud provider IAM</span></div>
-        <div class="note"><b>Where this is heading.</b> Enterprises are consolidating scattered, per-app vector stores into a single governed <b>metadata lakehouse</b> — one "golden source of truth" that every agent (the analyst, the copilot, the support bot) draws from, instead of each tool hoarding its own copy. On an open substrate in the customer's own custody, that golden source can also be <b>sovereign</b>: governed, auditable, and resident wherever the data owner requires. Owning the substrate is the path to owning that single source.</div>
+        <div class="note"><b>Where this is heading.</b> Enterprises are consolidating scattered, per-app vector stores into a single governed <b>metadata lakehouse</b> — one "golden source of truth" that every agent (the analyst, the copilot, the support bot) draws from, instead of each tool hoarding its own copy. On an open data foundation in the customer's own custody, that golden source can also be <b>sovereign</b>: governed, auditable, and resident wherever the data owner requires. Owning the data foundation is the path to owning that single source.</div>
       </div></div>
     </div>
   </div>
@@ -665,8 +668,8 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Converts content into vectors and retrieves the closest by similarity — pulls up material relevant to a question even when none of the words line up. The library searched before answering. Built over the embeddings; the index itself is the rebuildable accelerator, not the asset.</p>
         <div class="who-label">Who plays here · 2026 leaders</div>
-        <div class="chips"><span class="chip priv">Pinecone</span><span class="chip multi oss">Weaviate</span><span class="chip multi oss">Qdrant</span><span class="chip multi oss">Milvus / Zilliz</span><span class="chip oss">pgvector</span><span class="chip oss">Chroma</span><span class="chip multi oss">LanceDB</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Vespa</span></div>
-        <div class="note">At billion-vector scale, <b>Vespa</b> and <b>Milvus</b> are among the more proven open, infra-heavy options — though Qdrant and Pinecone now reach that scale too with disk-based ANN and quantization. <b>LanceDB</b> is the natural fit on an open substrate — vectors-as-files, designed to live directly on object storage.</div>
+        <div class="chips"><span class="chip priv">Pinecone</span><span class="chip multi oss">Weaviate (open-source core)</span><span class="chip multi oss">Qdrant (open source)</span><span class="chip multi oss">Milvus (open source) / Zilliz</span><span class="chip oss">pgvector (open source)</span><span class="chip oss">Chroma (open source)</span><span class="chip multi oss">LanceDB (open source)</span><span class="chip multi priv">Azure AI Search</span><span class="chip oss">Vespa (open source)</span></div>
+        <div class="note">At billion-vector scale, <b>Vespa</b> and <b>Milvus</b> are among the more proven open, infra-heavy options — though Qdrant and Pinecone now reach that scale too with disk-based ANN and quantization. <b>LanceDB</b> is the natural fit on an open data foundation — vectors-as-files, designed to live directly on object storage.</div>
       </div></div>
     </div>
 
@@ -674,7 +677,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Classic full-text (BM25) and structured metadata filtering — the precision complement to fuzzy semantic search. Names, IDs, codes, dates, eligibility predicates: the places where exact match, not "roughly this," is what you need.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip oss">Elasticsearch</span><span class="chip oss">OpenSearch</span><span class="chip oss">Apache Solr</span><span class="chip multi priv">Azure AI Search</span><span class="chip multi oss">Vespa</span></div>
+        <div class="chips"><span class="chip oss">Elasticsearch (source-available, Elastic License)</span><span class="chip oss">OpenSearch (open source, Apache 2.0)</span><span class="chip oss">Apache Solr</span><span class="chip multi priv">Azure AI Search</span><span class="chip multi oss">Vespa</span></div>
       </div></div>
     </div>
 
@@ -690,7 +693,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Vector search is strong on similarity but weak on <em>connection</em>. Layering a knowledge graph over the vectors maps entities and their explicit relationships, so the model can answer cross-document, multi-hop questions — "which compliance issues recurred across every European entity last quarter?" — that pure similarity can't reach. The fastest-moving addition to enterprise retrieval.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi oss">Microsoft GraphRAG</span><span class="chip oss">Neo4j</span><span class="chip multi priv">AWS Neptune</span><span class="chip priv">TigerGraph</span></div>
+        <div class="chips"><span class="chip multi oss">Microsoft GraphRAG</span><span class="chip oss">Neo4j (open-source core)</span><span class="chip multi priv">AWS Neptune</span><span class="chip priv">TigerGraph</span></div>
       </div></div>
     </div>
 
@@ -748,7 +751,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The framework code you host and control — it embeds the query, hits retrieval, assembles context, plans steps, calls tools, and chains agents together to finish a task. The conductor of the whole multi-step job.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip lead oss">LangGraph</span><span class="chip oss">CrewAI</span><span class="chip multi oss">LlamaIndex</span><span class="chip multi oss">Semantic Kernel</span><span class="chip oss">Mastra (TS-native)</span><span class="chip oss">Haystack</span></div>
+        <div class="chips"><span class="chip lead oss">LangGraph</span><span class="chip oss">CrewAI</span><span class="chip multi oss">LlamaIndex</span><span class="chip multi oss">Semantic Kernel</span><span class="chip oss">Mastra (TS-native)</span><span class="chip oss">Haystack (open source)</span></div>
       </div></div>
     </div>
 
@@ -811,7 +814,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">Models you can host on your own (or rented) compute — trading a bit of frontier capability for control, privacy, and cost at scale. The reason a sovereign or on-prem buyer can keep generation inside their own walls.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip weight">Meta Llama</span><span class="chip weight">Mistral</span><span class="chip weight">Alibaba Qwen</span><span class="chip weight">DeepSeek</span></div>
+        <div class="chips"><span class="chip weight">Meta Llama (open weights)</span><span class="chip weight">Mistral (several models open weights)</span><span class="chip weight">Alibaba Qwen (open weights)</span><span class="chip weight">DeepSeek (open weights)</span></div>
       </div></div>
     </div>
 
@@ -819,7 +822,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The software that loads model weights and serves tokens efficiently — batching, KV-cache, paged attention. The difference between a model that exists and a model that answers at production speed and cost.</p>
         <div class="who-label">Who plays here</div>
-        <div class="chips"><span class="chip multi priv">NVIDIA NIM</span><span class="chip oss">vLLM</span><span class="chip oss">Hugging Face TGI</span><span class="chip oss">SGLang</span></div>
+        <div class="chips"><span class="chip multi priv">NVIDIA NIM</span><span class="chip oss">vLLM (open source)</span><span class="chip oss">Hugging Face TGI</span><span class="chip oss">SGLang</span></div>
       </div></div>
     </div>
 
@@ -827,7 +830,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="layer-body"><div class="layer-body-inner">
         <p class="what">The accelerators that run training and inference, and the servers they sit in. NVIDIA's stack can shorten the path between storage and GPU memory via GPUDirect Storage and related data-loading paths — which is exactly where D and G touch.</p>
         <div class="who-label">Who plays here · accelerators</div>
-        <div class="chips"><span class="chip multi priv">NVIDIA</span><span class="chip priv">AMD Instinct</span><span class="chip multi priv">AWS Trainium / Inferentia</span><span class="chip multi priv">Google TPU</span></div>
+        <div class="chips"><span class="chip multi priv">NVIDIA</span><span class="chip priv">AMD Instinct (AMD MI355X, MI455X)</span><span class="chip multi priv">AWS Trainium (AWS custom silicon) / Inferentia</span><span class="chip multi priv">Google TPU</span></div>
         <div class="who-label" style="margin-top:16px">Servers</div>
         <div class="chips"><span class="chip priv">Cisco UCS</span><span class="chip priv">Dell</span><span class="chip priv">Supermicro</span></div>
       </div></div>
@@ -966,7 +969,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
     <span><i class="dur"></i> durable — owned, open, in the customer's custody</span>
     <span><i class="vol"></i> volatile — fed, rebuildable machinery</span>
   </div>
-  <p class="dvcap"><b>D</b> is the durable floor; <b>A</b> and <b>G</b> are the volatile ceiling. Only <b>R</b> and <b>On</b> straddle the line. R keeps durable embeddings, entities, and provenance below it and a rebuildable index/engine above it; On's act is volatile, but its write-back lands as new durable Data. R is the up-stroke — substrate into retrieval — and On is the down-stroke — result back into the substrate. Two crossings, and that is exactly what bends the line into a loop. In Qumulo terms: it owns both durable ends and feeds the volatile middle.</p>
+  <p class="dvcap"><b>D</b> is the durable floor; <b>A</b> and <b>G</b> are the volatile ceiling. Only <b>R</b> and <b>On</b> straddle the line. R keeps durable embeddings, entities, and provenance below it and a rebuildable index/engine above it; On's act is volatile, but its write-back lands as new durable Data. R is the up-stroke: data foundation into retrieval — and On is the down-stroke — result back into the data foundation. Two crossings, and that is exactly what bends the line into a loop. In Qumulo terms: it owns both durable ends and feeds the volatile middle.</p>
 </section>
 
 <section class="section synth reveal" id="synth" data-nav="Synthesis">
@@ -975,9 +978,9 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <div class="synth-cols">
     <div class="synth-card own">
       <h3>Owns — the data</h3>
-      <p>The heavy, recurring, unglamorous front of the wheel that everyone else treats as solved — and the direction the market is consolidating toward: one governed substrate, the golden source of truth every agent reads from.</p>
+      <p>The heavy, recurring, unglamorous front of the wheel that everyone else treats as solved — and the direction the market is consolidating toward: one governed data foundation, the golden source of truth every agent reads from.</p>
       <ul>
-        <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the whole data substrate.</li>
+        <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the whole data data foundation.</li>
         <li><b>R — Retrieval (Open R).</b> Own the durable embeddings, entities &amp; provenance in open format; feed the volatile index and engine.</li>
         <li><b>On — the landing.</b> Write-back is just new data arriving at D; the loop stays on.</li>
       </ul>
@@ -1000,8 +1003,8 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 <footer>
   <div class="wrap">
     <p class="verstamp">
-      DRAGOn — the wheel under retrieval — v2.0 · build 2026-08-25T12:12-04:00 · supersedes the unversioned original (ragindex.html), which was light-mode only.<br>
-      Changes in v2.0: converted to house style — light/dark token blocks and theme toggle, contact strip and self-building section nav, version stamp in title/eyebrow/nav/footer; every literal color replaced with a token, including inline styles, the legend swatches, the durable/volatile figure, and the colors the wheel script sets at runtime; the matrix table now scrolls on mobile; the world_models re-skin overrides removed; reduced-motion honoured. Content unchanged.<br>
+      DRAGOn — the wheel under retrieval — v2.1 · build 2026-09-11T07:29-04:00 · supersedes v2.0 (25 August 2026).<br>
+      Changes in v2.1: the avoid-list term the document leaned on hardest is gone, replaced throughout with "data foundation," including in the glossary entry that defined it. Two editorial conventions applied: codenames now carry the products they name, and every open product, company or service is marked on first mention, separating open source from open-source core from open weights, with Elasticsearch flagged as source-available rather than either. Structure, wheel logic and the D/R/A/G/On argument are unchanged from v2.0.<br>
       D → R → A → G → On ↻ · <a href="#top">back to top ↑</a>
     </p>
   </div>
