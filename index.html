@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f5f5f7" id="themeColorMeta">
-<title>DRAGOn v2.1 — the wheel under retrieval</title>
-<meta property="og:title" content="DRAGOn v2.1 — the wheel under retrieval">
-<meta property="og:description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented.">
-<meta name="description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented.">
+<title>DRAGOn v3.1 — the wheel under retrieval</title>
+<meta property="og:title" content="DRAGOn v3.1 — the wheel under retrieval">
+<meta property="og:description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented. Part 2 maps five vendor stacks onto the wheel.">
+<meta name="description" content="A field guide to the five parts of the retrieval loop, and which of them are owned rather than rented. Part 2 maps five vendor stacks onto the wheel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700;8..60,900&display=swap" rel="stylesheet">
@@ -293,6 +293,7 @@ h1.title .d{color:var(--accent);font-weight:500}
 .layer-code{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.02em;padding:6px 11px;border-radius:8px;flex-shrink:0;min-width:46px;text-align:center}
 .layer.own .layer-code{background:var(--accent-soft);color:var(--accent)}
 .layer.fed .layer-code{background:var(--blue-soft);color:var(--blue)}
+.layer.neu .layer-code{background:var(--bg-soft);color:var(--ink-soft);border:1px solid var(--line-strong)}
 .layer-title{font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:-.015em;flex:1}
 .layer-title .em{font-family:var(--sans);color:var(--ink-faint);font-weight:400;font-size:15px;display:block;letter-spacing:-.005em;margin-top:2px}
 .chev{color:var(--ink-faint);transition:transform .3s;flex-shrink:0;font-size:14px}
@@ -420,7 +421,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 .why-card h4{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .why-card p{font-size:14px;color:var(--ink-soft);line-height:1.55;letter-spacing:-.005em}
 @media(max-width:760px){.why-grid{grid-template-columns:1fr}}
-.oss{margin:80px 0 0;border-top:1px solid var(--line);padding-top:44px}
+section.oss{margin:80px 0 0;border-top:1px solid var(--line);padding-top:44px}
 .oss-block{margin-bottom:18px}
 .oss-h{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
 .oss-parents{list-style:none;font-size:14px;margin-top:2px}
@@ -465,6 +466,103 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   .act{padding:38px 26px;border-radius:20px}
   .synth-cols{grid-template-columns:1fr}
 }
+
+/* ---------- part switch ---------- */
+.partswitch{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:38px auto 0;max-width:1180px;padding:0 28px}
+.partswitch .pslab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-right:4px}
+.part{display:block}
+.part[hidden]{display:none}
+
+/* ---------- part 2 · ladders ---------- */
+.l-head{margin:46px 0 0}
+.l-h2{font-family:var(--serif);font-size:clamp(28px,4.5vw,42px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--ink);max-width:22ch;margin:6px 0 14px}
+.l-h2 .own{color:var(--accent)}
+.l-h2 .fed{color:var(--blue)}
+.l-sub{font-size:17px;color:var(--ink-soft);max-width:78ch;line-height:1.6;letter-spacing:-.005em;margin:0 0 8px}
+.l-p{font-size:16px;color:var(--ink-soft);max-width:78ch;line-height:1.62;letter-spacing:-.005em;margin:0 0 14px}
+.l-p b,.l-p strong{color:var(--ink);font-weight:600}
+.l-h3{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.015em;color:var(--ink);margin:34px 0 10px}
+
+.l-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.l-grid.two{grid-template-columns:1fr 1fr}
+@media(max-width:860px){.l-grid,.l-grid.two{grid-template-columns:1fr}}
+.l-card{background:var(--glass);border:1px solid var(--glass-border);box-shadow:var(--shadow-2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:18px;padding:24px}
+.l-card.own{background:var(--accent-soft);border-color:var(--accent-line)}
+.l-card.fed{background:var(--blue-soft);border-color:var(--blue-line)}
+.l-card.dep{background:var(--surface);border:1px dashed var(--line-strong)}
+.l-card h4{font-size:17px;font-weight:700;letter-spacing:-.01em;margin:8px 0 8px;color:var(--ink)}
+.l-card p{font-size:14px;color:var(--ink-soft);line-height:1.55;letter-spacing:-.005em}
+.l-ftag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.l-card.own .l-ftag{color:var(--accent)}
+.l-card.fed .l-ftag{color:var(--blue)}
+.l-card.dep .l-ftag{color:var(--ink-faint)}
+
+/* anchor head */
+.l-anchorhead{display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px;background:var(--glass);border:1px solid var(--glass-border);box-shadow:var(--shadow-2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:18px;padding:24px 26px;margin:16px 0 16px}
+.l-ah-main{flex:1 1 400px;min-width:280px}
+.l-ah-main h3{font-family:var(--serif);font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:0 0 3px}
+.l-ah-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+.l-ah-main p{font-size:14.5px;color:var(--ink-soft);line-height:1.55;letter-spacing:-.005em;max-width:64ch;margin:0}
+.l-meter{flex:0 1 240px;min-width:210px}
+.l-meter .l-mh{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+.l-mrow{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.l-mlab{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);width:66px;flex:0 0 66px}
+.l-mbar{flex:1;height:7px;border-radius:999px;background:var(--line);overflow:hidden}
+.l-mbar i{display:block;height:100%;border-radius:999px}
+.l-mbar i.own{background:var(--accent)}
+.l-mbar i.res{background:var(--blue)}
+.l-mbar i.dep{background:var(--ink-faint)}
+.l-mnum{font-family:var(--mono);font-size:11px;color:var(--ink-faint);width:18px;text-align:right}
+
+/* step bar */
+.l-stepbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px}
+.l-qline{flex:1 1 420px;min-width:250px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink-soft);background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:11px 16px;letter-spacing:-.005em}
+.l-qline b{color:var(--accent);font-weight:700}
+
+/* rail */
+.l-rail{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:0 0 16px}
+@media(max-width:1100px){.l-rail{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.l-rail{grid-template-columns:1fr}}
+.l-ph{position:relative;cursor:pointer;text-align:left;font-family:var(--sans);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 15px 14px;transition:border-color .2s ease,background .2s ease,transform .2s ease}
+.l-ph:hover{border-color:var(--ink-faint);transform:translateY(-2px)}
+.l-ph.active{border-color:var(--accent);background:var(--accent-soft)}
+.l-ph-top{display:flex;align-items:baseline;gap:8px;margin-bottom:3px}
+.l-ph-let{font-family:var(--serif);font-weight:800;font-size:26px;line-height:1;letter-spacing:-.025em;color:var(--ink)}
+.l-ph.active .l-ph-let{color:var(--accent)}
+.l-ph-name{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.l-ph-exec{font-size:12.5px;line-height:1.5;color:var(--ink-soft);letter-spacing:-.005em;margin:0 0 11px;min-height:3.8em}
+.l-pchips{display:flex;flex-wrap:wrap;gap:5px}
+.l-pchip{display:inline-block;font-size:11px;font-weight:500;line-height:1.35;border-radius:999px;padding:3px 9px;letter-spacing:-.003em}
+.l-pchip.own{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+.l-pchip.res{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line)}
+.l-pchip.dep{background:var(--surface);color:var(--ink-faint);border:1px dashed var(--line-strong)}
+.l-ph-origin{position:absolute;top:-9px;right:11px;font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;background:var(--pill-on-bg);color:var(--pill-on-ink);border-radius:999px;padding:3px 9px}
+
+/* narration */
+.l-narr{background:var(--glass);border:1px solid var(--glass-border);border-left:3px solid var(--accent);box-shadow:var(--shadow-2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:20px 24px;margin:0 0 12px;min-height:150px}
+.l-narr .l-nk{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.l-narr h4{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.015em;color:var(--ink);margin:0 0 8px}
+.l-narr p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;letter-spacing:-.005em;max-width:82ch;margin:0}
+
+/* key */
+.l-key{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:14px;letter-spacing:-.005em}
+.l-key span{display:inline-flex;align-items:center;gap:7px}
+.l-key i{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none}
+.l-key i.own{background:var(--accent)}
+.l-key i.res{background:var(--blue)}
+.l-key i.dep{background:var(--surface);border:1px dashed var(--line-strong)}
+
+/* part 2 matrix */
+.l-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;min-width:900px}
+.l-table thead th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-strong);position:sticky;top:0;background:var(--bg);z-index:2}
+.l-table tbody td{padding:11px 12px;border-top:1px solid var(--line);color:var(--ink-soft);vertical-align:top;letter-spacing:-.005em;line-height:1.45}
+.l-table tbody tr:hover{background:var(--bg-soft)}
+.l-table td.rung{font-weight:600;color:var(--ink);white-space:nowrap}
+.l-mk{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:2px 7px;margin-right:6px}
+.l-mk.own{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+.l-mk.res{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line)}
+.l-mk.dep{background:var(--surface);color:var(--ink-faint);border:1px dashed var(--line-strong)}
+
 </style>
 </head>
 <body>
@@ -481,7 +579,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <nav class="nav">
     <div class="wrap">
       <a class="brand" href="#top"><span>DRAGOn</span><span class="rot">↻</span></a>
-      <span class="vtag">v2.1</span>
+      <span class="vtag">v3.1</span>
       <div id="navlinks"></div>
       <button id="menubtn" aria-label="Menu">☰</button>
     </div>
@@ -492,7 +590,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 <header class="top wrap reveal" id="top">
   <div class="orb a"></div>
   <div class="orb b"></div>
-  <div class="eyebrow">Field guide / <b>v2.1</b> &middot; 11 September 2026, 7:29 AM ET &middot; build 2026-09-11T07:29-04:00</div>
+  <div class="eyebrow">Field guide / <b>v3.1</b> &middot; 19 October 2026, 3:25 AM ET &middot; build 2026-10-19T03:25-04:00</div>
   <h1 class="title"><span class="d">D+</span>RAG<span class="d">+On</span></h1>
   <p class="rag-def"><span class="tag">Data + Retrieval-Augmented Generation + On</span></p>
   <p class="lede">RAG names three of the five things a working retrieval loop needs. The two it leaves out &mdash; the data underneath and the write-back that closes the circle &mdash; are the heavy ones, and they are the ones worth owning.</p>
@@ -502,17 +600,25 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
     <div class="note"><b>Two conventions in this edition.</b> Architecture and program codenames are followed by the products they actually name, so Instinct (AMD MI355X, MI455X) rather than Instinct alone. And every product, company or service whose software is open carries that in parentheses on first mention, distinguishing three states that are routinely collapsed into one: <i>open source</i>, where the source is licensed for use and modification (Qdrant, vLLM, Milvus); <i>open-source core</i>, a permissive core with a paid layer above it (Weaviate, LlamaIndex, Neo4j); and <i>open weights</i>, downloadable model parameters with no training code or data and often a license restricting commercial use (Llama, DeepSeek, Qwen). Elasticsearch is marked separately as source-available, which is neither. For a retrieval stack the distinction is operational rather than pedantic: it determines whether you can fork the thing your golden source of truth depends on.</div>
   </div>
 
+<div class="partswitch" id="partswitch">
+  <span class="pslab">Read</span>
+  <button class="toggle active" data-part="part1">Part 1 &middot; The wheel</button>
+  <button class="toggle" data-part="part2">Part 2 &middot; The ladders</button>
+</div>
+
+<div class="part" id="part1">
+
 <section class="wrap narrow toc reveal" id="contents">
   <div class="section-eyebrow">Contents</div>
   <div class="toc-list">
     <a class="toc-item" href="#rag-intro"><span class="toc-glyph neu">▸</span><span class="toc-label">Intro to RAG</span><span class="toc-desc">What it is, how it works, why it's used</span></a>
     <a class="toc-item" href="#terms"><span class="toc-glyph neu">—</span><span class="toc-label">Plain-English terms</span><span class="toc-desc">RAG, data foundation, embeddings, index, enrichment</span></a>
-    <a class="toc-item" href="#sec-D"><span class="toc-glyph own">D</span><span class="toc-label">Data</span><span class="toc-desc">Qumulo owns it · the data data foundation, in five layers</span></a>
+    <a class="toc-item" href="#sec-D"><span class="toc-glyph own">D</span><span class="toc-label">Data</span><span class="toc-desc">Qumulo owns it · the data foundation, in five layers</span></a>
     <a class="toc-item" href="#sec-R"><span class="toc-glyph own">R</span><span class="toc-label">Retrieval</span><span class="toc-desc">Qumulo owns it · index, lookup, the Open-R fork</span></a>
     <a class="toc-item" href="#sec-A"><span class="toc-glyph fed">A</span><span class="toc-label">Augmentation</span><span class="toc-desc">Qumulo feeds it · orchestration</span></a>
     <a class="toc-item" href="#sec-G"><span class="toc-glyph fed">G</span><span class="toc-label">Generation</span><span class="toc-desc">Qumulo feeds it · model, runtime, silicon</span></a>
     <a class="toc-item" href="#sec-Act"><span class="toc-glyph own">↻</span><span class="toc-label">On</span><span class="toc-desc">The agentic close — the wheel stays on</span></a>
-    <a class="toc-item" href="#planes"><span class="toc-glyph neu">⊙</span><span class="toc-label">Memory &amp; Governance</span><span class="toc-desc">The two planes that wrap the wheel</span></a>
+    <a class="toc-item" href="#planes"><span class="toc-glyph neu">⊙</span><span class="toc-label">Memory &amp; Governance</span><span class="toc-desc">The two planes that wrap the wheel, and who plays in them</span></a>
     <a class="toc-item" href="#matrix-sec"><span class="toc-glyph neu">▦</span><span class="toc-label">Who plays where</span><span class="toc-desc">Company footprints across the wheel</span></a>
     <a class="toc-item" href="#oss"><span class="toc-glyph neu">◇</span><span class="toc-label">Open source &amp; ownership</span><span class="toc-desc">Which players are open, and who owns whom</span></a>
     <a class="toc-item" href="#synth"><span class="toc-glyph neu">✦</span><span class="toc-label">The synthesis</span><span class="toc-desc">Owns the data, feeds the intelligence</span></a>
@@ -566,7 +672,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 <div class="band reveal">
   <div class="wrap">
     <p>Most RAG platforms retrieve what they're given and assume the hard data work is already done. <span class="hi">Few own the durable data foundation.</span> Some bundle ingestion and enrichment, but that data layer is the precondition the acronym skips — and it's five things, not one, which is the whole reason it deserves its own letter.</p>
-    <div class="sig">The missing layer · the data data foundation · the drag</div>
+    <div class="sig">The missing layer · the data foundation · the drag</div>
   </div>
 </div>
 
@@ -601,7 +707,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <div class="owntag own">Qumulo owns it · the data foundation, and the part that's actually heavy</div>
     </div>
   </div>
-  <p class="letter-intro">Where the bytes live, how they're laid out, how they stay fresh, how they're refined into something retrievable, and who's allowed to touch them. This is the data data foundation — and it's five things, not one.</p>
+  <p class="letter-intro">Where the bytes live, how they're laid out, how they stay fresh, how they're refined into something retrievable, and who's allowed to touch them. This is the data foundation — and it's five things, not one.</p>
   <div class="layers" data-letter="D">
 
     <div class="layer own"><div class="layer-top"><span class="layer-code">D1</span><span class="layer-title">Storage <span class="em">the shelves — where the bytes physically live</span></span><span class="chev">▾</span></div>
@@ -854,6 +960,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <div class="cycle">
     <span class="tk own">D</span><span class="ar">→</span><span class="tk own">R</span><span class="ar">→</span><span class="tk">A</span><span class="ar">→</span><span class="tk">G</span><span class="ar">→</span><span class="tk own">On</span><span class="ar">→</span><span class="tk">new data</span><span class="ar">↺</span><span class="tk own">D</span>
   </div>
+  <p style="margin-top:30px">A second, quieter write-back rides inside the first. Every turn also leaves a verdict on retrieval itself: which chunks the model used, which it ignored, which answers held up. Utility scores, citation counts and decay state are derived understanding about the data, the same class of thing as the embeddings and provenance that Open R keeps in open form (<b class="hi-w">R6</b>, the retrieval fork), so by the durable/volatile line they belong at <b class="hi-a">D</b>, in the customer&rsquo;s custody. Today they mostly land in whichever tracing service logged the run, which leaves the best record of what your data is actually worth with a vendor you rent. This does not define On twice. The agentic close lands the act&rsquo;s output at <b class="hi-a">D</b>; this loop lands a judgment about <b class="hi-a">R</b>.</p>
 </section>
 
 <!-- ============ PLANES ============ -->
@@ -861,7 +968,28 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <div class="section-eyebrow">Not stages — planes that wrap the whole wheel</div>
   <div class="planes" style="margin-top:18px">
     <div class="plane"><div class="tag">The bearing</div><h3>Memory</h3><p>The state carried across turns of the loop — conversation, scratchpad, long-term store. It doesn't sit at one letter; it's what lets the wheel keep its place as it turns.</p></div>
-    <div class="plane"><div class="tag">The brake</div><h3>Governance</h3><p>Guardrails, audit, and eval over everything — every letter, every turn. Identity-level access lives down in D5; this is the policy and oversight layer that rides on top of all of it.</p></div>
+    <div class="plane"><div class="tag">The brake</div><h3>Governance</h3><p>Guardrails, audit, and eval over everything — every letter, every turn. Identity-level access lives down in D5; this is the policy and oversight plane that rides over all of it.</p></div>
+  </div>
+
+  <div class="layers">
+    <div class="layer neu"><div class="layer-top"><span class="layer-code">M·G</span><span class="layer-title">Who plays in the planes <span class="em">memory engines · tracing and attribution · offline evaluation</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">The planes have players too. Memory engines hold what an agent carries from one turn to the next. Tracing platforms record what each turn retrieved, what the model actually used and whether the answer held up, and evaluation harnesses score runs after the fact. All three produce <em>derived state about your data</em>, and none of it sits at D unless someone puts it there. Agent memory is the sharpest case: written by the loop, read back on later turns, and usually stored outside the permissions that governed the files it was derived from.</p>
+
+        <div class="who-label">Memory · the bearing · agent state across turns</div>
+        <div class="chips" style="margin-bottom:22px"><span class="chip oss">Letta (formerly MemGPT)</span><span class="chip oss">Graphiti (Zep&rsquo;s graph engine)</span><span class="chip priv">Zep Cloud</span></div>
+
+        <div class="who-label">Tracing &amp; attribution · the brake · what was used, what was ignored</div>
+        <div class="chips" style="margin-bottom:22px"><span class="chip oss">Langfuse (open-source core)</span><span class="chip oss">TruLens</span><span class="chip">Arize Phoenix (source-available, Elastic License)</span><span class="chip priv">LangSmith</span><span class="chip priv">Braintrust</span><span class="chip priv">Galileo</span></div>
+
+        <div class="who-label">Offline evaluation &amp; optimization · scores runs, does not steer them</div>
+        <div class="chips"><span class="chip oss">Ragas</span><span class="chip oss">DeepEval</span><span class="chip oss">DSPy</span></div>
+
+        <div class="note"><b>Honest flag · two corrections to the usual telling.</b> Self-RAG&rsquo;s reflection tokens ([IsRel], [IsSup], [IsUse]) are trained into the model itself (Asai et al., 2023). Ragas, DeepEval and DSPy are often listed as implementations, and they are not: the first two score runs after the fact, and DSPy optimizes prompts and programs. Second, utility-weighted ranking is only half native. Qdrant ships decay functions in its score-boosting formulas, and Weaviate&rsquo;s Boost API reached general availability in its 1.39 release, but both rank on a field you supply. Neither store records whether the model used a chunk. That signal is born in the tracing tool, and carrying it back into the index is plumbing you build.</div>
+
+        <div class="note"><b>Where the record is going.</b> Tracing is consolidating into general observability platforms. ClickHouse bought Langfuse in January 2026, Cisco closed on Galileo for Splunk in May 2026, and Dynatrace closed on Arize in October 2026, following Snowflake&rsquo;s 2024 purchase of TruEra&rsquo;s platform. The record of which data earned its place in an answer is moving further from the data it describes. That is the On argument seen from the other side: if utility belongs at D, it should be written there in open form, not leased back from a monitoring vendor.</div>
+      </div></div>
+    </div>
   </div>
 </section>
 
@@ -907,11 +1035,14 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   <div class="oss-block"><div class="oss-h">Open source · orchestration, SDKs &amp; protocol</div>
     <div class="chips"><span class="chip oss">LangGraph</span><span class="chip oss">CrewAI</span><span class="chip oss">LlamaIndex</span><span class="chip oss">Haystack</span><span class="chip oss">Semantic Kernel</span><span class="chip oss">AutoGen</span><span class="chip oss">Google ADK</span><span class="chip oss">OpenAI Agents SDK</span><span class="chip oss">Claude Agent SDK</span><span class="chip oss">Mastra</span><span class="chip oss">MCP (open spec)</span></div></div>
 
+  <div class="oss-block"><div class="oss-h">Open source · memory, tracing &amp; evaluation</div>
+    <div class="chips"><span class="chip oss">Letta</span><span class="chip oss">Graphiti</span><span class="chip oss">Langfuse (open-source core)</span><span class="chip oss">TruLens</span><span class="chip oss">Ragas</span><span class="chip oss">DeepEval</span><span class="chip oss">DSPy</span></div></div>
+
   <div class="oss-block"><div class="oss-h">Open source · serving &amp; object store</div>
     <div class="chips"><span class="chip oss">vLLM</span><span class="chip oss">Hugging Face TGI</span><span class="chip oss">SGLang</span><span class="chip oss">MinIO (AGPL)</span><span class="chip oss">NVIDIA NeMo (framework)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Source-available — free, but not OSI open source</div>
-    <div class="chips"><span class="chip">Redpanda (BSL)</span></div></div>
+    <div class="chips"><span class="chip">Redpanda (BSL)</span><span class="chip">Arize Phoenix (Elastic License 2.0)</span></div></div>
 
   <div class="oss-block"><div class="oss-h">Open weights — downloadable models, custom (non-OSI) licenses</div>
     <div class="chips"><span class="chip weight">Meta Llama</span><span class="chip weight">Mistral</span><span class="chip weight">Alibaba Qwen</span><span class="chip weight">DeepSeek</span></div></div>
@@ -924,10 +1055,12 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <li><b>Milvus ← Zilliz</b>; <b>Haystack ← deepset</b>; <b>Vespa</b> spun out of Yahoo (now Vespa.ai); <b>Project Nessie ← Dremio</b>.</li>
       <li><b>OpenSearch</b> — AWS fork of Elasticsearch, now governed under the Linux Foundation.</li>
       <li><b>Snowflake Open Catalog</b> is Snowflake's managed Apache Polaris; <b>NIM / NeMo Retriever → NVIDIA</b> (NIM microservices proprietary, NeMo framework open).</li>
+      <li><b>Langfuse → ClickHouse</b> (January 2026; core stays MIT); <b>TruEra → Snowflake</b> (2024; TruLens stays open source); <b>Galileo → Cisco</b> (closed May 2026, folding into Splunk); <b>Arize → Dynatrace</b> (closed October 2026; Phoenix and AX continue).</li>
+      <li><b>Zep</b> deprecated its open-source Community Edition in April 2025; Zep Cloud is commercial, and its <b>Graphiti</b> graph engine remains open source.</li>
       <li><b>Nebius</b> spun out of Yandex; <b>Azure Native Qumulo</b> is a Microsoft first-party service running Qumulo technology; <b>PowerScale → Dell</b> (Isilon heritage).</li>
     </ul></div>
 
-  <p class="oss-foot">Everything not listed — Qumulo, VAST, NetApp, Pure, Weka, the hyperscaler services (S3, Blob, Glue, AI Search, Bedrock, Vertex), Pinecone, Palantir AIP, the frontier-model APIs (Claude, GPT, Gemini, Cohere) and the silicon — is proprietary or commercial. Note that open vs. proprietary cuts <i>across</i> the wheel; it does not track the owns / feeds line.</p>
+  <p class="oss-foot">Everything not listed — Qumulo, VAST, NetApp, Pure, Weka, the hyperscaler services (S3, Blob, Glue, AI Search, Bedrock, Vertex), Pinecone, Palantir AIP, the tracing services (LangSmith, Braintrust, Galileo, Zep Cloud), the frontier-model APIs (Claude, GPT, Gemini, Cohere) and the silicon — is proprietary or commercial. Note that open vs. proprietary cuts <i>across</i> the wheel; it does not track the owns / feeds line.</p>
 </section>
 
 <section class="section reveal" id="boundary" data-nav="Boundary">
@@ -980,7 +1113,7 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
       <h3>Owns — the data</h3>
       <p>The heavy, recurring, unglamorous front of the wheel that everyone else treats as solved — and the direction the market is consolidating toward: one governed data foundation, the golden source of truth every agent reads from.</p>
       <ul>
-        <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the whole data data foundation.</li>
+        <li><b>D — Data.</b> Storage, formats, replication, refining, governance: the whole data foundation.</li>
         <li><b>R — Retrieval (Open R).</b> Own the durable embeddings, entities &amp; provenance in open format; feed the volatile index and engine.</li>
         <li><b>On — the landing.</b> Write-back is just new data arriving at D; the loop stays on.</li>
       </ul>
@@ -1000,11 +1133,247 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
 
 </div>
 
+</div>
+
+<div class="part" id="part2" hidden>
+
+<section class="wrap narrow l-head reveal" id="p2-open">
+  <div class="section-eyebrow">Part 2 · the ladders</div>
+  <h2 class="l-h2">Five ladders, <span class="own">one wheel</span>, and nobody owns the floor.</h2>
+  <p class="l-sub">Part 1 defines the wheel. Part 2 runs it. Palantir, Snowflake, Databricks, Anthropic and OpenAI all sell something described as an enterprise AI stack. Push the same shape of question through each and the wheel turns the same way every time. What differs is where each one's own products start, which direction it is extending, and which rungs it quietly rents.</p>
+  <div class="note"><b>The colours carry over, the subject changes.</b> In Part 1 rust marks what Qumulo owns and blue marks what it feeds. Part 2 keeps the same pairing but shifts the subject to the anchor: rust is a product the anchor owns, blue is one it resells or routes to, and a dashed neutral chip is a dependency it neither owns nor resells. The licence legend from Part 1, green for open source, amber for open weights, purple for private, does not appear on this page; open software is still marked in words on first mention.</div>
+</section>
+
+<section class="section wrap reveal" id="p2-legend" data-nav="How to read">
+  <div class="section-eyebrow">How to read it</div>
+  <h2 class="l-h2">Three ownership states, held throughout</h2>
+  <p class="l-p">The map marks every product by the anchor's relationship to it, not by whether the product is good. That relationship is what decides the customer's exposure when a rung changes underneath them.</p>
+
+  <div class="l-grid">
+    <div class="l-card own">
+      <div class="l-ftag">Owns</div>
+      <h4>The anchor's own product</h4>
+      <p>Built, controlled and sold by the anchor. Their roadmap, their pricing, their fate. Several of these are open source and originated in-house, which is a stronger position than either owning a closed product or adopting someone else's open one.</p>
+    </div>
+    <div class="l-card fed">
+      <div class="l-ftag">Resells</div>
+      <h4>Someone else's, offered through them</h4>
+      <p>Routed to, embedded or sold as a managed option. The anchor controls the packaging and the billing relationship but not the thing itself. If the supplier repositions, the rung moves under them.</p>
+    </div>
+    <div class="l-card dep">
+      <div class="l-ftag">Depends on</div>
+      <h4>Neither owned nor resold</h4>
+      <p>A dependency they rent or adopt: hyperscaler object storage, third-party silicon, an open format governed at a foundation, or the customer's own systems. Not a criticism. It is simply where the ladder stops being theirs.</p>
+    </div>
+  </div>
+
+  <h3 class="l-h3">Which direction each ladder climbs</h3>
+  <p class="l-p">Three of the five start at the data end and extend upward into orchestration and generation. Two start at the model end and extend downward into orchestration and retrieval. The badge on the rail marks the rung where each anchor's own products begin. Everything past that badge is rented, adopted, or supplied by the customer.</p>
+
+  <div class="note"><b>Method.</b> Ownership marks reflect shipped, generally available products as of the build date, read against the rungs defined in Part 1. Worked queries are representative of each anchor's typical deployment shape and are illustrative, not drawn from a named account. The marks are the author's read and are not vendor-confirmed.</div>
+</section>
+
+<section class="section wrap reveal" id="p2-map" data-nav="The map">
+  <div class="section-eyebrow">The map</div>
+  <h2 class="l-h2">Pick an anchor and run the query</h2>
+  <p class="l-p">The rail shows all five phases at once. Step through to see which product executes at each turn of the wheel, or click any phase directly.</p>
+
+  <div class="l-stepbar" id="l-anchors">
+    <button class="toggle active" data-anchor="palantir">Palantir</button>
+    <button class="toggle" data-anchor="snowflake">Snowflake</button>
+    <button class="toggle" data-anchor="databricks">Databricks</button>
+    <button class="toggle" data-anchor="anthropic">Anthropic</button>
+    <button class="toggle" data-anchor="openai">OpenAI</button>
+  </div>
+
+  <div class="l-anchorhead">
+    <div class="l-ah-main">
+      <h3 id="lAhName">Palantir</h3>
+      <div class="l-ah-sub" id="lAhSub">Foundry + AIP</div>
+      <p id="lAhBlurb">Blurb.</p>
+    </div>
+    <div class="l-meter">
+      <div class="l-mh">Rung ownership</div>
+      <div class="l-mrow"><span class="l-mlab">Owns</span><span class="l-mbar"><i class="own" id="lBarOwn"></i></span><span class="l-mnum" id="lNumOwn">0</span></div>
+      <div class="l-mrow"><span class="l-mlab">Resells</span><span class="l-mbar"><i class="res" id="lBarRes"></i></span><span class="l-mnum" id="lNumRes">0</span></div>
+      <div class="l-mrow"><span class="l-mlab">Depends</span><span class="l-mbar"><i class="dep" id="lBarDep"></i></span><span class="l-mnum" id="lNumDep">0</span></div>
+    </div>
+  </div>
+
+  <div class="l-stepbar">
+    <div class="l-qline"><b>Query &rsaquo;</b> <span id="lQText">&mdash;</span></div>
+    <button class="toggle" id="lStepBtn">Step &rsaquo;</button>
+    <button class="toggle" id="lResetBtn">Reset</button>
+  </div>
+
+  <div class="l-rail" id="lRail"></div>
+
+  <div class="l-narr" id="lNarr">
+    <div class="l-nk" id="lNarrKick">Phase</div>
+    <h4 id="lNarrTitle">Title</h4>
+    <p id="lNarrBody">Body.</p>
+  </div>
+
+  <div class="l-key">
+    <span><i class="own"></i> owns</span>
+    <span><i class="res"></i> resells</span>
+    <span><i class="dep"></i> depends on</span>
+    <span>Badge on the rail marks where the anchor's own products begin.</span>
+  </div>
+</section>
+
+<section class="section wrap reveal" id="p2-meet" data-nav="Where they meet">
+  <div class="section-eyebrow">The pattern</div>
+  <h2 class="l-h2">Two directions of travel, one contested rung</h2>
+  <p class="l-p">Run all five and the same shape appears. Nobody is building a ladder from scratch. Each is extending from the rung it already held into the rungs it did not.</p>
+  <p class="l-p">Snowflake and Databricks started with tables and are climbing into retrieval, orchestration and model access. Palantir started higher, at the modeled ontology, and climbs from there. Anthropic and OpenAI started with the model and are descending into orchestration and, increasingly, retrieval. The two groups are converging on the same rung from opposite ends.</p>
+  <p class="l-p">That rung is <b>A, augmentation</b>. Every one of the five now ships an agent framework, and all five are broadly interchangeable: they plan steps, call tools, assemble context and trace the run. Several are open source. A customer can swap one for another in weeks. It is the most crowded rung on the wheel and the least defensible, which is exactly why everyone is standing on it.</p>
+
+  <h3 class="l-h3">What the two directions reveal</h3>
+  <div class="l-grid two">
+    <div class="l-card own">
+      <div class="l-ftag">Climbing from D</div>
+      <h4>The data ladders are renting the model</h4>
+      <p>None of Palantir, Snowflake or Databricks writes the answer with a model of its own. Snowflake has Arctic (open weights) and Databricks has DBRX (open weights), and neither is the model doing the work in a real deployment. Frontier generation is bought, routed to, or resold. They have decided G is a commodity input and are pricing accordingly.</p>
+    </div>
+    <div class="l-card fed">
+      <div class="l-ftag">Descending from G</div>
+      <h4>The model ladders are reaching for retrieval, not storage</h4>
+      <p>OpenAI ships a managed vector store through File Search; Anthropic deliberately does not, and reaches other people's indexes through MCP (open spec) instead. Both stop short of D. Neither has any interest in holding petabytes for a customer, and both have said so by what they have built.</p>
+    </div>
+  </div>
+
+  <h3 class="l-h3">Where the ladders are weakest</h3>
+  <p class="l-p">R4, graph and relationship retrieval, is the sharpest divide in the set. Palantir's ontology is the strongest answer to it in the market, because suppliers, parts and programs are explicit typed objects with explicit relationships and a multi-hop question resolves by traversal. The two lakehouse ladders have no native equivalent and partner out to Neo4j (open-source core) or build on top. The two model ladders have nothing at this rung at all and rely on whatever the customer already runs.</p>
+
+  <div class="note"><b>Moving.</b> Several rungs are in motion and these marks will date. OpenAI's custom silicon work, both lakehouse vendors' graph and semantic-model efforts, and how far the two model vendors push into managed retrieval are the three to re-check before any of this carries a customer claim.</div>
+</section>
+
+<section class="section wrap reveal" id="p2-floor" data-nav="The floor">
+  <div class="section-eyebrow">The read</div>
+  <h2 class="l-h2">Every ladder is standing on <span class="own">rented ground</span></h2>
+  <p class="l-p">Run the five maps side by side and the same rung comes up neutral each time.</p>
+  <p class="l-p">Not one of the five owns D1. Snowflake and Databricks rent object storage from whichever hyperscaler the account runs on. Palantir holds no bytes at all and syncs from systems the customer owns. Anthropic and OpenAI have no D rung in any durable sense: files go up for the life of a workload and the customer's corpus stays where it was. Four of the five also depend on someone else for D3, keeping copies current across sites and regions.</p>
+  <p class="l-p">This is not an oversight any of them will correct. Holding bytes at scale is a different business with different margins, and each of these companies has chosen deliberately not to be in it. Which means the floor under all five ladders is a purchase the customer makes separately, and keeps making after the ladder above it has been replaced.</p>
+
+  <div class="act" style="margin:46px 0 24px">
+    <div class="section-eyebrow">The point</div>
+    <h2>Picking a ladder is a three-year decision. <span class="hi-a">The floor under it is a ten-year one.</span></h2>
+    <p>The rungs above D churn fastest at exactly the rung everyone is competing on. The durable derived understanding, the embeddings, entities, provenance and now the utility metadata, is <span class="hi-w">data</span>, and it belongs in open format in the customer's own custody rather than inside whichever ladder they picked this year.</p>
+    <p><span class="hi-a">Own the data. Feed the intelligence.</span> The five ladders are five different ways of confirming the same line Part 1 draws.</p>
+  </div>
+
+  <h3 class="l-h3">The question that follows</h3>
+  <p class="l-p">If a customer runs Databricks for analytics, Palantir for the operational ontology and Claude for the agents, which is not a hypothetical combination, then three ladders are standing on one floor. The derived understanding produced by each currently lives inside each. Consolidating that into a single governed source in the customer's custody is the work, and it is a D-rung problem, not an A-rung one.</p>
+</section>
+
+<section class="section wrap reveal" id="p2-matrix" data-nav="Matrix">
+  <div class="section-eyebrow">Reference</div>
+  <h2 class="l-h2">All five, rung by rung</h2>
+  <p class="l-p">The static version of the map, for reading side by side. Same three ownership states.</p>
+
+  <div class="tablewrap">
+    <div class="table-scroll">
+      <table class="l-table">
+        <thead>
+          <tr><th>Rung</th><th>Palantir</th><th>Snowflake</th><th>Databricks</th><th>Anthropic</th><th>OpenAI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rung">D1 Storage</td>
+            <td><span class="l-mk dep">Dep</span>customer systems</td>
+            <td><span class="l-mk dep">Dep</span>hyperscaler object</td>
+            <td><span class="l-mk dep">Dep</span>hyperscaler object</td>
+            <td><span class="l-mk dep">Dep</span>none held</td>
+            <td><span class="l-mk dep">Dep</span>none held</td></tr>
+          <tr><td class="rung">D2 Open formats</td>
+            <td><span class="l-mk dep">Dep</span>Parquet, Iceberg</td>
+            <td><span class="l-mk dep">Dep</span>Iceberg (open source)</td>
+            <td><span class="l-mk own">Owns</span>Delta Lake (open source)</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td></tr>
+          <tr><td class="rung">D3 Freshness</td>
+            <td><span class="l-mk own">Owns</span>Foundry syncs</td>
+            <td><span class="l-mk own">Owns</span>Snowpipe, Dynamic Tables</td>
+            <td><span class="l-mk own">Owns</span>Lakeflow, Delta Sharing</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td></tr>
+          <tr><td class="rung">D4 Refining</td>
+            <td><span class="l-mk own">Owns</span>Pipeline Builder, Ontology</td>
+            <td><span class="l-mk own">Owns</span>Cortex document + embed</td>
+            <td><span class="l-mk own">Owns</span>ai_parse_document, index sync</td>
+            <td>&mdash;</td>
+            <td><span class="l-mk own">Owns</span>managed chunk + embed</td></tr>
+          <tr><td class="rung">D5 Catalog, governance</td>
+            <td><span class="l-mk own">Owns</span>object-level governance</td>
+            <td><span class="l-mk own">Owns</span>Horizon, Open Catalog (Polaris)</td>
+            <td><span class="l-mk own">Owns</span>Unity Catalog (open source)</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td></tr>
+          <tr><td class="rung">R1 Vector index</td>
+            <td><span class="l-mk dep">Dep</span>partial, via AIP</td>
+            <td><span class="l-mk own">Owns</span>Cortex Search</td>
+            <td><span class="l-mk own">Owns</span>Mosaic AI Vector Search</td>
+            <td><span class="l-mk dep">Dep</span>customer index via MCP</td>
+            <td><span class="l-mk own">Owns</span>File Search store</td></tr>
+          <tr><td class="rung">R3 Hybrid</td>
+            <td><span class="l-mk dep">Dep</span></td>
+            <td><span class="l-mk own">Owns</span></td>
+            <td><span class="l-mk own">Owns</span></td>
+            <td>&mdash;</td>
+            <td><span class="l-mk own">Owns</span>rerank included</td></tr>
+          <tr><td class="rung">R4 Graph</td>
+            <td><span class="l-mk own">Owns</span>the Ontology</td>
+            <td><span class="l-mk res">Resells</span>partner graph</td>
+            <td><span class="l-mk res">Resells</span>partner graph</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td></tr>
+          <tr><td class="rung">A Augmentation</td>
+            <td><span class="l-mk own">Owns</span>AIP Logic, Agent Studio</td>
+            <td><span class="l-mk own">Owns</span>Cortex Agents</td>
+            <td><span class="l-mk own">Owns</span>Agent Framework, MLflow</td>
+            <td><span class="l-mk own">Owns</span>Agent SDK, MCP, Skills</td>
+            <td><span class="l-mk own">Owns</span>Agents SDK, AgentKit</td></tr>
+          <tr><td class="rung">G Model</td>
+            <td><span class="l-mk res">Resells</span>model agnostic by design</td>
+            <td><span class="l-mk res">Resells</span>Claude, GPT, Llama in Cortex</td>
+            <td><span class="l-mk res">Resells</span>Foundation Model APIs</td>
+            <td><span class="l-mk own">Owns</span>Claude</td>
+            <td><span class="l-mk own">Owns</span>GPT</td></tr>
+          <tr><td class="rung">G Silicon</td>
+            <td><span class="l-mk dep">Dep</span></td>
+            <td><span class="l-mk dep">Dep</span></td>
+            <td><span class="l-mk dep">Dep</span></td>
+            <td><span class="l-mk dep">Dep</span>NVIDIA, Trainium, TPU</td>
+            <td><span class="l-mk dep">Dep</span>NVIDIA, custom in progress</td></tr>
+          <tr><td class="rung">On Write-back</td>
+            <td><span class="l-mk own">Owns</span>Actions into source systems</td>
+            <td><span class="l-mk own">Owns</span>Streams and Tasks</td>
+            <td><span class="l-mk own">Owns</span>Lakeflow, MLflow traces</td>
+            <td><span class="l-mk dep">Dep</span>lands in customer systems</td>
+            <td><span class="l-mk dep">Dep</span>lands in customer systems</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="layers" style="margin-top:22px">
+    <div class="layer own"><div class="layer-top"><span class="layer-code">note</span><span class="layer-title">Why some open-source projects are marked "owns" and others "depends on" <span class="em">the mark describes control, not licence</span></span><span class="chev">▾</span></div>
+      <div class="layer-body"><div class="layer-body-inner">
+        <p class="what">Delta Lake, Unity Catalog and MLflow are open source and were created at Databricks, which still drives them. That is a stronger position than owning a closed product, because the customer can fork it and Databricks still sets direction. Apache Iceberg and Apache Parquet are open source and governed at the foundation, so a vendor adopting them is a participant rather than an owner.</p>
+        <p class="what">Snowflake Open Catalog is that vendor's managed distribution of Apache Polaris (open source), which is why the catalog rung reads as owned while the format rung does not. The distinction matters for the reason Part 1 gives: it decides whether you can fork the thing your golden source of truth depends on, and who decides where it goes next.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+
 <footer>
   <div class="wrap">
     <p class="verstamp">
-      DRAGOn — the wheel under retrieval — v2.1 · build 2026-09-11T07:29-04:00 · supersedes v2.0 (25 August 2026).<br>
-      Changes in v2.1: the avoid-list term the document leaned on hardest is gone, replaced throughout with "data foundation," including in the glossary entry that defined it. Two editorial conventions applied: codenames now carry the products they name, and every open product, company or service is marked on first mention, separating open source from open-source core from open weights, with Elasticsearch flagged as source-available rather than either. Structure, wheel logic and the D/R/A/G/On argument are unchanged from v2.0.<br>
+      DRAGOn — the wheel under retrieval — v3.1 · build 2026-10-19T03:25-04:00 · supersedes v3.0 (17 September 2026, which added Part 2, "The ladders").<br>
+      Changes in v3.1: Memory &amp; Governance gains a who-plays-here panel naming memory engines, tracing and attribution platforms and offline evaluation harnesses, with two accuracy corrections (Self-RAG reflection tokens are trained into the model rather than supplied by Ragas, DeepEval or DSPy; Qdrant and Weaviate now rank on decay but neither records utility) and a note on the 2026 consolidation of tracing vendors. On adds the utility write-back and ties it to R6. Open source &amp; ownership adds the new players, lists Arize Phoenix as source-available, and records four acquisitions and Zep&rsquo;s change of model. Fixes two carry-overs: a section rule that gave every open-source chip 80px of top margin, which pushed chip rows apart across Part 1 and the licence legend, and a doubled "data data foundation" in four places. Part 2 is unchanged. Licence and ownership marks were checked against vendor and press sources on the build date.<br>
       D → R → A → G → On ↻ · <a href="#top">back to top ↑</a>
     </p>
   </div>
@@ -1039,32 +1408,44 @@ footer{border-top:1px solid var(--line);margin-top:64px;padding:38px 0 60px}
   }catch(e){}
 })();
 
-/* ---------- nav builds itself from sections ---------- */
+/* ---------- nav builds itself from the sections of the visible part ---------- */
 (function(){
-  var secs=[].slice.call(document.querySelectorAll('section.section[data-nav]'));
   var nl=document.getElementById('navlinks'),
       dr=document.getElementById('drawer'),
       mb=document.getElementById('menubtn');
-  secs.forEach(function(s){
-    [nl,dr].forEach(function(h){
-      if(!h) return;
-      var a=document.createElement('a');
-      a.href='#'+s.id; a.textContent=s.dataset.nav;
-      h.appendChild(a);
-    });
-  });
-  if(mb&&dr) mb.addEventListener('click',function(){ dr.classList.toggle('open'); });
-  if(dr) dr.addEventListener('click',function(e){ if(e.target.tagName==='A') dr.classList.remove('open'); });
-  if(!('IntersectionObserver' in window)) return;
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(!e.isIntersecting) return;
-      [].forEach.call(document.querySelectorAll('#navlinks a'),function(a){
-        a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id);
+  var io=null;
+
+  function build(scope){
+    var root = scope || document;
+    var secs = [].slice.call(root.querySelectorAll('section.section[data-nav]'));
+    if(nl) nl.innerHTML='';
+    if(dr) dr.innerHTML='';
+    secs.forEach(function(s){
+      [nl,dr].forEach(function(host){
+        if(!host) return;
+        var a=document.createElement('a');
+        a.href='#'+s.id; a.textContent=s.dataset.nav;
+        host.appendChild(a);
       });
     });
-  },{rootMargin:'-40% 0px -55% 0px'});
-  secs.forEach(function(s){ io.observe(s); });
+    if(!('IntersectionObserver' in window)) return;
+    if(io) io.disconnect();
+    io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        [].forEach.call(document.querySelectorAll('#navlinks a'),function(a){
+          a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id);
+        });
+      });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+
+  if(mb&&dr) mb.addEventListener('click',function(){ dr.classList.toggle('open'); });
+  if(dr) dr.addEventListener('click',function(e){ if(e.target.tagName==='A') dr.classList.remove('open'); });
+
+  window.__buildNav=build;
+  build(document.getElementById('part1'));
 })();
 
 /* ---------- build the wheel ---------- */
@@ -1251,6 +1632,234 @@ if(mt) mt.addEventListener('click',()=>{
   },{threshold:0.08});
   [].forEach.call(els,function(el){ io.observe(el); });
 })();
+
+/* ---------- part switch ---------- */
+(function(){
+  var parts={part1:document.getElementById('part1'),part2:document.getElementById('part2')};
+  var btns=[].slice.call(document.querySelectorAll('#partswitch .toggle'));
+  if(!parts.part1||!parts.part2) return;
+
+  function show(id,scroll){
+    Object.keys(parts).forEach(function(k){
+      var el=parts[k]; if(!el) return;
+      if(k===id){ el.removeAttribute('hidden'); }
+      else { el.setAttribute('hidden',''); }
+    });
+    btns.forEach(function(b){ b.classList.toggle('active', b.dataset.part===id); });
+    /* sections in a hidden part never trip the reveal observer, so reveal them on show */
+    [].forEach.call(parts[id].querySelectorAll('.reveal'),function(el){ el.classList.add('in'); });
+    if(window.__buildNav) window.__buildNav(parts[id]);
+    if(scroll){ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } }
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){ show(b.dataset.part,true); });
+  });
+
+  /* deep links: #part2, or any p2- section id, open Part 2 */
+  function fromHash(){
+    var h=(location.hash||'').replace('#','');
+    if(!h) return;
+    if(h==='part2'||h.indexOf('p2-')===0){
+      show('part2',false);
+      var t=document.getElementById(h);
+      if(t) setTimeout(function(){ t.scrollIntoView(); },40);
+    }
+  }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+  window.__showPart=show;
+})();
+
+/* ---------- part 2 · the ladder map ---------- */
+(function(){
+  var PHASES=[
+    {k:'D',  name:'Data'},
+    {k:'R',  name:'Retrieval'},
+    {k:'A',  name:'Augmentation'},
+    {k:'G',  name:'Generation'},
+    {k:'On', name:'The close'}
+  ];
+
+  var DATA={
+    palantir:{
+      name:'Palantir', sub:'Foundry + AIP · climbs from the ontology', origin:'D',
+      blurb:'Holds no bytes and ships no model. Its ladder starts in the middle, at a modeled ontology of objects and relationships, and extends outward in both directions from there.',
+      query:'Which suppliers are single-source for parts on the delayed program, and what is the substitution path?',
+      D:{exec:'Syncs from the customer\u2019s systems, then maps what arrives onto ontology objects.',
+         items:[['Foundry Data Connection','own'],['Pipeline Builder','own'],['Ontology','own'],['Customer ERP, PLM, file systems','dep'],['Parquet, Iceberg (open source)','dep']],
+         narr:'Foundry does not hold the bytes. It syncs from the customer\u2019s ERP, PLM and file systems, then Pipeline Builder maps what arrives onto typed ontology objects. Governance is Palantir\u2019s strongest rung and runs at object and property level, which is why regulated buyers start here. But the storage underneath belongs to the customer, and the ontology is a model over data held somewhere else.'},
+      R:{exec:'The ontology is the retrieval model. Multi-hop questions resolve by traversal.',
+         items:[['Ontology traversal','own'],['Foundry search','own'],['Embedding and vector via AIP','dep']],
+         narr:'Suppliers, parts, programs and schedules are explicit typed objects with explicit relationships, so the question resolves by walking the graph rather than by similarity. This is the R4 rung done as a modeled ontology instead of a mined knowledge graph, and it answers cross-document questions pure vector search cannot reach. The tradeoff is that somebody had to model it first.'},
+      A:{exec:'AIP plans the steps, calls the tools, and constrains what the agent may do.',
+         items:[['AIP Logic','own'],['AIP Agent Studio','own'],['Automate','own']],
+         narr:'AIP Logic and Agent Studio run the loop. The distinctive part is that the ontology also bounds the action space: an agent can only act through defined object actions, which is a different safety posture from prompting a model to behave well. Palantir is selling the constraint as much as the capability.'},
+      G:{exec:'No model of its own. Routes to whichever frontier or open-weight model the customer picks.',
+         items:[['GPT','res'],['Claude','res'],['Gemini','res'],['Open-weight models (open weights)','res'],['Silicon','dep']],
+         narr:'Palantir ships no model and says so plainly. AIP routes to GPT, Claude, Gemini or a self-hosted open-weight model, and the choice is configuration rather than architecture. This is fully rented by design, and it is a coherent bet: if the ontology is the moat, the model is an input you want to be able to swap when the price moves.'},
+      On:{exec:'Actions write back through the ontology into the source systems, with approval and audit.',
+          items:[['Ontology Actions','own'],['Automate','own'],['Customer systems of record','dep']],
+          narr:'Of the five, this is the most complete close. Actions write back through the ontology into the systems of record, with approval workflow and an audit trail on every write. The wheel genuinely turns. The caveat is the same as at D: the write lands in a system Palantir does not hold, so the durable record of what the loop learned belongs to the customer\u2019s floor, not to Foundry.'}
+    },
+
+    snowflake:{
+      name:'Snowflake', sub:'Cortex + Horizon · climbs from the table', origin:'D',
+      blurb:'Owns the table and everything built over it, and has extended fast into retrieval and augmentation. Rents the floor below and the model above.',
+      query:'Which enterprise accounts renewed below list last quarter, and what did their support tickets say?',
+      D:{exec:'Contract text and tickets land in tables beside the structured renewal records.',
+         items:[['Iceberg tables (open source)','dep'],['Cortex document functions','own'],['Snowpipe, Dynamic Tables','own'],['Horizon, Open Catalog (Polaris)','own'],['Hyperscaler object storage','dep']],
+         narr:'The contract PDFs and ticket text land in Iceberg tables next to the structured renewal records, and Cortex parses, chunks and embeds them in place. Horizon holds the governance. The bytes themselves sit in whichever object store the account runs on, which Snowflake rents rather than owns, and the table format is governed at the foundation rather than by Snowflake.'},
+      R:{exec:'One hybrid pass over ticket text fused with exact filters on account, date and price band.',
+         items:[['Cortex Search','own'],['SQL filtering','own'],['Full-text search','own'],['Graph','dep']],
+         narr:'Cortex Search runs vector recall over the ticket text and fuses it with exact predicates on account ID, close date and price band. Because the structured half of the question is answered by the same engine, there is no join across two systems and no second copy to keep fresh. The gap is connection: there is no native graph rung, so a question about how accounts relate to each other falls back to SQL or a partner.'},
+      A:{exec:'Cortex Agents plans the two-part question and packs both result sets into one window.',
+         items:[['Cortex Agents','own'],['Snowflake Intelligence','own'],['MCP endpoint (open spec)','own']],
+         narr:'Cortex Agents decomposes the question, issues the structured query and the search call, then assembles both result sets into a single context. Snowflake Intelligence is the front door for a business user. Notably Snowflake now also exposes this through MCP, which means the augmentation rung is open at both ends: it can be driven by someone else\u2019s agent.'},
+      G:{exec:'A partner model writes the answer, called on Snowflake\u2019s own compute.',
+         items:[['Claude in Cortex','res'],['GPT in Cortex','res'],['Llama (open weights)','res'],['Arctic (open weights)','own'],['Silicon','dep']],
+         narr:'Claude or GPT writes the answer, called through Cortex so the data does not leave the account boundary. Snowflake\u2019s own model, Arctic, exists and is not the one doing this job. This is the rented rung, and the in-account calling pattern is the real product here rather than the model itself.'},
+      On:{exec:'The answer, its citations and the analyst\u2019s accept or reject land back as rows.',
+          items:[['Streams and Tasks','own'],['Dynamic Tables','own'],['Cortex observability','own']],
+          narr:'The answer, its citations and whether the analyst accepted it land back as rows in the same account. Streams and Tasks pick the change up and the next refresh sees it. This is the cleanest mechanical close of the five, because the write-back target is the same table the retrieval reads from. What it does not do is put that record in an open format outside Snowflake.'}
+    },
+
+    databricks:{
+      name:'Databricks', sub:'Mosaic AI + Unity Catalog · climbs from the table', origin:'D',
+      blurb:'The same climb as Snowflake, from a table format it created and still governs. Deeper in evaluation and tracing, equally dependent on partner models.',
+      query:'Find the recurring failure modes in last quarter\u2019s field service reports and flag the part numbers involved.',
+      D:{exec:'Scanned reports parsed into Delta tables, kept current, catalogued and permissioned.',
+         items:[['Delta Lake (open source)','own'],['Unity Catalog (open source)','own'],['Lakeflow','own'],['ai_parse_document','own'],['Hyperscaler object storage','dep']],
+         narr:'Reports land in Delta Lake, Lakeflow keeps them current, and ai_parse_document extracts text and tables from the scanned PDFs. Unity Catalog holds the schema and the permissions. Delta and Unity are open source and originated here, which is a stronger position than adopting someone else\u2019s format. The object store underneath is still rented from the cloud.'},
+      R:{exec:'A vector index that syncs from the Delta table, so the index follows the data.',
+         items:[['Mosaic AI Vector Search','own'],['Delta sync','own'],['Hybrid retrieval','own'],['Graph','dep']],
+         narr:'Mosaic AI Vector Search indexes the report text and syncs directly from the Delta table, so the index follows the data instead of drifting from it. That sync is the meaningful engineering: it removes the staleness problem a bolted-on vector store creates. Hybrid retrieval fuses the semantic pass with exact part-number filters. Graph is the missing rung here too.'},
+      A:{exec:'The agent loop runs with tracing and evaluation wired in from the start.',
+         items:[['Mosaic AI Agent Framework','own'],['Agent Bricks','own'],['MLflow (open source)','own'],['AI Gateway','own']],
+         narr:'The Agent Framework runs the loop, MLflow traces every call, and AI Gateway meters and governs model access. The evaluation story is the strongest of the five: traces become evaluation sets, and evaluation sets become the basis for the next version. This is the rung where Databricks is genuinely ahead rather than at parity.'},
+      G:{exec:'Partner models served through one gateway, with an in-house open-weight option.',
+         items:[['Claude on Databricks','res'],['Llama (open weights)','res'],['DBRX (open weights)','own'],['Silicon','dep']],
+         narr:'Foundation Model APIs serve Claude, Llama or DBRX behind a single endpoint. DBRX is the in-house option and is not the frontier; frontier answers come from a partner. As with Snowflake, the product is the governed calling pattern rather than the model, and the model choice is deliberately kept swappable.'},
+      On:{exec:'Findings write back to Delta, pipelines reprocess, traces become the next evaluation set.',
+          items:[['Delta write-back','own'],['Lakeflow','own'],['MLflow traces','own']],
+          narr:'Findings write back to a Delta table, Lakeflow reprocesses, and the MLflow traces from this run become the evaluation set for the next version. The loop closes on both the data and the quality axis, which is more than most of the field does. The floor question is unchanged: all of it sits on object storage Databricks rents.'}
+    },
+
+    anthropic:{
+      name:'Anthropic', sub:'Claude + MCP · descends from the model', origin:'G',
+      blurb:'Owns the model and the protocol, and has deliberately declined to own retrieval or storage. The bet is that the interface matters more than the index.',
+      query:'Read this quarter\u2019s renewal contracts, draft the risk memo, then open the tickets.',
+      D:{exec:'None held. Reaches the customer\u2019s files at question time and keeps nothing durable.',
+         items:[['Customer storage','dep'],['Files API, working set','dep'],['MCP connectors (open spec)','own']],
+         narr:'There is no data rung. The contracts sit in the customer\u2019s storage and Claude reaches them through MCP connectors or the Files API at question time. Nothing durable is held, so when the session ends the derived understanding goes with it unless the customer captured it. That is a design choice, not a gap to be filled, and it is the clearest statement in the set that D is somebody else\u2019s business.'},
+      R:{exec:'Thin by design. Reaches whatever index the customer already runs.',
+         items:[['File search, working set','own'],['MCP to customer index (open spec)','own'],['Vector store','dep'],['Graph','dep']],
+         narr:'Anthropic does not sell a vector store and shows no sign of wanting to. The API ships retrieval over a working set, and beyond that Claude reaches whatever index the customer already runs through MCP. The strategic content of that choice is real: by not competing at the retrieval rung, Anthropic becomes the thing every retrieval vendor wants to be compatible with.'},
+      A:{exec:'The strongest rung. The agent loop, the skills, and the protocol others expose through.',
+         items:[['Claude Agent SDK (open source)','own'],['MCP (open spec)','own'],['Agent Skills','own'],['Claude Code','own']],
+         narr:'The Agent SDK, Agent Skills and MCP are the augmentation rung, and MCP has become the interface through which other people\u2019s retrieval is exposed, including Snowflake\u2019s and Databricks\u2019. Owning the protocol is a different move from owning the loop: it means the other four ladders are building doors that open onto this rung.'},
+      G:{exec:'Claude writes the answer on Anthropic\u2019s own serving, on rented silicon.',
+         items:[['Claude','own'],['Anthropic serving','own'],['Bedrock, Vertex, Foundry','res'],['NVIDIA, Trainium, TPU','dep']],
+         narr:'Claude writes the answer. Serving is Anthropic\u2019s own plus the three hyperscaler endpoints, which is how the model reaches buyers already committed to a cloud. The silicon underneath is rented from three suppliers, which is a deliberate hedge rather than an exposure.'},
+      On:{exec:'The act is real. The landing is in systems Anthropic does not hold.',
+          items:[['Tool use','own'],['Computer use','own'],['Claude Code commits','own'],['Customer systems','dep']],
+          narr:'Tool use and computer use make the act real, and Claude Code commits to the repository. But the write-back lands in the customer\u2019s systems, which means the durable half of the loop closes on somebody else\u2019s floor. The wheel turns; Anthropic just does not own the ground it turns on, and has priced its business accordingly.'}
+    },
+
+    openai:{
+      name:'OpenAI', sub:'GPT + AgentKit · descends from the model', origin:'G',
+      blurb:'The same descent as Anthropic, one rung further. It does ship a managed vector store, which buys developer convenience at the cost of another copy in its custody.',
+      query:'Answer support questions from the uploaded manuals, and file a ticket when the answer is not in them.',
+      D:{exec:'None durable. Files uploaded for the life of the workload.',
+         items:[['Managed file store','own'],['Customer corpus','dep'],['Durable storage','dep']],
+         narr:'There is no durable data rung. Manuals are uploaded into a managed store for the life of the workload, and the customer\u2019s own corpus stays where it is. The chunking and embedding are done for you, which is genuinely convenient and also means the derived understanding is produced inside OpenAI rather than on the customer\u2019s floor.'},
+      R:{exec:'Further into retrieval than Anthropic goes. A managed store with reranking included.',
+         items:[['File Search vector store','own'],['Managed chunk, embed, rerank','own'],['Graph','dep']],
+         narr:'File Search in the Responses API is a managed vector store with chunking, embedding and reranking included, so a team can ship retrieval without ever choosing an index. That is the meaningful difference from Anthropic: OpenAI reaches one rung further down. It is also a copy of the customer\u2019s content held in OpenAI\u2019s custody, which is the tradeoff the convenience is paying for.'},
+      A:{exec:'Handoffs, guardrails and tracing shipped as one kit.',
+         items:[['Agents SDK (open source)','own'],['AgentKit','own'],['Responses API','own']],
+         narr:'The Agents SDK and AgentKit run the loop, with handoffs between agents, guardrails and tracing built in. It is the most opinionated of the five frameworks and the fastest to a working prototype. Like the others at this rung it is broadly swappable, which is the structural problem with augmentation as a moat.'},
+      G:{exec:'GPT writes the answer on OpenAI\u2019s own serving, on silicon it is working to stop renting.',
+         items:[['GPT','own'],['OpenAI serving','own'],['Azure OpenAI','res'],['NVIDIA','dep'],['Custom silicon, in progress','dep']],
+         narr:'GPT writes the answer on OpenAI\u2019s own serving, with Azure as the enterprise route. Silicon is rented from NVIDIA today, with custom parts in development. That last item is the rung on this map most likely to change colour within the horizon of this document.'},
+      On:{exec:'Function calling files the ticket. The record lands elsewhere.',
+          items:[['Function calling','own'],['Computer use','own'],['Customer ticketing system','dep']],
+          narr:'Function calling files the ticket and computer use extends the act further into the customer\u2019s applications. As with Anthropic, the landing is in systems OpenAI does not hold, so the record of what the loop learned accrues to the customer\u2019s floor. Unlike Anthropic, some of the derived understanding stays behind in the managed store, which cuts both ways.'}
+    }
+  };
+
+  var rail=document.getElementById('lRail');
+  var nk=document.getElementById('lNarrKick'), nt=document.getElementById('lNarrTitle'), nb=document.getElementById('lNarrBody');
+  var ahName=document.getElementById('lAhName'), ahSub=document.getElementById('lAhSub'), ahBlurb=document.getElementById('lAhBlurb');
+  var qText=document.getElementById('lQText');
+  var stepBtn=document.getElementById('lStepBtn'), resetBtn=document.getElementById('lResetBtn');
+  var bOwn=document.getElementById('lBarOwn'), bRes=document.getElementById('lBarRes'), bDep=document.getElementById('lBarDep');
+  var nOwn=document.getElementById('lNumOwn'), nRes=document.getElementById('lNumRes'), nDep=document.getElementById('lNumDep');
+  if(!rail||!nb||!stepBtn) return;
+
+  var current='palantir', step=0;
+
+  function tally(a){
+    var c={own:0,res:0,dep:0}, tot=0;
+    PHASES.forEach(function(p){
+      (a[p.k].items||[]).forEach(function(it){ if(c[it[1]]!==undefined){ c[it[1]]++; tot++; } });
+    });
+    return {c:c, tot:tot||1};
+  }
+
+  function head(a){
+    ahName.textContent=a.name; ahSub.textContent=a.sub; ahBlurb.textContent=a.blurb;
+    qText.textContent=a.query;
+    var r=tally(a);
+    bOwn.style.width=Math.round(r.c.own/r.tot*100)+'%';
+    bRes.style.width=Math.round(r.c.res/r.tot*100)+'%';
+    bDep.style.width=Math.round(r.c.dep/r.tot*100)+'%';
+    nOwn.textContent=r.c.own; nRes.textContent=r.c.res; nDep.textContent=r.c.dep;
+  }
+
+  function drawRail(a){
+    rail.innerHTML='';
+    PHASES.forEach(function(p,i){
+      var d=a[p.k]; if(!d) return;
+      var btn=document.createElement('button');
+      btn.className='l-ph'+(i===step?' active':'');
+      btn.setAttribute('type','button');
+      var origin=(a.origin==='D'&&p.k==='D')||(a.origin==='G'&&p.k==='G');
+      var chips='';
+      (d.items||[]).forEach(function(it){ chips+='<span class="l-pchip '+it[1]+'">'+it[0]+'</span>'; });
+      btn.innerHTML=(origin?'<span class="l-ph-origin">own products start</span>':'')+
+        '<div class="l-ph-top"><span class="l-ph-let">'+p.k+'</span><span class="l-ph-name">'+p.name+'</span></div>'+
+        '<p class="l-ph-exec">'+d.exec+'</p>'+
+        '<div class="l-pchips">'+chips+'</div>';
+      btn.addEventListener('click',function(){ step=i; paint(); });
+      rail.appendChild(btn);
+    });
+  }
+
+  function narrate(a){
+    var p=PHASES[step], d=a[p.k];
+    nk.textContent='Phase '+(step+1)+' of 5 · '+p.k+' · '+p.name;
+    nt.textContent=a.name+' at '+p.k;
+    nb.textContent=d.narr;
+    stepBtn.textContent=(step===PHASES.length-1)?'Back to D \u203A':'Step \u203A';
+  }
+
+  function paint(){ var a=DATA[current]; if(!a) return; head(a); drawRail(a); narrate(a); }
+
+  [].forEach.call(document.querySelectorAll('#l-anchors .toggle'),function(c){
+    c.addEventListener('click',function(){
+      [].forEach.call(document.querySelectorAll('#l-anchors .toggle'),function(x){ x.classList.remove('active'); });
+      c.classList.add('active');
+      current=c.dataset.anchor; step=0; paint();
+    });
+  });
+
+  stepBtn.addEventListener('click',function(){ step=(step+1)%PHASES.length; paint(); });
+  resetBtn.addEventListener('click',function(){ step=0; paint(); });
+
+  paint();
+})();
+
 </script>
 </body>
 </html>
